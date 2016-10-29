@@ -135,10 +135,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
-  minima
-
-RUBY VERSION
-   ruby 2.0.0p648
+  jekyll-github-metadata
 
 BUNDLED WITH
    1.13.6
