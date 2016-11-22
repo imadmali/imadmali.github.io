@@ -7,12 +7,12 @@ layout: default
 </div>
 <br>
 
-Imad Ali is a Bayesian Statistician. He currently works and studies at Columbia University.
+Imad Ali is a **Bayesian Statistician**. He currently works and studies at Columbia University.
 
 ### Programming
-RStanARM.  
-Statistics Algorithms.  
-Bayesian Econometrics.
+[RStanARM](http://mc-stan.org/interfaces/rstanarm).  
+[Statistics Algorithms](https://github.com/imadmali/statistics-algorithms).  
+[Bayesian Econometrics](https://github.com/imadmali/bayesian-econometrics).
 
 ### Applied Statistics
 Institutional Research.  
@@ -21,5 +21,5 @@ Box office prediction.
 
 ### Knowledge
 [Bayes' theorem](/knowledge/bayes-theorem).  
-Data preprocessing.  
-Vector Calculus.
+[Data preprocessing](/files/preprocessing_notes.html).  
+[Vector Calculus](/files/vcn.pdf).
