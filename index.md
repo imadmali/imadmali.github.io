@@ -10,9 +10,9 @@ layout: default
 Imad Ali is a **Bayesian Statistician**. He currently works and studies at Columbia University.
 
 ### Programming
-[RStanARM](http://mc-stan.org/interfaces/rstanarm).  
-[Statistics Algorithms](https://github.com/imadmali/statistics-algorithms).  
-[Bayesian Econometrics](https://github.com/imadmali/bayesian-econometrics).
+RStanARM [<i class='fa fa-code'></i>](http://mc-stan.org/interfaces/rstanarm){: .awe-ico }  
+Statistics Algorithms [<i class='fa fa-code'></i>](https://github.com/imadmali/statistics-algorithms){: .awe-ico }  
+Bayesian Econometrics [<i class='fa fa-code'></i>](https://github.com/imadmali/bayesian-econometrics){: .awe-ico }  
 
 ### Applied Statistics
 Institutional Research.  
@@ -20,6 +20,6 @@ Bank redlining.
 Box office prediction.
 
 ### Knowledge
-[Bayes' theorem](/knowledge/bayes-theorem).  
-[Data preprocessing](/files/preprocessing_notes.html).  
-[Vector Calculus](/files/vcn.pdf).
+Bayes' theorem [<i class='fa fa-file-o'></i>](/knowledge/bayes-theorem){: .awe-ico }  
+Data preprocessing [<i class='fa fa-file-o'></i>](/files/preprocessing_notes.html){: .awe-ico }    
+Vector Calculus [<i class='fa fa-file-o'></i>](/files/vcn.pdf){: .awe-ico }  
