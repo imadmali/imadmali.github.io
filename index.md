@@ -27,6 +27,5 @@ Institutional Research.
 Motion Pictures.
 
 ### Knowledge
-Bayesian Statistics [<i class="fa fa-info"></i>](/bayesian-statistics/){: .awe-ico }  
-Data Preprocessing [<i class='fa fa-file-o'></i>](/files/preprocessing_notes.html){: .awe-ico }    
+Bayesian Statistics [<i class="fa fa-info"></i>](/bayesian-statistics/){: .awe-ico }    
 Vector Calculus [<i class='fa fa-file-o'></i>](/files/vcn.pdf){: .awe-ico }  
