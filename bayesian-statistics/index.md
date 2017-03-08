@@ -7,7 +7,7 @@ Several notes on Bayesian Statistics that are used to support the *Bayesian Stat
 
 * [Bayes' Theorem and Maximum Likelihood Estimation](/bayesian-statistics/bayes)  
 * [Understanding Priors by Sampling from the Grid](/bayesian-statistics/priors)  
-* Algorithms and MCMC
+* [Markov Chain Monte Carlo Algorithms in Bayesian Statistics](/bayesian-statistics/mcmc)
 * rstanarm - Model Fitting, Interpreting Output, and Diagnostics
 * rstanarm - Hierarchical Regression
 * rstan and Stan Files
