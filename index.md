@@ -22,7 +22,7 @@ Bayesian Econometrics [<i class='fa fa-code'></i>](https://github.com/imadmali/b
 
 ### Applied Statistics
 Pharmacology.  
-Election Mapping.  
+Spatial Statistics.  
 Institutional Research.  
 Motion Pictures.
 
