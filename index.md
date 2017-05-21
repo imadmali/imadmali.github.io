@@ -21,6 +21,7 @@ Statistics Algorithms [<i class='fa fa-code'></i>](https://github.com/imadmali/s
 Bayesian Econometrics [<i class='fa fa-code'></i>](https://github.com/imadmali/bayesian-econometrics){: .awe-ico }  
 
 ### Applied Statistics
+Basketball Analytics.  
 Pharmacology.  
 Spatial Statistics.  
 Institutional Research.  
