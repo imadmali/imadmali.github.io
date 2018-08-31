@@ -7,7 +7,7 @@ layout: default
 </div>
 <br>
 
-Imad Ali is a **Bayesian Statistician**. He currently works and studies at Columbia University.
+Imad Ali is a [Stan](http://mc-stan.org/) developer and **Bayesian Statistician** at the [NBA](http://stats.nba.com/).
 [[<i class="fa fa-envelope-o"></i>](mailto:imad.ali@columbia.edu){: .awe-ico }]
 [[<i class="fa fa-git"></i>](https://github.com/imadmali){: .awe-ico }]
 [[<i class="fa fa-linkedin"></i>](https://www.linkedin.com/in/imadmali){: .awe-ico }]
@@ -24,9 +24,12 @@ Bayesian Econometrics [<i class='fa fa-code'></i>](https://github.com/imadmali/b
 Basketball Analytics.  
 Pharmacology.  
 Spatial Statistics.  
-Institutional Research.  
-Motion Pictures.
 
-### Knowledge
-Bayesian Statistics [<i class="fa fa-info"></i>](/bayesian-statistics/){: .awe-ico }    
+### Papers & Tutorials
+
+[Voting patterns in 2016: Exploration using multilevel regression and poststratification (MRP) on pre-election polls](https://arxiv.org/abs/1802.00842) (2018)  
+<i class="fa fa-circle-thin" aria-hidden="true"></i> Rob Trangucci, Imad Ali, Andrew Gelman, Doug Rivers
+
+Bayesian Statistics [<i class="fa fa-info"></i>](/bayesian-statistics/){: .awe-ico }  
+
 Vector Calculus [<i class='fa fa-file-o'></i>](/files/vcn.pdf){: .awe-ico }  
