@@ -28,7 +28,12 @@ Spatial Statistics.
 ### Papers & Tutorials
 
 [Voting patterns in 2016: Exploration using multilevel regression and poststratification (MRP) on pre-election polls](https://arxiv.org/abs/1802.00842) (2018)  
-<i class="fa fa-circle-thin" aria-hidden="true"></i> Rob Trangucci, Imad Ali, Andrew Gelman, Doug Rivers
+<i class="fa fa-circle-thin fa-sm" aria-hidden="true"></i> Rob Trangucci, Imad Ali, Andrew Gelman, Doug Rivers
+
+[Modeling Rates/Proportions using Beta Regression with rstanarm
+](http://mc-stan.org/rstanarm/articles/betareg.html)  
+<i class="fa fa-circle-thin fa-sm" aria-hidden="true"></i> Imad Ali, Jonah Gabry and Ben Goodrich
+
 
 Bayesian Statistics [<i class="fa fa-info"></i>](/bayesian-statistics/){: .awe-ico }  
 
