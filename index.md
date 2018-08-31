@@ -15,10 +15,8 @@ Imad Ali is a [Stan](http://mc-stan.org/) developer and **Bayesian Statistician*
 
 ### Programming
 RStanARM
-[<i class="fa fa-info"></i>](http://mc-stan.org/interfaces/rstanarm){: .awe-ico }
-[<i class='fa fa-code'></i>](https://github.com/stan-dev/rstanarm){: .awe-ico }  
-Statistics Algorithms [<i class='fa fa-code'></i>](https://github.com/imadmali/statistics-algorithms){: .awe-ico }  
-Bayesian Econometrics [<i class='fa fa-code'></i>](https://github.com/imadmali/bayesian-econometrics){: .awe-ico }  
+[<i class="fa fa-info"></i>](http://mc-stan.org/rstanarm/){: .awe-ico }
+[<i class='fa fa-code'></i>](https://github.com/stan-dev/rstanarm){: .awe-ico }
 
 ### Applied Statistics
 Spatial Statistics.  
