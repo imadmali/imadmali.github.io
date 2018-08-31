@@ -21,9 +21,9 @@ Statistics Algorithms [<i class='fa fa-code'></i>](https://github.com/imadmali/s
 Bayesian Econometrics [<i class='fa fa-code'></i>](https://github.com/imadmali/bayesian-econometrics){: .awe-ico }  
 
 ### Applied Statistics
-Basketball Analytics.  
-Pharmacology.  
 Spatial Statistics.  
+Basketball Analytics.  
+Pharmacology.   
 
 ### Papers & Tutorials
 
@@ -31,7 +31,7 @@ Voting patterns in 2016: Exploration using multilevel regression and poststratif
 <i class="fa fa-caret-right fa-xs"></i> Rob Trangucci, Imad Ali, Andrew Gelman, Doug Rivers
 
 Modeling Rates/Proportions using Beta Regression with rstanarm (2018) [<i class='fa fa-file-o'></i>](http://mc-stan.org/rstanarm/articles/betareg.html){: .awe-ico }    
-<i class="fa fa-caret-right fa-xs"></i> Imad Ali, Jonah Gabry and Ben Goodrich
+<i class="fa fa-caret-right fa-xs"></i> Imad Ali, Jonah Gabry, Ben Goodrich
 
 Bayesian Statistics (2017) [<i class="fa fa-info"></i>](/bayesian-statistics/){: .awe-ico }  
 <i class="fa fa-caret-right fa-xs"></i> Imad Ali  
