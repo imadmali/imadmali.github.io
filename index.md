@@ -27,14 +27,14 @@ Spatial Statistics.
 
 ### Papers & Tutorials
 
-[Voting patterns in 2016: Exploration using multilevel regression and poststratification (MRP) on pre-election polls](https://arxiv.org/abs/1802.00842) (2018)  
-<i class="fa fa-circle-thin fa-sm" aria-hidden="true"></i> Rob Trangucci, Imad Ali, Andrew Gelman, Doug Rivers
+Voting patterns in 2016: Exploration using multilevel regression and poststratification (MRP) on pre-election polls (2018) [<i class='fa fa-file-o'></i>](https://arxiv.org/abs/1802.00842){: .awe-ico }    
+<i class="fa fa-caret-right fa-xs"></i> Rob Trangucci, Imad Ali, Andrew Gelman, Doug Rivers
 
-[Modeling Rates/Proportions using Beta Regression with rstanarm
-](http://mc-stan.org/rstanarm/articles/betareg.html)  
-<i class="fa fa-circle-thin fa-sm" aria-hidden="true"></i> Imad Ali, Jonah Gabry and Ben Goodrich
+Modeling Rates/Proportions using Beta Regression with rstanarm (2018) [<i class='fa fa-file-o'></i>](http://mc-stan.org/rstanarm/articles/betareg.html){: .awe-ico }    
+<i class="fa fa-caret-right fa-xs"></i> Imad Ali, Jonah Gabry and Ben Goodrich
 
+Bayesian Statistics (2017) [<i class="fa fa-info"></i>](/bayesian-statistics/){: .awe-ico }  
+<i class="fa fa-caret-right fa-xs"></i> Imad Ali  
 
-Bayesian Statistics [<i class="fa fa-info"></i>](/bayesian-statistics/){: .awe-ico }  
-
-Vector Calculus [<i class='fa fa-file-o'></i>](/files/vcn.pdf){: .awe-ico }  
+Vector Calculus (2016) [<i class='fa fa-file-o'></i>](/files/vcn.pdf){: .awe-ico }  
+<i class="fa fa-caret-right fa-xs"></i> Imad Ali, Ross Flek
