@@ -7,7 +7,7 @@ layout: default
 </div>
 <br>
 
-Imad Ali is a [Stan](http://mc-stan.org/) developer and **Data Scientist** at the [PlayStation](https://www.playstation.com/en-us/).
+Imad Ali is a [Stan](http://mc-stan.org/) developer and **Data Scientist** at [PlayStation](https://www.playstation.com/en-us/). Formerly at the [NBA](https://www.nba.com/).
 [[<i class="fa fa-envelope-o"></i>](mailto:imad.ali@columbia.edu){: .awe-ico }]
 [[<i class="fa fa-git"></i>](https://github.com/imadmali){: .awe-ico }]
 [[<i class="fa fa-linkedin"></i>](https://www.linkedin.com/in/imadmali){: .awe-ico }]
