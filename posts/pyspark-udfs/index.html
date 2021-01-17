@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Imad Ali ">
+<meta name="description" content="These are some of my notes on creating UDFs (user defined functions) in PySpark.
+UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&amp;rsquo;re working with modular components that build up to the entire ETL workflow).
+Here I show how to create a PySpark UDF which uses," />
+<meta name="keywords" content=", Python, PySpark, Data Engineering" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://imadali.net/posts/pyspark-udfs/" />
+
+
+    <title>
+        
+            PySpark UDFs :: Imad Ali 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+
+
+
+
+
+
+<meta itemprop="name" content="PySpark UDFs">
+<meta itemprop="description" content="These are some of my notes on creating UDFs (user defined functions) in PySpark.
+UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&rsquo;re working with modular components that build up to the entire ETL workflow).
+Here I show how to create a PySpark UDF which uses,">
+<meta itemprop="datePublished" content="2020-09-15T00:22:23-07:00" />
+<meta itemprop="dateModified" content="2020-09-15T00:22:23-07:00" />
+<meta itemprop="wordCount" content="857">
+
+
+
+<meta itemprop="keywords" content="Python,PySpark,Data Engineering," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PySpark UDFs"/>
+<meta name="twitter:description" content="These are some of my notes on creating UDFs (user defined functions) in PySpark.
+UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&rsquo;re working with modular components that build up to the entire ETL workflow).
+Here I show how to create a PySpark UDF which uses,"/>
+
+
+
+    <meta property="og:title" content="PySpark UDFs" />
+<meta property="og:description" content="These are some of my notes on creating UDFs (user defined functions) in PySpark.
+UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&rsquo;re working with modular components that build up to the entire ETL workflow).
+Here I show how to create a PySpark UDF which uses," />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://imadali.net/posts/pyspark-udfs/" />
+<meta property="article:published_time" content="2020-09-15T00:22:23-07:00" />
+<meta property="article:modified_time" content="2020-09-15T00:22:23-07:00" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-15 00:22:23 -0700 PDT" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="http://imadali.net" style="text-decoration: none;">
+    <div class="logo">
+        
+        
+            <span class="logo__text">imad ali</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://imadali.net/posts/">Posts</a></li><li><a href="http://imadali.net/projects/">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://imadali.net/posts/pyspark-udfs/">PySpark UDFs</a>
+            </h1>
+
+            <div class="post-info">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-09-15
+              </p>
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>5 minutes
+              </p>
+            </div>
+
+            
+
+            <div class="post-content">
+                <p>These are some of my notes on creating UDFs (user defined functions) in <a href="https://spark.apache.org/docs/latest/api/python/pyspark.html">PySpark</a>.</p>
+<p>UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&rsquo;re working with modular components that build up to the entire ETL workflow).</p>
+<p>Here I show how to create a PySpark UDF which uses,</p>
+<ol>
+<li>a single column</li>
+<li>multiple columns</li>
+<li>an external library function</li>
+<li>aggregation by packing columns in to a list.</li>
+</ol>
+<p>(All code shown below uses PySpark 3.0.1.)</p>
+<p>To start, I generate some data that I&rsquo;ll use to illustrate all of the UDF constructions I mentioned above.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> pyspark.sql <span style="color:#f92672">import</span> SparkSession
+<span style="color:#75715e"># needed for udfs</span>
+<span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> udf, lit, collect_list
+<span style="color:#f92672">from</span> pyspark.sql.types <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+
+spark <span style="color:#f92672">=</span> SparkSession<span style="color:#f92672">.</span>builder<span style="color:#f92672">.</span>appName(<span style="color:#e6db74">&#39;udf_tutorial&#39;</span>)<span style="color:#f92672">.</span>getOrCreate()
+N <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;identifier&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>], N, replace<span style="color:#f92672">=</span>True),
+        <span style="color:#e6db74">&#39;var1&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, N),
+        <span style="color:#e6db74">&#39;var2&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#e6db74">&#39;Y&#39;</span>,<span style="color:#e6db74">&#39;N&#39;</span>], N, replace<span style="color:#f92672">=</span>True)}
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data)
+<span style="color:#66d9ef">print</span>(df)
+</code></pre></div><p>This produces the following table.</p>
+<pre><code>identifier      var1    var2
+0            2 -0.015862    N
+1            5  3.792773    N
+2            4  2.653766    Y
+3            2 -2.231594    Y
+4            3  4.900761    N
+..         ...       ...  ...
+95           2  5.026429    Y
+96           5  3.123079    Y
+97           1  1.880323    N
+98           3 -6.005374    Y
+99           5  1.074175    N
+</code></pre><p>Before diving into the different UDFs it&rsquo;s worth outlining what the workflow ill look like. Typically the process of creating/using a UDF goes something like this:</p>
+<ol>
+<li>Define your function in Python.</li>
+<li>Register your function with Spark and specify the return type. (See this <a href="https://spark.apache.org/docs/latest/api/python/_modules/pyspark/sql/types.html">code</a> possible return types.)</li>
+<li>Apply your UDF to your Spark data frame.</li>
+<li>Breathe.</li>
+</ol>
+<h2 id="single-column">Single Column</h2>
+<p>Here I&rsquo;m creating a UDF that takes a single column and an external parameter as arguments. First I define the function. In this example, the function returns the product between each element of the column and the parameter we provide. I&rsquo;m using try/except statements for better error handling.</p>
+<p>The <code>lit</code> function will be used to provide the parameter argument as a string, which means it needs to be converted to a float in order to be used for the mathematical operation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_sc</span>(v1, a):
+    <span style="color:#66d9ef">try</span>:
+        a <span style="color:#f92672">=</span> float(a)
+        <span style="color:#66d9ef">return</span>(v1 <span style="color:#f92672">*</span> a)
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">return</span>(None)
+</code></pre></div><p>Now I register the UDF a specify the return type as <code>FloatType()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">udf_sc_reg <span style="color:#f92672">=</span> udf(udf_sc, FloatType())
+</code></pre></div><p>Now I can use the UDF with the Spark data frame created above.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_sc_reg(<span style="color:#e6db74">&#39;var1&#39;</span>, lit(<span style="color:#e6db74">&#39;2&#39;</span>)))
+sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>+----------+--------------------+----+------------+
+|identifier|                var1|var2|        var3|
++----------+--------------------+----+------------+
+|         2|-0.01586150202926495|   N|-0.031723004|
+|         5|  3.7927732716658635|   N|   7.5855465|
+|         4|   2.653765608323036|   Y|   5.3075314|
+|         2|  -2.231594107013259|   Y|   -4.463188|
+|         3|   4.900761231566397|   N|    9.801522|
++----------+--------------------+----+------------+
+</code></pre><h2 id="multiple-columns">Multiple Columns</h2>
+<p>The approach is similar if multiple columns are needed in the UDF. Here the UDF has more complicated conditional statements.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_mc</span>(v1, v2):
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#66d9ef">if</span> v2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;N&#39;</span>:
+            a <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>
+        <span style="color:#66d9ef">elif</span> v2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Y&#39;</span>:
+            a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>
+        <span style="color:#66d9ef">else</span>:
+            a <span style="color:#f92672">=</span> None
+        <span style="color:#66d9ef">return</span>(v1 <span style="color:#f92672">+</span> a)
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">return</span>(None)
+
+udf_mc_reg <span style="color:#f92672">=</span> udf(udf_mc, FloatType())
+
+sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_mc_reg(<span style="color:#e6db74">&#39;var1&#39;</span>,<span style="color:#e6db74">&#39;var2&#39;</span>))
+sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>+----------+--------------------+----+----------+
+|identifier|                var1|var2|      var3|
++----------+--------------------+----+----------+
+|         2|-0.01586150202926495|   N|-0.5158615|
+|         5|  3.7927732716658635|   N| 3.2927732|
+|         4|   2.653765608323036|   Y| 3.1537657|
+|         2|  -2.231594107013259|   Y|-1.7315941|
+|         3|   4.900761231566397|   N|  4.400761|
++----------+--------------------+----+----------+
+</code></pre><h2 id="external-library">External Library</h2>
+<p>Sometimes it&rsquo;s useful to use a function provided by an external library (e.g. numpy, scipy, etc). It&rsquo;s pretty straightforward to do this. You just provide the function in your UDF. However, if you&rsquo;re working in a distributed setup you&rsquo;ll need to have the library installed on every node in the cluster (not just the main node).</p>
+<p>Here I use the <code>expit</code> (inverse logit) function in the scipy library to transform the <code>var1</code> column. The result is returned as an array (just a lil flex) containing both the original value and the transformed value. The type returned by <code>expit</code> (<code>numpy.float64</code>) is converted to a base Python float since it needs to match PySpark&rsquo;s <code>FloatType()</code> type.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> scipy.special <span style="color:#f92672">import</span> expit
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_el</span>(v1):
+    <span style="color:#66d9ef">try</span>:
+        inv_logit <span style="color:#f92672">=</span> float(expit(v1))
+        <span style="color:#66d9ef">return</span>([v1, inv_logit])
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">return</span>(None)
+
+udf_el_reg <span style="color:#f92672">=</span> udf(udf_el, ArrayType(FloatType()))
+
+sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_el_reg(<span style="color:#e6db74">&#39;var1&#39;</span>))
+sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>+----------+--------------------+----+--------------------+
+|identifier|                var1|var2|                var3|
++----------+--------------------+----+--------------------+
+|         2|-0.01586150202926495|   N|[-0.015861502, 0....|
+|         5|  3.7927732716658635|   N|[3.7927732, 0.977...|
+|         4|   2.653765608323036|   Y|[2.6537657, 0.934...|
+|         2|  -2.231594107013259|   Y|[-2.231594, 0.096...|
+|         3|   4.900761231566397|   N|[4.900761, 0.9926...|
++----------+--------------------+----+--------------------+
+</code></pre><h2 id="custom-aggregate">Custom Aggregate</h2>
+<p>At the time of writing this, it&rsquo;s not possible to implement UDAFs (user defined aggregate functions) the way one can in Spark. The work around is to implement them by collecting all the elements of a group into a list using <code>collect_list</code> and then applying a UDF to each groups&rsquo; list.</p>
+<p>In the code below I take things a little further (another flex) and return an array of <em>different</em> types (using <code>StructType()</code> and <code>StructField()</code>). Another option when returning an array would be to force everything to a single type and convert it back to the appropriate type when you flatten that array to a data frame later on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_ca</span>(x):
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#66d9ef">return</span>([int(len(x)), float(np<span style="color:#f92672">.</span>mean(x))])
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">return</span>(None)
+
+schema <span style="color:#f92672">=</span> StructType([StructField(<span style="color:#e6db74">&#39;length&#39;</span>, IntegerType(), False),
+                     StructField(<span style="color:#e6db74">&#39;mean&#39;</span>, FloatType(), False)])
+
+udf_ca_reg <span style="color:#f92672">=</span> udf(udf_ca, schema)
+
+sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>groupBy(<span style="color:#e6db74">&#39;identifier&#39;</span>)<span style="color:#f92672">.</span>agg(collect_list(<span style="color:#e6db74">&#39;var1&#39;</span>)<span style="color:#f92672">.</span>alias(<span style="color:#e6db74">&#39;var1_list&#39;</span>))<span style="color:#f92672">.</span>select(udf_ca_reg(<span style="color:#e6db74">&#39;var1_list&#39;</span>)<span style="color:#f92672">.</span>alias(<span style="color:#e6db74">&#39;gpd_metrics&#39;</span>))
+sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="color:#f92672">=</span>False)
+</code></pre></div><pre><code>+---------------+
+|gpd_metrics    |
++---------------+
+|[18, 2.6149726]|
+|[18, 2.82972]  |
+|[23, 2.8389266]|
+|[17, 2.7891133]|
+|[24, 3.4916883]|
++---------------+
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed<span style="color:#f92672">.</span>printSchema()
+</code></pre></div><pre><code>root
+ |-- gpd_metrics: struct (nullable = true)
+ |    |-- length: integer (nullable = false)
+ |    |-- mean: float (nullable = false)
+</code></pre>
+            </div>
+        </article>
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://imadali.net/tags/python">Python</a></span><span class="tag"><a href="http://imadali.net/tags/pyspark">PySpark</a></span><span class="tag"><a href="http://imadali.net/tags/data-engineering">Data Engineering</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>857 Words</p>
+        </div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy 2020 Imad Ali</span>
+            <span>Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/rhazdon/hugo-theme-hello-friend-ng">Hello Friend NG</a></span>
+        </div>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload='renderMathInElement(document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    });'></script>
+
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL on Imad Ali</title>
+    <link>http://imadali.net/tags/sql/</link>
+    <description>Recent content in SQL on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Jan 2021 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SQL Prototyping with Docker</title>
+      <link>http://imadali.net/posts/sql-prototyping-with-docker/</link>
+      <pubDate>Tue, 12 Jan 2021 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/sql-prototyping-with-docker/</guid>
+      <description>So recently I ran into a bit of a snafu. I wanted to do some SQL prototyping (with postgres) on my local machine but didn&amp;rsquo;t have the appropriate permissions to install and mess around with it. The postgres Docker image really came in handy. Below are some notes about what I did to get up and running with postgres in Docker. I thought they might come in handy to a Data Scientist or Machine Learning engineer facing a similar situation.</description>
+    </item>
+    
+    <item>
+      <title>SQL Concepts</title>
+      <link>http://imadali.net/posts/sql-concepts/</link>
+      <pubDate>Thu, 29 Oct 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/sql-concepts/</guid>
+      <description>Here&amp;rsquo;s a non-exhaustive laundry list of SQL concepts that I&amp;rsquo;ve found useful. You could think of them as intermediate? advanced? concepts that anyone doing data science or machine learning should probably know. I tried to order the concepts list is loosely in order of complexity, however that may vary from person to person.
+All the examples here are done using the postgres Docker image available here (I talk about how to work with a postgres container in a separate post).</description>
+    </item>
+    
+  </channel>
+</rss>

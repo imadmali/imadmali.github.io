@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Engineering on Imad Ali</title>
+    <link>http://imadali.net/tags/data-engineering/</link>
+    <description>Recent content in Data Engineering on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Nov 2020 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/data-engineering/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OLTP and OLAP</title>
+      <link>http://imadali.net/posts/oltp-and-olap/</link>
+      <pubDate>Tue, 24 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/oltp-and-olap/</guid>
+      <description>I always mix these up. OLTP (Online Transaction Processing) is responsible for storing data from a device/user/etc. OLAP (Online Analytics Processing) takes information produced by OLTP systems and creates more complex data assets that combine/aggregate OLTP data in ways that are useful to the business.
+For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&amp;rsquo; entire history.</description>
+    </item>
+    
+    <item>
+      <title>SQL Concepts</title>
+      <link>http://imadali.net/posts/sql-concepts/</link>
+      <pubDate>Thu, 29 Oct 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/sql-concepts/</guid>
+      <description>Here&amp;rsquo;s a non-exhaustive laundry list of SQL concepts that I&amp;rsquo;ve found useful. You could think of them as intermediate? advanced? concepts that anyone doing data science or machine learning should probably know. I tried to order the concepts list is loosely in order of complexity, however that may vary from person to person.
+All the examples here are done using the postgres Docker image available here (I talk about how to work with a postgres container in a separate post).</description>
+    </item>
+    
+    <item>
+      <title>PySpark Application Execution</title>
+      <link>http://imadali.net/posts/pyspark-application-execution/</link>
+      <pubDate>Wed, 16 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/pyspark-application-execution/</guid>
+      <description>It took me a while to really understand how Spark (specifically PySpark) works under the hood. Specifically, I&amp;rsquo;m referring to what happens when I, as the user, submit a PySpark data processing job to a cluster. Even after all my digging around I&amp;rsquo;m still uncertain about how a few things work. I&amp;rsquo;m kinda of surprised at how convoluted the documentation is for a library/framework that&amp;rsquo;s so popular in industry. Nevertheless, this is my attempt at putting together a very high-level overview of how Spark works, from the perspective of the PySpark interface.</description>
+    </item>
+    
+    <item>
+      <title>Why Graphs Should not be Stored in a Relational Database</title>
+      <link>http://imadali.net/posts/why-graphs-should-not-be-stored-in-a-relational-databases/</link>
+      <pubDate>Wed, 16 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/why-graphs-should-not-be-stored-in-a-relational-databases/</guid>
+      <description>Suppose you have graph-like data that describes the (undirected) relationship between target and destination. If we store these relationships in a traditional relational database with a single key to query on we would have something like this,
+target, destination A, B A, C B, A B, C C, A C, B ... So to get all relationships associated with A we can just filter A on the target column. This is inefficient since we are replicating a lot of information (e.</description>
+    </item>
+    
+    <item>
+      <title>PySpark UDFs</title>
+      <link>http://imadali.net/posts/pyspark-udfs/</link>
+      <pubDate>Tue, 15 Sep 2020 00:22:23 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/pyspark-udfs/</guid>
+      <description>These are some of my notes on creating UDFs (user defined functions) in PySpark.
+UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&amp;rsquo;re working with modular components that build up to the entire ETL workflow).
+Here I show how to create a PySpark UDF which uses,</description>
+    </item>
+    
+    <item>
+      <title>Types of ETL Transformations</title>
+      <link>http://imadali.net/posts/types-of-etl-transformations/</link>
+      <pubDate>Sun, 31 May 2020 18:13:39 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/types-of-etl-transformations/</guid>
+      <description>In ETL, I&amp;rsquo;ve found that most people think of the &amp;ldquo;transform&amp;rdquo; step as just a simple transformation on the new data. This might be the case if you&amp;rsquo;re converting variable types or applying simple row-wise transformations. But it&amp;rsquo;s more nuanced than that, particularly when your transformations are aggregations. In my experience, I&amp;rsquo;ve found three common types of transformations that take place. My loose categorization for them is historical, new data, and sliding window transformations.</description>
+    </item>
+    
+    <item>
+      <title>Data Engineering Concepts</title>
+      <link>http://imadali.net/posts/data-engineering-concepts/</link>
+      <pubDate>Sun, 31 May 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/data-engineering-concepts/</guid>
+      <description>Working in industry as a data scientist I&amp;rsquo;ve found it useful to maintain some understanding of data engineering concepts, even if it&amp;rsquo;s just at a high-level. This facilitates communication with data engineers who form part of the bridge between data and data scientists in most tech companies (in my experience). Below is a non-exhaustive laundry list of concepts that I&amp;rsquo;ve found useful to know.
+Data Model A data model organizes the Data and defines the relationship between them.</description>
+    </item>
+    
+  </channel>
+</rss>

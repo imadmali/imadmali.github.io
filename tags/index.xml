@@ -6,9 +6,145 @@
     <description>Recent content in Tags on Imad Ali</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Fri, 15 Jan 2021 16:14:19 -0700</lastBuildDate>
     
 	<atom:link href="http://imadali.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Writing</title>
+      <link>http://imadali.net/tags/writing/</link>
+      <pubDate>Fri, 15 Jan 2021 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/writing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://imadali.net/tags/docker/</link>
+      <pubDate>Tue, 12 Jan 2021 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SQL</title>
+      <link>http://imadali.net/tags/sql/</link>
+      <pubDate>Tue, 12 Jan 2021 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/sql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Statistics</title>
+      <link>http://imadali.net/tags/statistics/</link>
+      <pubDate>Fri, 11 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Math</title>
+      <link>http://imadali.net/tags/math/</link>
+      <pubDate>Mon, 07 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>http://imadali.net/tags/machine-learning/</link>
+      <pubDate>Sat, 05 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Causal Inference</title>
+      <link>http://imadali.net/tags/causal-inference/</link>
+      <pubDate>Thu, 03 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/causal-inference/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deep Learning</title>
+      <link>http://imadali.net/tags/deep-learning/</link>
+      <pubDate>Sun, 29 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Engineering</title>
+      <link>http://imadali.net/tags/data-engineering/</link>
+      <pubDate>Tue, 24 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/data-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bash</title>
+      <link>http://imadali.net/tags/bash/</link>
+      <pubDate>Sun, 08 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PySpark</title>
+      <link>http://imadali.net/tags/pyspark/</link>
+      <pubDate>Wed, 16 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/pyspark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>http://imadali.net/tags/python/</link>
+      <pubDate>Wed, 16 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programming</title>
+      <link>http://imadali.net/tags/programming/</link>
+      <pubDate>Tue, 08 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>untagged</title>
+      <link>http://imadali.net/tags/untagged/</link>
+      <pubDate>Sun, 28 Jun 2020 13:11:33 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/untagged/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>http://imadali.net/tags/git/</link>
+      <pubDate>Sat, 09 May 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/tags/git/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

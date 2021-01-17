@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Imad Ali ">
+<meta name="description" content="My favorite summary of cosine vs Euclidean distance metrics is that Euclidean distance focuses on the distance between two points whereas cosine distance focuses on the angle between two vectors.
+Refresher on Cosine Similarity and Euclidean Distance Cosine similarity is the dot product of two vectors divided by the product of the vector norms. It has a lower bound of -1 and and upper bound of 1.
+np.dot(A, B) / (np." />
+<meta name="keywords" content=", Math" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://imadali.net/posts/similarity-measures/" />
+
+
+    <title>
+        
+            Similarity Measures :: Imad Ali 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Similarity Measures">
+<meta itemprop="description" content="My favorite summary of cosine vs Euclidean distance metrics is that Euclidean distance focuses on the distance between two points whereas cosine distance focuses on the angle between two vectors.
+Refresher on Cosine Similarity and Euclidean Distance Cosine similarity is the dot product of two vectors divided by the product of the vector norms. It has a lower bound of -1 and and upper bound of 1.
+np.dot(A, B) / (np.">
+<meta itemprop="datePublished" content="2020-12-07T16:14:19-07:00" />
+<meta itemprop="dateModified" content="2020-12-07T16:14:19-07:00" />
+<meta itemprop="wordCount" content="442">
+
+
+
+<meta itemprop="keywords" content="Math," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Similarity Measures"/>
+<meta name="twitter:description" content="My favorite summary of cosine vs Euclidean distance metrics is that Euclidean distance focuses on the distance between two points whereas cosine distance focuses on the angle between two vectors.
+Refresher on Cosine Similarity and Euclidean Distance Cosine similarity is the dot product of two vectors divided by the product of the vector norms. It has a lower bound of -1 and and upper bound of 1.
+np.dot(A, B) / (np."/>
+
+
+
+    <meta property="og:title" content="Similarity Measures" />
+<meta property="og:description" content="My favorite summary of cosine vs Euclidean distance metrics is that Euclidean distance focuses on the distance between two points whereas cosine distance focuses on the angle between two vectors.
+Refresher on Cosine Similarity and Euclidean Distance Cosine similarity is the dot product of two vectors divided by the product of the vector norms. It has a lower bound of -1 and and upper bound of 1.
+np.dot(A, B) / (np." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://imadali.net/posts/similarity-measures/" />
+<meta property="article:published_time" content="2020-12-07T16:14:19-07:00" />
+<meta property="article:modified_time" content="2020-12-07T16:14:19-07:00" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-12-07 16:14:19 -0700 -0700" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="http://imadali.net" style="text-decoration: none;">
+    <div class="logo">
+        
+        
+            <span class="logo__text">imad ali</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://imadali.net/posts/">Posts</a></li><li><a href="http://imadali.net/projects/">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://imadali.net/posts/similarity-measures/">Similarity Measures</a>
+            </h1>
+
+            <div class="post-info">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-12-07
+              </p>
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>3 minutes
+              </p>
+            </div>
+
+            
+
+            <div class="post-content">
+                <p>My favorite summary of cosine vs Euclidean distance metrics is that <em>Euclidean distance focuses on the distance between two points whereas cosine distance focuses on the angle between two vectors</em>.</p>
+<h2 id="refresher-on-cosine-similarity-and-euclidean-distance">Refresher on Cosine Similarity and Euclidean Distance</h2>
+<p><strong>Cosine similarity</strong> is the dot product of two vectors divided by the product of the vector norms. It has a lower bound of -1 and and upper bound of 1.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">np<span style="color:#f92672">.</span>dot(A, B) <span style="color:#f92672">/</span> (np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(A) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(B))
+</code></pre></div><p>So for identical vectors you get a value of 1. For example,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+np<span style="color:#f92672">.</span>dot(A, B) <span style="color:#f92672">/</span> (np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(A) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(B))
+<span style="color:#75715e"># 1.0</span>
+</code></pre></div><p>And for orthogonal vectors you get a value of -1. For example,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+np<span style="color:#f92672">.</span>dot(A, B) <span style="color:#f92672">/</span> (np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(A) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(B))
+<span style="color:#75715e"># -1.0</span>
+</code></pre></div><p><strong>Euclidean distance</strong> is calculated as the norm of the difference between two vectors. It has a lower bound of 0, but no upper bound.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">np<span style="color:#f92672">.</span>norm(A<span style="color:#f92672">-</span>B)
+</code></pre></div><p>For identical vectors you get a value of 0.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+np<span style="color:#f92672">.</span>norm(A<span style="color:#f92672">-</span>B)
+<span style="color:#75715e"># 0.0</span>
+</code></pre></div><p>For <em>these</em> orthogonal vectors you get a value of 2.83. But the result will vary depending on how far the points described by the vectors are from one another.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+np<span style="color:#f92672">.</span>norm(A<span style="color:#f92672">-</span>B)
+<span style="color:#75715e"># 2.83</span>
+</code></pre></div><h2 id="whats-the-difference">What&rsquo;s the difference?</h2>
+<p>As an example consider the following vectors,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>]
+C <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">3</span>] <span style="color:#75715e"># B*3</span>
+</code></pre></div><p>Between vector A and B we have the following distance calculations:</p>
+<ul>
+<li>Cosine: 0.95</li>
+<li>Euclidean: 1.0</li>
+</ul>
+<p>Between vector A and C we have the following distance calculations:</p>
+<ul>
+<li>Cosine: 0.95</li>
+<li>Euclidean: 5.39</li>
+</ul>
+<p>The similarity of vectors A and B have a comparable interpretation under both cosine similarity and Euclidean distance. That makes sense. The elements of each vector are identical.</p>
+<p>However, the similarity between vector A and C differs depending on which calculation you use. The cosine similarity result is unchanged since vector C is just a scalar multiple of vector B (i.e. C points in the same direction as B). This makes sense since cosine similarity is based on the angle of the vectors; and the angle between A and B is the same as the angle between A and C.</p>
+<p>Alternatively, the Euclidean distance calculation is different between A, B and A, C. Despite pointing in the same direction, the distance of the points described by each vector is different.</p>
+<p>With this in mind, <em>it&rsquo;s preferred to use Euclidean distance when the magnitude for the vector matters and you don&rsquo;t require your distance metric to have defined bounds, otherwise use cosine similarity</em>. The figure below illustrates this result (note that vectors A, B, and C are arbitrary; they don&rsquo;t map to the vectors defined above).</p>
+<img src="/images/similarity-measures.jpeg" class="center"/>
+
+            </div>
+        </article>
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://imadali.net/tags/math">Math</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>442 Words</p>
+        </div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy 2020 Imad Ali</span>
+            <span>Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/rhazdon/hugo-theme-hello-friend-ng">Hello Friend NG</a></span>
+        </div>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload='renderMathInElement(document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    });'></script>
+
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+
+
+
+    </body>
+</html>

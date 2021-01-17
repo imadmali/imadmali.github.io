@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Imad Ali ">
+<meta name="description" content="Python decorators are just wrappers&amp;hellip; that return functions Part of my issue with understanding how decorators work was that I was treating them as a function/class that is returning a variable. I should have been thinking of them as a function/class returning a modified (i.e. decorated) function/class. As mentioned succinctly here, &amp;ldquo;Decorators are a form of metaprogramming; they enhance the action of the function or method they decorate.&amp;rdquo; So a decorator is just a wrapper of the function that you want to modify (that returns a function)." />
+<meta name="keywords" content=", Python" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://imadali.net/posts/python-decorators-are-just-wrappers/" />
+
+
+    <title>
+        
+            Python Decorators are Just Wrappers :: Imad Ali 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Python Decorators are Just Wrappers">
+<meta itemprop="description" content="Python decorators are just wrappers&hellip; that return functions Part of my issue with understanding how decorators work was that I was treating them as a function/class that is returning a variable. I should have been thinking of them as a function/class returning a modified (i.e. decorated) function/class. As mentioned succinctly here, &ldquo;Decorators are a form of metaprogramming; they enhance the action of the function or method they decorate.&rdquo; So a decorator is just a wrapper of the function that you want to modify (that returns a function).">
+<meta itemprop="datePublished" content="2020-05-06T02:21:39-07:00" />
+<meta itemprop="dateModified" content="2020-05-06T02:21:39-07:00" />
+<meta itemprop="wordCount" content="381">
+
+
+
+<meta itemprop="keywords" content="Python," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python Decorators are Just Wrappers"/>
+<meta name="twitter:description" content="Python decorators are just wrappers&hellip; that return functions Part of my issue with understanding how decorators work was that I was treating them as a function/class that is returning a variable. I should have been thinking of them as a function/class returning a modified (i.e. decorated) function/class. As mentioned succinctly here, &ldquo;Decorators are a form of metaprogramming; they enhance the action of the function or method they decorate.&rdquo; So a decorator is just a wrapper of the function that you want to modify (that returns a function)."/>
+
+
+
+    <meta property="og:title" content="Python Decorators are Just Wrappers" />
+<meta property="og:description" content="Python decorators are just wrappers&hellip; that return functions Part of my issue with understanding how decorators work was that I was treating them as a function/class that is returning a variable. I should have been thinking of them as a function/class returning a modified (i.e. decorated) function/class. As mentioned succinctly here, &ldquo;Decorators are a form of metaprogramming; they enhance the action of the function or method they decorate.&rdquo; So a decorator is just a wrapper of the function that you want to modify (that returns a function)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://imadali.net/posts/python-decorators-are-just-wrappers/" />
+<meta property="article:published_time" content="2020-05-06T02:21:39-07:00" />
+<meta property="article:modified_time" content="2020-05-06T02:21:39-07:00" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-05-06 02:21:39 -0700 PDT" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="http://imadali.net" style="text-decoration: none;">
+    <div class="logo">
+        
+        
+            <span class="logo__text">imad ali</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://imadali.net/posts/">Posts</a></li><li><a href="http://imadali.net/projects/">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://imadali.net/posts/python-decorators-are-just-wrappers/">Python Decorators are Just Wrappers</a>
+            </h1>
+
+            <div class="post-info">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-06
+              </p>
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>2 minutes
+              </p>
+            </div>
+
+            
+
+            <div class="post-content">
+                <h2 id="python-decorators-are-just-wrappers-that-return-functions">Python decorators are just wrappers&hellip; that return functions</h2>
+<p>Part of my issue with understanding how decorators work was that I was treating
+them as a function/class that is returning a variable. I should have been
+thinking of them as a function/class returning a modified (i.e. decorated)
+function/class. As mentioned succinctly
+<a href="https://en.wikipedia.org/wiki/Python_syntax_and_semantics#Decorators">here</a>,
+&ldquo;Decorators are a form of metaprogramming; they enhance the action of the
+function or method they decorate.&rdquo; So a decorator is just a wrapper of the
+function that you want to modify (that returns a function).</p>
+<p>So if we want to decorate the function <code>func</code> with the function <code>decor</code> then the
+sequence of evaluation would be <code>modified_func = decor(func)(func_args)</code>.</p>
+<p>Before going into what a decorator is, it&rsquo;s useful to understand what it isn&rsquo;t.
+Casually wrapping a function in another function may not be sufficient. To
+Illustrate this I&rsquo;ve created a function <code>to_decorate</code> (a function that returns
+its input divided by 2) that I want to decorate.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_decorate</span>(x):
+    <span style="color:#66d9ef">return</span>(x<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)
+to_decorate(<span style="color:#ae81ff">2</span>)
+</code></pre></div><p>The <code>not_decorator</code> function below does not act as a decorator even though it is
+a wrapper for <code>to_decorate</code>. The <code>not_decorator</code> function is modifying the
+result of <code>to_decorate</code> instead of modifying the <code>to_decorate</code> function itself.
+We have to actually evaluate the function that is the argument to
+<code>not_decorator</code>. Because we have to evaluate it, the function that is the
+argument to <code>not_decorator</code> must also take in an argument. The result is that
+this function ends up returning a variable rather than a function/class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># modifying the output of func so func has to be evaluated not modified</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">not_decorator</span>(func):
+    <span style="color:#66d9ef">return</span>(abs(func))
+</code></pre></div><p>The code below will error out since the <code>to_decorate</code> function is looking for an
+argument.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate)
+</code></pre></div><p>Passing an argument will allow it to run, but it&rsquo;s still not a decorator since
+it&rsquo;s returning a variable instead of a function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate(<span style="color:#ae81ff">2</span>))
+<span style="color:#66d9ef">print</span>(not_decorated)
+</code></pre></div><p>Let&rsquo;s define the function <code>decorator</code> which takes a function as an input,
+evaluates the absolute value of the result of the function (the modification), a
+returns a function as opposed to the result.</p>
+<p>We have to wrap the modification in the <code>inner</code> wrapper otherwise we won&rsquo;t be
+able to return a function/class. This was the issue with <code>not_decorator()</code>
+above.</p>
+<p>&hellip;</p>
+<h2 id="what-about-modifying-a-function-with-multiple-decorators">What about modifying a function with multiple decorators?</h2>
+<p>&hellip;</p>
+<h2 id="what-about-passing-arguments-to-decorators">What about passing arguments to decorators?</h2>
+<p>&hellip;</p>
+
+            </div>
+        </article>
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://imadali.net/tags/python">Python</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>381 Words</p>
+        </div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy 2020 Imad Ali</span>
+            <span>Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/rhazdon/hugo-theme-hello-friend-ng">Hello Friend NG</a></span>
+        </div>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload='renderMathInElement(document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    });'></script>
+
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+
+
+
+    </body>
+</html>

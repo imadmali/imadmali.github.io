@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Imad Ali ">
+<meta name="description" content="Questions come up a lot about how to interpret these things. We can build an understanding from the ground up, starting with a few basic metrics that are commonly calculated off of the data.
+Measures of Central Tendency Sometimes we want a measure of central tendency, or a good typical value that you can expect to observe given the data.
+Mean The mean is the sum of all the values divided by the number of values." />
+<meta name="keywords" content=", Statistics" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://imadali.net/posts/confidence-intervals-and-standard-deviations-and-standard-errors/" />
+
+
+    <title>
+        
+            Confidence Intervals and Standard Deviations and Standard Errors :: Imad Ali 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Confidence Intervals and Standard Deviations and Standard Errors">
+<meta itemprop="description" content="Questions come up a lot about how to interpret these things. We can build an understanding from the ground up, starting with a few basic metrics that are commonly calculated off of the data.
+Measures of Central Tendency Sometimes we want a measure of central tendency, or a good typical value that you can expect to observe given the data.
+Mean The mean is the sum of all the values divided by the number of values.">
+<meta itemprop="datePublished" content="2020-09-02T16:14:19-07:00" />
+<meta itemprop="dateModified" content="2020-09-02T16:14:19-07:00" />
+<meta itemprop="wordCount" content="965">
+
+
+
+<meta itemprop="keywords" content="Statistics," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Confidence Intervals and Standard Deviations and Standard Errors"/>
+<meta name="twitter:description" content="Questions come up a lot about how to interpret these things. We can build an understanding from the ground up, starting with a few basic metrics that are commonly calculated off of the data.
+Measures of Central Tendency Sometimes we want a measure of central tendency, or a good typical value that you can expect to observe given the data.
+Mean The mean is the sum of all the values divided by the number of values."/>
+
+
+
+    <meta property="og:title" content="Confidence Intervals and Standard Deviations and Standard Errors" />
+<meta property="og:description" content="Questions come up a lot about how to interpret these things. We can build an understanding from the ground up, starting with a few basic metrics that are commonly calculated off of the data.
+Measures of Central Tendency Sometimes we want a measure of central tendency, or a good typical value that you can expect to observe given the data.
+Mean The mean is the sum of all the values divided by the number of values." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://imadali.net/posts/confidence-intervals-and-standard-deviations-and-standard-errors/" />
+<meta property="article:published_time" content="2020-09-02T16:14:19-07:00" />
+<meta property="article:modified_time" content="2020-09-02T16:14:19-07:00" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-02 16:14:19 -0700 PDT" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="http://imadali.net" style="text-decoration: none;">
+    <div class="logo">
+        
+        
+            <span class="logo__text">imad ali</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://imadali.net/posts/">Posts</a></li><li><a href="http://imadali.net/projects/">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://imadali.net/posts/confidence-intervals-and-standard-deviations-and-standard-errors/">Confidence Intervals and Standard Deviations and Standard Errors</a>
+            </h1>
+
+            <div class="post-info">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-09-02
+              </p>
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>5 minutes
+              </p>
+            </div>
+
+            
+
+            <div class="post-content">
+                <p>Questions come up a lot about how to interpret these things. We can build an understanding from the ground up, starting with a few basic metrics that are commonly calculated off of the data.</p>
+<h1 id="measures-of-central-tendency">Measures of Central Tendency</h1>
+<p>Sometimes we want a measure of central tendency, or a good typical value that you can expect to observe given the data.</p>
+<h2 id="mean">Mean</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Mean">mean</a> is the sum of all the values divided by the number of values.</p>
+<h2 id="median">Median</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Median">median</a> is the middle value (or average of the two middle values) when you order the data sequentially.</p>
+<h2 id="mode">Mode</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Mode">mode</a> is the value that occurs most frequently.</p>
+<h1 id="measures-of-dispersion">Measures of Dispersion</h1>
+<p>Sometimes a measure of central tendency is not enough. We also want to understand how much variability there is in the data around the central tendency. Enter variance.</p>
+<h2 id="variance">Variance</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Variance">variance</a> is the sum of the squared deviations from the mean. If we are dealing with a sample (as we are here). Then we divide that sum by the number of observations. This is the sample variance. Since the deviations are squared we&rsquo;re not really operating on the same units at the data.</p>
+<h2 id="standard-deviation">Standard Deviation</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a> is the square root of the variance. By taking the square root this metric can be expressed in the same units as the data.</p>
+<h2 id="standard-error">Standard Error</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Standard_error">standard error</a> is the standard deviation of a statistic&rsquo;s <a href="https://en.wikipedia.org/wiki/Sampling_distribution">sampling distribution</a> (the distribution of a statistic that behaves like a random variable, like the mean). So if it were possible to draw multiple samples from the population and compute the mean of each sample (the sample mean) then the standard deviation of all those means is the standard error of the mean. In most situations you can&rsquo;t do that so you compute the standard error as the standard deviation of the sample divided by the square root of the number of observations.</p>
+<p>This formula works because of how variance is expected to behave a with a large samples. The larger the sample you draw from the population the more close the sample mean approximates the population mean. This means that the sampling distribution will tend to cluster around the population mean. Dividing variance by the sample size gives this behavior.</p>
+<h2 id="confidence-interval">Confidence Interval</h2>
+<p>A <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> (CI) is another metric that you can compute from a statistic. It tells you the probability that a statistic could take on a range of values if that statistic was repeatedly observed (according to some confidence level chosen by the researcher). For example, you might want to know what is the 90% confidence interval of the mean for the above data. In other words, if we could observe the sampling distribution of the mean, where would 90% of those means lie. You know the mean $\bar{x}$ and the standard error of of the mean $\text{SE}(\bar{x})=\frac{\sigma}{\sqrt{n}}$. From the standard normal distribution <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a> you know that 90% of the distribution is contained between -1.64 and +1.64. With that you can find your confidence interval bounds by computing,</p>
+<p>$$
+\text{CI}_{\text{lower}} = \bar{x}-1.64\cdot SE(x)
+$$</p>
+<p>$$
+\text{CI}_{\text{upper}} = \bar{x}+1.64\cdot SE(x)
+$$</p>
+<p>That&rsquo;s the easy way (there&rsquo;s no context as to how/why we come to that formula). The hard way is understanding why you apply that formula in situations where the data is (approximately) normally distributed. The method shown here to derive confidence intervals is the <a href="https://en.wikipedia.org/wiki/Pivotal_quantity">pivotal quantity</a> method.</p>
+<p>You start by computing your statistic using the data. In this example we&rsquo;re computing the mean $\bar{x}$. This has a sampling distribution $\bar{x} \sim \mathcal{N}(\mu,\sigma^2)$ since it&rsquo;s a statistic that is a random variable. But we can&rsquo;t do inference on that statistic; its sampling distribution has unknown parameters. One thing we can do is transform the statistic to be distributed standard normal so that it is a pivotal quantity (the probability distribution does not depend on the unknown parameters).</p>
+<p>$$Z = \frac{\bar{x}-\mu}{\sigma^2/n} \sim \mathcal{N}(0,1)$$</p>
+<p>We can do inference on $Z$ using the standard normal probability density function. Specifically, want to find the confidence interval bounds such that,</p>
+<p>$$P(-Z_{\alpha/2} \leq Z \leq Z_{\alpha/2}) = 1-\alpha$$</p>
+<p>where $\alpha\in(0,1)$ is a chosen confidence level. $Z_{\alpha/2}$ is calculated from the standard normal quantile function evaluated at $\frac{\alpha}{2}$, and tells us the value such that $\frac{\alpha}{2}$ proportion of the distribution lies below this value. Finally, $1-\alpha$ is how often we would like to observe $Z$ between $-Z_{\alpha/2}$ and $Z_{\alpha/2}$. So if $\alpha = 0.05$ then $\text{CDF}^{-1}(0.05/2) \approx -1.96$, which means $1-\alpha=0.90$ proportion (90%) of the data lies between -1.96 and 1.96 under the standard normal distribution.</p>
+<p>But we don&rsquo;t really care about the probability of observing the standard normal variable $Z$. We&rsquo;re interested in $\mu$. So we can take the confidence interval equation above, substitute the pivotal quantity, and solve for the probability of observing $\mu$.</p>
+<p>$$P(-Z_{\alpha/2} \leq Z \leq Z_{\alpha/2}) = 1-\alpha$$</p>
+<p>$$P(-Z_{\alpha/2} \leq \frac{\bar{x}-\mu}{\sigma^2/n} \leq Z_{\alpha/2}) = 1-\alpha$$</p>
+<p>$$P(-\bar{x} -Z_{\alpha/2} \cdot \frac{\sigma^2}{n} \leq -\mu \leq -\bar{x} + Z_{\alpha/2} \cdot \frac{\sigma^2}{n}) = 1-\alpha$$</p>
+<p>$$P(\bar{x} + Z_{\alpha/2} \cdot \frac{\sigma^2}{n} \geq \mu \geq \bar{x} - Z_{\alpha/2} \cdot \frac{\sigma^2}{n}) = 1-\alpha$$</p>
+<p>$$P(\bar{x} - Z_{\alpha/2} \cdot \frac{\sigma^2}{n} \leq \mu \leq \bar{x} + Z_{\alpha/2} \cdot \frac{\sigma^2}{n}) = 1-\alpha$$</p>
+<p>This maps back to our quick formula at the beginning of this section. The derivation shows how a confidence interval is not simply the probability that $\bar{x}$ is between a range. It is the probability that $\bar{x}$ takes on a value between a range under the sampling distribution of $\bar{x}$. <strong>A confidence interval describes the bounds around a statistic, such that a realization of a value from the sampling distribution of your statistic is within those bounds with some probability (a probability that you define).</strong></p>
+<p>The short of it is that this is a pretty fucked up way to do inference, and it&rsquo;s not surprising how often confidence intervals get interpreted incorrectly.</p>
+
+            </div>
+        </article>
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://imadali.net/tags/statistics">Statistics</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>965 Words</p>
+        </div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy 2020 Imad Ali</span>
+            <span>Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/rhazdon/hugo-theme-hello-friend-ng">Hello Friend NG</a></span>
+        </div>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload='renderMathInElement(document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    });'></script>
+
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+
+
+
+    </body>
+</html>

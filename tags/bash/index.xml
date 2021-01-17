@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bash on Imad Ali</title>
+    <link>http://imadali.net/tags/bash/</link>
+    <description>Recent content in Bash on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Nov 2020 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Environment Variables</title>
+      <link>http://imadali.net/posts/environment-variables/</link>
+      <pubDate>Sun, 08 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/environment-variables/</guid>
+      <description>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
+export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables).</description>
+    </item>
+    
+    <item>
+      <title>Makefiles for Workflow</title>
+      <link>http://imadali.net/posts/makefiles-for-workflow/</link>
+      <pubDate>Sat, 12 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/makefiles-for-workflow/</guid>
+      <description>Makefiles for Workflow Date: 09-12-2020
+The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.
+A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary.</description>
+    </item>
+    
+  </channel>
+</rss>

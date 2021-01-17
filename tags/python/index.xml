@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Imad Ali</title>
+    <link>http://imadali.net/tags/python/</link>
+    <description>Recent content in Python on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Sep 2020 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PySpark Application Execution</title>
+      <link>http://imadali.net/posts/pyspark-application-execution/</link>
+      <pubDate>Wed, 16 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/pyspark-application-execution/</guid>
+      <description>It took me a while to really understand how Spark (specifically PySpark) works under the hood. Specifically, I&amp;rsquo;m referring to what happens when I, as the user, submit a PySpark data processing job to a cluster. Even after all my digging around I&amp;rsquo;m still uncertain about how a few things work. I&amp;rsquo;m kinda of surprised at how convoluted the documentation is for a library/framework that&amp;rsquo;s so popular in industry. Nevertheless, this is my attempt at putting together a very high-level overview of how Spark works, from the perspective of the PySpark interface.</description>
+    </item>
+    
+    <item>
+      <title>PySpark UDFs</title>
+      <link>http://imadali.net/posts/pyspark-udfs/</link>
+      <pubDate>Tue, 15 Sep 2020 00:22:23 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/pyspark-udfs/</guid>
+      <description>These are some of my notes on creating UDFs (user defined functions) in PySpark.
+UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&amp;rsquo;re working with modular components that build up to the entire ETL workflow).
+Here I show how to create a PySpark UDF which uses,</description>
+    </item>
+    
+    <item>
+      <title>Closures</title>
+      <link>http://imadali.net/posts/closures/</link>
+      <pubDate>Thu, 20 Aug 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/closures/</guid>
+      <description>Closures is a programming concept that took me a while to wrap my head around. To understand closures you need to understand function scope and factory functions. In the example below, x is accessible in the global scope. You can reference x inside and outside the function. However, y and z are accessible only within the local scope of the function foo. So you can reference x, y and z inside the function, but you can&amp;rsquo;t reference y and z outside of the function.</description>
+    </item>
+    
+    <item>
+      <title>Streaming Data Between Python Programs</title>
+      <link>http://imadali.net/posts/streaming-data-between-python-programs/</link>
+      <pubDate>Sun, 05 Jul 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/streaming-data-between-python-programs/</guid>
+      <description>Whenever I share data between programs I often write the data out to disk. But what would the relationship between the two programs look like if I want to stream the data instead of write it out to disk? Using the subprocess module in Python we can pass data between two python programs. The subprocess module enables you to execute command line arguments from within a Python script.
+For example, the Python code below executes the pwd command and stores the results as a variable.</description>
+    </item>
+    
+    <item>
+      <title>Python Decorators are Just Wrappers</title>
+      <link>http://imadali.net/posts/python-decorators-are-just-wrappers/</link>
+      <pubDate>Wed, 06 May 2020 02:21:39 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/python-decorators-are-just-wrappers/</guid>
+      <description>Python decorators are just wrappers&amp;hellip; that return functions Part of my issue with understanding how decorators work was that I was treating them as a function/class that is returning a variable. I should have been thinking of them as a function/class returning a modified (i.e. decorated) function/class. As mentioned succinctly here, &amp;ldquo;Decorators are a form of metaprogramming; they enhance the action of the function or method they decorate.&amp;rdquo; So a decorator is just a wrapper of the function that you want to modify (that returns a function).</description>
+    </item>
+    
+    <item>
+      <title>Overloading Operators</title>
+      <link>http://imadali.net/posts/overloading-operators/</link>
+      <pubDate>Wed, 01 Jan 2020 23:17:00 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/overloading-operators/</guid>
+      <description>Way back when I was learning to code, the concept of overloading operators was confusing to me. I think this was partly due to the R language not having the typical definition of classes, which made it a little less straightforward to understand why operator overloading might be useful.
+The need for operator overloading arises when you try to answer the following question:
+ &amp;ldquo;When you combine two variables with the + operator how does Python know when to add them if they&amp;rsquo;re integers or concatenate them if they&amp;rsquo;re strings?</description>
+    </item>
+    
+  </channel>
+</rss>

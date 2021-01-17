@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>untagged on Imad Ali</title>
+    <link>http://imadali.net/tags/untagged/</link>
+    <description>Recent content in untagged on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Jun 2020 13:11:33 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Coding Binary Variables</title>
+      <link>http://imadali.net/posts/coding-binary-variables/</link>
+      <pubDate>Sun, 28 Jun 2020 13:11:33 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/coding-binary-variables/</guid>
+      <description>Some things to keep in mind when coding binary (dummy) variables. This stackoverflow post is quite helpful.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on Imad Ali</title>
+    <link>http://imadali.net/tags/machine-learning/</link>
+    <description>Recent content in Machine Learning on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 05 Dec 2020 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Models as Actions</title>
+      <link>http://imadali.net/posts/models-as-actions/</link>
+      <pubDate>Sat, 05 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/models-as-actions/</guid>
+      <description>People typically categorize data science and machine learning work (as if there&amp;rsquo;s a difference -_-) in terms of supervised and unsupervised learning. But to me that&amp;rsquo;s a little too reductionist. Data science covers so much ground depending on the industry your working in and what your role is. For example, consider the following responsibilities&amp;hellip;
+ All ETL and feature engineering that has to be done to transform data. Optimizing loss functions to ensure predictive accuracy in supervised/unsupervised learning, deep learning, etc.</description>
+    </item>
+    
+    <item>
+      <title>Bias-Variance Tradeoff</title>
+      <link>http://imadali.net/posts/bias-variance-tradeoff/</link>
+      <pubDate>Fri, 04 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/bias-variance-tradeoff/</guid>
+      <description>There&amp;rsquo;s a lot of great diagrams, explanation, and tedious calculations to explain the bias-variance trade off, but I was trying to come up with a pithy explanation for statisticians who understand regression.
+High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate non-linearities, and you want to model it with some regression function $f$. Your first option is super basic; just the mean $y \sim f(\bar{y})$. The mean is not going to be sufficient enough to model the complexities so you&amp;rsquo;ll have high bias (predictions that are very different from the true value).</description>
+    </item>
+    
+    <item>
+      <title>Embeddings</title>
+      <link>http://imadali.net/posts/embeddings/</link>
+      <pubDate>Sun, 29 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/embeddings/</guid>
+      <description>You can think of a neural network embedding is another form of dimensionality reduction. You&amp;rsquo;re taking a bunch of tokens (words, movies, games, etc) and instead of one-hot encoding them you want to map them down to a lower dimensional space.
+For example, suppose you have a collection of 1,000 tokens. To one-hot encode them means having a very sparse vectors of length 1,000 for each word (where a 1 exists at the index that represents the token, 0 otherwise).</description>
+    </item>
+    
+    <item>
+      <title>In High Dimensional Space</title>
+      <link>http://imadali.net/posts/in-high-dimensional-space/</link>
+      <pubDate>Tue, 12 May 2020 00:22:23 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/in-high-dimensional-space/</guid>
+      <description>&amp;hellip; no one can hear you scream. Actually the party line that gets tossed around is something like,
+ distances become meaningless in high-dimensions.
+ Here &amp;ldquo;high-dimensions&amp;rdquo; is referring to wide data (observations having a lot of features). &amp;ldquo;Meaningless&amp;rdquo; is kind of vague. What really happens is that the distance between near points and the distance between far points in low-dimensional space become approximately equal in high-dimensional space. To put it differently,</description>
+    </item>
+    
+  </channel>
+</rss>

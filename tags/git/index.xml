@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on Imad Ali</title>
+    <link>http://imadali.net/tags/git/</link>
+    <description>Recent content in Git on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 May 2020 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git</title>
+      <link>http://imadali.net/posts/git/</link>
+      <pubDate>Sat, 09 May 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/git/</guid>
+      <description>I always forget certain git commands. Especially when I don&amp;rsquo;t use them often enough or am involved in a workflow that doesn&amp;rsquo;t use git to it&amp;rsquo;s fullest extent. So here&amp;rsquo;s a list of git commands in some sort of loose categorization (some of which I hope I remember now and others that I would like to be reminded of in case I forget).
+Cloning and Configs Show the remote info. (Note, origin is the default name for remote that the repository was cloned from.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deep Learning on Imad Ali</title>
+    <link>http://imadali.net/tags/deep-learning/</link>
+    <description>Recent content in Deep Learning on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 Nov 2020 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Embeddings</title>
+      <link>http://imadali.net/posts/embeddings/</link>
+      <pubDate>Sun, 29 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/embeddings/</guid>
+      <description>You can think of a neural network embedding is another form of dimensionality reduction. You&amp;rsquo;re taking a bunch of tokens (words, movies, games, etc) and instead of one-hot encoding them you want to map them down to a lower dimensional space.
+For example, suppose you have a collection of 1,000 tokens. To one-hot encode them means having a very sparse vectors of length 1,000 for each word (where a 1 exists at the index that represents the token, 0 otherwise).</description>
+    </item>
+    
+  </channel>
+</rss>

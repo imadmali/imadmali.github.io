@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Imad Ali</title>
+    <link>http://imadali.net/tags/docker/</link>
+    <description>Recent content in Docker on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Jan 2021 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SQL Prototyping with Docker</title>
+      <link>http://imadali.net/posts/sql-prototyping-with-docker/</link>
+      <pubDate>Tue, 12 Jan 2021 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/sql-prototyping-with-docker/</guid>
+      <description>So recently I ran into a bit of a snafu. I wanted to do some SQL prototyping (with postgres) on my local machine but didn&amp;rsquo;t have the appropriate permissions to install and mess around with it. The postgres Docker image really came in handy. Below are some notes about what I did to get up and running with postgres in Docker. I thought they might come in handy to a Data Scientist or Machine Learning engineer facing a similar situation.</description>
+    </item>
+    
+  </channel>
+</rss>

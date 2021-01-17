@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Imad Ali ">
+<meta name="description" content="People typically categorize data science and machine learning work (as if there&amp;rsquo;s a difference -_-) in terms of supervised and unsupervised learning. But to me that&amp;rsquo;s a little too reductionist. Data science covers so much ground depending on the industry your working in and what your role is. For example, consider the following responsibilities&amp;hellip;
+ All ETL and feature engineering that has to be done to transform data. Optimizing loss functions to ensure predictive accuracy in supervised/unsupervised learning, deep learning, etc." />
+<meta name="keywords" content=", Machine Learning" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://imadali.net/posts/models-as-actions/" />
+
+
+    <title>
+        
+            Models as Actions :: Imad Ali 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Models as Actions">
+<meta itemprop="description" content="People typically categorize data science and machine learning work (as if there&rsquo;s a difference -_-) in terms of supervised and unsupervised learning. But to me that&rsquo;s a little too reductionist. Data science covers so much ground depending on the industry your working in and what your role is. For example, consider the following responsibilities&hellip;
+ All ETL and feature engineering that has to be done to transform data. Optimizing loss functions to ensure predictive accuracy in supervised/unsupervised learning, deep learning, etc.">
+<meta itemprop="datePublished" content="2020-12-05T16:14:19-07:00" />
+<meta itemprop="dateModified" content="2020-12-05T16:14:19-07:00" />
+<meta itemprop="wordCount" content="297">
+
+
+
+<meta itemprop="keywords" content="Machine Learning," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Models as Actions"/>
+<meta name="twitter:description" content="People typically categorize data science and machine learning work (as if there&rsquo;s a difference -_-) in terms of supervised and unsupervised learning. But to me that&rsquo;s a little too reductionist. Data science covers so much ground depending on the industry your working in and what your role is. For example, consider the following responsibilities&hellip;
+ All ETL and feature engineering that has to be done to transform data. Optimizing loss functions to ensure predictive accuracy in supervised/unsupervised learning, deep learning, etc."/>
+
+
+
+    <meta property="og:title" content="Models as Actions" />
+<meta property="og:description" content="People typically categorize data science and machine learning work (as if there&rsquo;s a difference -_-) in terms of supervised and unsupervised learning. But to me that&rsquo;s a little too reductionist. Data science covers so much ground depending on the industry your working in and what your role is. For example, consider the following responsibilities&hellip;
+ All ETL and feature engineering that has to be done to transform data. Optimizing loss functions to ensure predictive accuracy in supervised/unsupervised learning, deep learning, etc." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://imadali.net/posts/models-as-actions/" />
+<meta property="article:published_time" content="2020-12-05T16:14:19-07:00" />
+<meta property="article:modified_time" content="2020-12-05T16:14:19-07:00" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-12-05 16:14:19 -0700 -0700" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="http://imadali.net" style="text-decoration: none;">
+    <div class="logo">
+        
+        
+            <span class="logo__text">imad ali</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://imadali.net/posts/">Posts</a></li><li><a href="http://imadali.net/projects/">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://imadali.net/posts/models-as-actions/">Models as Actions</a>
+            </h1>
+
+            <div class="post-info">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-12-05
+              </p>
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>2 minutes
+              </p>
+            </div>
+
+            
+
+            <div class="post-content">
+                <p>People typically categorize data science and machine learning work (as if there&rsquo;s a difference -_-) in terms of supervised and unsupervised learning. But to me that&rsquo;s a little too reductionist. Data science covers so much ground depending on the industry your working in and what your role is. For example, consider the following responsibilities&hellip;</p>
+<ul>
+<li>All <strong>ETL</strong> and feature engineering that has to be done to <strong>transform</strong> data.</li>
+<li><strong>Optimizing</strong> loss functions to ensure predictive accuracy in supervised/unsupervised learning, deep learning, etc.</li>
+<li><strong>Optimizing</strong> an objective function or solving systems of equations (e.g. operations research work).</li>
+<li><strong>Exploring</strong> parameter or predictive distributions as you would in Bayesian statistics, probabilistic modeling, reliability engineering, etc.</li>
+<li>Stepping into <strong>engineering</strong> roles involving connecting infrastructure, creating data pipelines, developing libraries, and enforcing standards/best-practices.</li>
+<li><strong>Visualizing</strong> data and results from the above responsibilities.</li>
+</ul>
+<p>From my experience, it&rsquo;s better to categorize data science work in terms of actions (identified above in bold). So instead of defining models as unsupervised/supervised models you have optimizing loss/objective functions and exploring ****distributions associated with the data generation process. So you can categorize these problems as optimization problems. This allows you to separate models from ETL and metric creation work which would be categorized as data transformation problems.</p>
+<p>It&rsquo;s a nicer way to classify the responsibilities of data science and machine learning work, all of which often get lumped into terminology like &ldquo;models&rdquo;. So rather than overloading the term &ldquo;model&rdquo;, this interpretation directly relates to what a data scientist is doing. Terms like unsupervised and supervised seem irrelevant to me since it&rsquo;s usually pretty obvious if the data scientist is using an outcome variable or not.</p>
+<p>To aggressively abstract this I guess what I&rsquo;m saying is to <em>classify models based on what you&rsquo;re doing or the algorithm you&rsquo;re using rather than the data itself</em>.</p>
+
+            </div>
+        </article>
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://imadali.net/tags/machine-learning">Machine Learning</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>297 Words</p>
+        </div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy 2020 Imad Ali</span>
+            <span>Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/rhazdon/hugo-theme-hello-friend-ng">Hello Friend NG</a></span>
+        </div>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload='renderMathInElement(document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    });'></script>
+
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+
+
+
+    </body>
+</html>

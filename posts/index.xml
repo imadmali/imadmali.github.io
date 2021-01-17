@@ -1,0 +1,1645 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on Imad Ali</title>
+        <link>http://imadali.net/posts/</link>
+        <description>Recent content in Posts on Imad Ali</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Fri, 15 Jan 2021 16:14:19 -0700</lastBuildDate>
+        <atom:link href="http://imadali.net/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>A Year of... Blogging?</title>
+            <link>http://imadali.net/posts/a-year-of-blogging/</link>
+            <pubDate>Fri, 15 Jan 2021 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/a-year-of-blogging/</guid>
+            <description>Maybe it wasn&amp;rsquo;t really &amp;ldquo;blogging&amp;rdquo;&amp;hellip; depends on your definition. I did a pretty bad job of regularly posting what I was writing. Ok, to be brutally honest I didn&amp;rsquo;t actually post any of what I wrote until the new year. But I did regularly write and collect my thoughts throughout 2020 (thanks to Notion for making it so easy). That&amp;rsquo;s the important part, right?
+The whole process was incredibly invaluable. Writing did two things for me:</description>
+            <content type="html"><![CDATA[<p>Maybe it wasn&rsquo;t really &ldquo;blogging&rdquo;&hellip; depends on your definition. I did a pretty bad job of regularly posting what I was writing. Ok, to be brutally honest I didn&rsquo;t actually post any of what I wrote until the new year. But I did regularly write and collect my thoughts throughout 2020 (thanks to <a href="https://www.notion.so/">Notion</a> for making it so easy). That&rsquo;s the important part, right?</p>
+<p>The whole process was incredibly invaluable. Writing did two things for me:</p>
+<ol>
+<li>It forced me to finish each thought so I&rsquo;m not walking around with half baked ideas sounding like an moron. (To be clear, it hasn&rsquo;t <em>stopped</em> me from sounding like a moron.)</li>
+<li>It freed up space in my brain for new ideas and things to think about.</li>
+</ol>
+<p>Abstracting these two, I guess it was just generally cathartic. It didn&rsquo;t come without it&rsquo;s frustrations though. I&rsquo;m seem to be one of those people who generates ideas faster than implementing them. And it was irritating to have a massive list of unfinished thoughts. But I guess it&rsquo;s better to have backlog than to have things lost in the depths of my brain.</p>
+<p>Here&rsquo;s to a strong second year of active blogging. Hopefully I&rsquo;ll post more regularly and not in massive batch updates ;)</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>SQL Prototyping with Docker</title>
+            <link>http://imadali.net/posts/sql-prototyping-with-docker/</link>
+            <pubDate>Tue, 12 Jan 2021 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/sql-prototyping-with-docker/</guid>
+            <description>So recently I ran into a bit of a snafu. I wanted to do some SQL prototyping (with postgres) on my local machine but didn&amp;rsquo;t have the appropriate permissions to install and mess around with it. The postgres Docker image really came in handy. Below are some notes about what I did to get up and running with postgres in Docker. I thought they might come in handy to a Data Scientist or Machine Learning engineer facing a similar situation.</description>
+            <content type="html"><![CDATA[<p>So recently I ran into a bit of a snafu. I wanted to do some SQL prototyping (with <a href="https://en.wikipedia.org/wiki/PostgreSQL">postgres</a>) on my local machine but didn&rsquo;t have the appropriate permissions to install and mess around with it. The <a href="https://hub.docker.com/_/postgres">postgres Docker image</a> really came in handy. Below are some notes about what I did to get up and running with postgres in Docker. I thought they might come in handy to a Data Scientist or Machine Learning engineer facing a similar situation.</p>
+<p>Once you have Docker up and running on your machine you just have to run a container of the postgres image from the command line.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -e POSTGRES_USER<span style="color:#f92672">=</span>foo -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>foo -d postgres
+</code></pre></div><p>Then you can bash into the container. You can find the container name by running <code>docker ps</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker exec -it &lt;container name&gt; /bin/bash
+</code></pre></div><p>Now we&rsquo;re in the container but we need to switch user (postgres prevents you from doing pretty much anything as root)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">useradd foo
+su - foo
+</code></pre></div><p>Finally, we can launch <code>psql</code> (the terminal interface to postgres). Your prompt should now start with <code>foo=#</code>. Now we can quickly create tables and execute queries.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> synthetic (id VARCHAR(<span style="color:#ae81ff">1</span>), var1 INT, var2 INT);
+
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> synthetic (id, var1, var2)
+<span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), (<span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> synthetic;
+</code></pre></div><pre><code>id | var1 | var2
+----+------+------
+ A  |    1 |    1
+ B  |    1 |    0
+</code></pre><pre><code>foo=# \dt
+         List of relations
+ Schema |   Name    | Type  | Owner
+--------+-----------+-------+-------
+ public | synthetic | table | foo
+(1 row)
+</code></pre><p>Don&rsquo;t forget to shutdown the container with <code>docker stop &lt;container name&gt;</code> when you&rsquo;re done.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>An Imagineer Retires</title>
+            <link>http://imadali.net/posts/an-imagineer-retires/</link>
+            <pubDate>Mon, 11 Jan 2021 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/an-imagineer-retires/</guid>
+            <description>Imagineer Joe Rohde retires and, in an interview, said the following that strongly resonated with me&amp;hellip;
+ Before you start to make decisions, you have got to do a tremendous amount of work on the fundamental reason why you are doing this at all. You will lose yourself in micro-decisions if you do not first sit down and figure out what this whole thing is about. What are we trying to say.</description>
+            <content type="html"><![CDATA[<p>Imagineer Joe Rohde retires and, in an <a href="https://d23.com/podcast/d23-inside-disney-episode-69/">interview</a>, said the following that strongly resonated with me&hellip;</p>
+<blockquote>
+<p>Before you start to make decisions, you have got to do a tremendous amount of work on the fundamental reason why you are doing this at all. You will lose yourself in micro-decisions if you do not first sit down and figure out what this whole thing is about. What are we trying to say. What does it mean? What&rsquo;s the emotion? What&rsquo;s the moral? What&rsquo;s this thing about? Before you start to make the other decisions. Or very quickly you get swept away by detailed decisions, and they don&rsquo;t add up.</p>
+</blockquote>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Explaining Linear Regression with Skittles</title>
+            <link>http://imadali.net/posts/explaining-linear-regression-with-skittles/</link>
+            <pubDate>Fri, 11 Dec 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/explaining-linear-regression-with-skittles/</guid>
+            <description>Take a bunch of skittles and toss them onto a table. Draw a line on the table that best represents the skittles. This is linear regression with one predictor.
+Now imagine you could toss those skittles and have them suspend at different heights above the table. Where would you place a sheet of paper so that you could best represent the position of all the skittles. This is linear regression with N predictors.</description>
+            <content type="html"><![CDATA[<p>Take a bunch of skittles and toss them onto a table. Draw a line on the table that best represents the skittles. This is linear regression with one predictor.</p>
+<p>Now imagine you could toss those skittles and have them suspend at different heights above the table. Where would you place a sheet of paper so that you could best represent the position of all the skittles. This is linear regression with N predictors.</p>
+<p>Now imagine you could toss the skittles into N-dimensions. What N-dimensional surface would best represent the position of all the skittles. This is linear regression with N predictors.</p>
+<img src="/images/skittles.jpeg" class="center"/>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Win Probability from the Point Differential</title>
+            <link>http://imadali.net/posts/win-probability-from-the-point-differential-b298d245fe63427cac5aac73d601b812/</link>
+            <pubDate>Fri, 11 Dec 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/win-probability-from-the-point-differential-b298d245fe63427cac5aac73d601b812/</guid>
+            <description>Most people model win/loss as binary in situations where win/loss is calculated in a non-binary way (e.g. in sports). But you lose a lot of information by labeling a win as binary instead of as its point differential. It&amp;rsquo;s better to model the point differential directly and then map that to a probability (which you can then label as win/loss).
+For example, if your point differential follows the normal distribution you can use the normal CDF to map that score to a probability.</description>
+            <content type="html"><![CDATA[<p>Most people model win/loss as binary in situations where win/loss is calculated in a non-binary way (e.g. in sports). But you lose a lot of information by labeling a win as binary instead of as its point differential. It&rsquo;s better to model the point differential directly and then map that to a probability (which you can then label as win/loss).</p>
+<p>For example, if your point differential follows the normal distribution you can use the normal CDF to map that score to a probability. Let $x$ be the home team score minus the away team score. For a given standard deviation $\sigma$, the probability that the score differential $x$ is less than or equal to 0 is $\Phi(x, 0, \sigma)$. This is the probability that the home team loses the game. So $1-\Phi(x, 0, \sigma)$ is the probability that the home team wins the game.</p>
+<p>But what do we do about $\sigma$? One option would be to fix it to a given value, but this means the score differential uncertainty at the end of the game would be treated similarly to the score differential at the beginning of the game. But that doesn&rsquo;t really match reality. We know that the win probability for a team with the leading score with a minute left on the clock has higher certainty than the win probability associated with the same score at the very beginning of the game.</p>
+<p>In order to capture this we can allow $\sigma$ to take on larger values earlier on in the game and smaller values towards the end of the game. Intuitively this makes sense. We are more certain about what the win probability should be towards the end of a game than at the beginning.</p>
+<p>To do this mathematically we need to model $\sigma$ as a function of time. For example, in an NBA regulation basketball game (which lasts 48 minutes) we could define $\sigma = (48-t)^{0.5}$, where $t$ is the number of minutes that have elapsed in the game.</p>
+<p>The choice of exponent depends on the application. Here we choose to take the square root of how many minutes are left in a regulation game. The exponent determines the uncertainty so that you&rsquo;re not dealing with time directly (minutes in this case), but rather a transformation of time. This prevents you from having excessively large values for $\sigma$. For each point in time, the closer the exponent is to 1 then the more uncertainty there is in win probability and the closer the exponent is to 0 the more certainty there is in the win probability.</p>
+<p>The graphic below (Python code follows) illustrates this result for a fixed score differential at varying time points in the game and with varying exponent values (0.2, 0.5, 0.8). The score differential is fixed at 3 (which, in this case, is interpreted as a 3 point lead for the home team). You can see how at different points in time a lower exponent value results in a relatively smaller standard deviation, which in turn results in a win probability closer to 1.</p>
+<img src="/images/win-prob.svg" class="center"/>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> norm
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+
+t <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">48</span>, step<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sd</span>(time_elapsed, exponent):
+	result <span style="color:#f92672">=</span> (<span style="color:#ae81ff">48</span> <span style="color:#f92672">-</span> time_elapsed)<span style="color:#f92672">**</span>exponent
+	<span style="color:#66d9ef">return</span>(result)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">win_prob</span>(pt_diff, sd):
+	<span style="color:#66d9ef">return</span>(norm<span style="color:#f92672">.</span>cdf(pt_diff, <span style="color:#ae81ff">0</span>, sd))
+
+a <span style="color:#f92672">=</span> sd(t, <span style="color:#ae81ff">0.2</span>)
+b <span style="color:#f92672">=</span> sd(t, <span style="color:#ae81ff">0.5</span>)
+c <span style="color:#f92672">=</span> sd(t, <span style="color:#ae81ff">0.8</span>)
+wp_a <span style="color:#f92672">=</span> win_prob(<span style="color:#ae81ff">3</span>, a)
+wp_b <span style="color:#f92672">=</span> win_prob(<span style="color:#ae81ff">3</span>, b)
+wp_c <span style="color:#f92672">=</span> win_prob(<span style="color:#ae81ff">3</span>, c)
+
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">10</span>))
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Transformed Standard Deviation&#39;</span>)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Time&#39;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Standard Deviation&#39;</span>)
+plt<span style="color:#f92672">.</span>plot(t, a, lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#8fb9a8&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0.2&#39;</span>)
+plt<span style="color:#f92672">.</span>plot(t, b, lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#fcd0ba&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0.5&#39;</span>)
+plt<span style="color:#f92672">.</span>plot(t, c, lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#765d69&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0.8&#39;</span>)
+plt<span style="color:#f92672">.</span>legend(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sd&#39;</span>)
+
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Win Probability&#39;</span>)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Time&#39;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Win Probability&#39;</span>)
+plt<span style="color:#f92672">.</span>ylim(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1.1</span>)
+plt<span style="color:#f92672">.</span>plot(t, wp_a, lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#8fb9a8&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0.2&#39;</span>)
+plt<span style="color:#f92672">.</span>plot(t, wp_b, lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#fcd0ba&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0.5&#39;</span>)
+plt<span style="color:#f92672">.</span>plot(t, wp_c, lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#765d69&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0.8&#39;</span>)
+plt<span style="color:#f92672">.</span>legend(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sd&#39;</span>, loc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lower right&#39;</span>)
+
+plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#39;./win_prob.svg&#39;</span>, format<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;svg&#39;</span>)
+plt<span style="color:#f92672">.</span>close()
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Levels of AI as Levels of Automation</title>
+            <link>http://imadali.net/posts/levels-of-ai-as-levels-of-automation/</link>
+            <pubDate>Thu, 10 Dec 2020 00:22:23 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/levels-of-ai-as-levels-of-automation/</guid>
+            <description>Date: 2020-12-10
+I was thinking about the levels of automation for self-driving cars and that made me think about a neat way to interpret the &amp;ldquo;levels&amp;rdquo; of AI. The interpretation is not directly related to how AI concepts are being used in self-driving cars. Rather the interpretation is about the relationship between the driver and the car, and how it parallels the relationship between a researcher and software. So instead of having a driver and a car you have a researcher/engineer/whatever and some software that maintains an autonomous system.</description>
+            <content type="html"><![CDATA[<p>Date: 2020-12-10</p>
+<p>I was thinking about the <a href="https://en.wikipedia.org/wiki/Self-driving_car#Levels_of_driving_automation">levels of automation</a> for self-driving cars and that made me think about a neat way to interpret the &ldquo;levels&rdquo; of AI. The interpretation is not directly related to how AI concepts are being used in self-driving cars. Rather <em>the interpretation is about the relationship between the driver and the car, and how it parallels the relationship between a researcher and software</em>. So instead of having a driver and a car you have a researcher/engineer/whatever and some software that maintains an autonomous system.</p>
+<p>At the most basic level you need constant intervention from the researcher to maintain the AI system. This parallels a driver required to keep their hands on the wheel for cars running rudimentary autonomous driving software. On the other end of the spectrum you have true AI where no intervention is required by the researcher and the AI system is a self-sustaining (and more importantly self-correcting) entity. To continue the analogy, this would be like a &ldquo;steering wheel optional&rdquo; situation.</p>
+<p>This is a super unfinished thought though&hellip; If there&rsquo;s one thing you take away from this post it&rsquo;s&hellip; to stop people from saying triggering things like linear regression is AI 😏</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Similarity Measures</title>
+            <link>http://imadali.net/posts/similarity-measures/</link>
+            <pubDate>Mon, 07 Dec 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/similarity-measures/</guid>
+            <description>My favorite summary of cosine vs Euclidean distance metrics is that Euclidean distance focuses on the distance between two points whereas cosine distance focuses on the angle between two vectors.
+Refresher on Cosine Similarity and Euclidean Distance Cosine similarity is the dot product of two vectors divided by the product of the vector norms. It has a lower bound of -1 and and upper bound of 1.
+np.dot(A, B) / (np.</description>
+            <content type="html"><![CDATA[<p>My favorite summary of cosine vs Euclidean distance metrics is that <em>Euclidean distance focuses on the distance between two points whereas cosine distance focuses on the angle between two vectors</em>.</p>
+<h2 id="refresher-on-cosine-similarity-and-euclidean-distance">Refresher on Cosine Similarity and Euclidean Distance</h2>
+<p><strong>Cosine similarity</strong> is the dot product of two vectors divided by the product of the vector norms. It has a lower bound of -1 and and upper bound of 1.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">np<span style="color:#f92672">.</span>dot(A, B) <span style="color:#f92672">/</span> (np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(A) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(B))
+</code></pre></div><p>So for identical vectors you get a value of 1. For example,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+np<span style="color:#f92672">.</span>dot(A, B) <span style="color:#f92672">/</span> (np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(A) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(B))
+<span style="color:#75715e"># 1.0</span>
+</code></pre></div><p>And for orthogonal vectors you get a value of -1. For example,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+np<span style="color:#f92672">.</span>dot(A, B) <span style="color:#f92672">/</span> (np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(A) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(B))
+<span style="color:#75715e"># -1.0</span>
+</code></pre></div><p><strong>Euclidean distance</strong> is calculated as the norm of the difference between two vectors. It has a lower bound of 0, but no upper bound.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">np<span style="color:#f92672">.</span>norm(A<span style="color:#f92672">-</span>B)
+</code></pre></div><p>For identical vectors you get a value of 0.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+np<span style="color:#f92672">.</span>norm(A<span style="color:#f92672">-</span>B)
+<span style="color:#75715e"># 0.0</span>
+</code></pre></div><p>For <em>these</em> orthogonal vectors you get a value of 2.83. But the result will vary depending on how far the points described by the vectors are from one another.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+np<span style="color:#f92672">.</span>norm(A<span style="color:#f92672">-</span>B)
+<span style="color:#75715e"># 2.83</span>
+</code></pre></div><h2 id="whats-the-difference">What&rsquo;s the difference?</h2>
+<p>As an example consider the following vectors,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>]
+C <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">3</span>] <span style="color:#75715e"># B*3</span>
+</code></pre></div><p>Between vector A and B we have the following distance calculations:</p>
+<ul>
+<li>Cosine: 0.95</li>
+<li>Euclidean: 1.0</li>
+</ul>
+<p>Between vector A and C we have the following distance calculations:</p>
+<ul>
+<li>Cosine: 0.95</li>
+<li>Euclidean: 5.39</li>
+</ul>
+<p>The similarity of vectors A and B have a comparable interpretation under both cosine similarity and Euclidean distance. That makes sense. The elements of each vector are identical.</p>
+<p>However, the similarity between vector A and C differs depending on which calculation you use. The cosine similarity result is unchanged since vector C is just a scalar multiple of vector B (i.e. C points in the same direction as B). This makes sense since cosine similarity is based on the angle of the vectors; and the angle between A and B is the same as the angle between A and C.</p>
+<p>Alternatively, the Euclidean distance calculation is different between A, B and A, C. Despite pointing in the same direction, the distance of the points described by each vector is different.</p>
+<p>With this in mind, <em>it&rsquo;s preferred to use Euclidean distance when the magnitude for the vector matters and you don&rsquo;t require your distance metric to have defined bounds, otherwise use cosine similarity</em>. The figure below illustrates this result (note that vectors A, B, and C are arbitrary; they don&rsquo;t map to the vectors defined above).</p>
+<img src="/images/similarity-measures.jpeg" class="center"/>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Models as Actions</title>
+            <link>http://imadali.net/posts/models-as-actions/</link>
+            <pubDate>Sat, 05 Dec 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/models-as-actions/</guid>
+            <description>People typically categorize data science and machine learning work (as if there&amp;rsquo;s a difference -_-) in terms of supervised and unsupervised learning. But to me that&amp;rsquo;s a little too reductionist. Data science covers so much ground depending on the industry your working in and what your role is. For example, consider the following responsibilities&amp;hellip;
+ All ETL and feature engineering that has to be done to transform data. Optimizing loss functions to ensure predictive accuracy in supervised/unsupervised learning, deep learning, etc.</description>
+            <content type="html"><![CDATA[<p>People typically categorize data science and machine learning work (as if there&rsquo;s a difference -_-) in terms of supervised and unsupervised learning. But to me that&rsquo;s a little too reductionist. Data science covers so much ground depending on the industry your working in and what your role is. For example, consider the following responsibilities&hellip;</p>
+<ul>
+<li>All <strong>ETL</strong> and feature engineering that has to be done to <strong>transform</strong> data.</li>
+<li><strong>Optimizing</strong> loss functions to ensure predictive accuracy in supervised/unsupervised learning, deep learning, etc.</li>
+<li><strong>Optimizing</strong> an objective function or solving systems of equations (e.g. operations research work).</li>
+<li><strong>Exploring</strong> parameter or predictive distributions as you would in Bayesian statistics, probabilistic modeling, reliability engineering, etc.</li>
+<li>Stepping into <strong>engineering</strong> roles involving connecting infrastructure, creating data pipelines, developing libraries, and enforcing standards/best-practices.</li>
+<li><strong>Visualizing</strong> data and results from the above responsibilities.</li>
+</ul>
+<p>From my experience, it&rsquo;s better to categorize data science work in terms of actions (identified above in bold). So instead of defining models as unsupervised/supervised models you have optimizing loss/objective functions and exploring ****distributions associated with the data generation process. So you can categorize these problems as optimization problems. This allows you to separate models from ETL and metric creation work which would be categorized as data transformation problems.</p>
+<p>It&rsquo;s a nicer way to classify the responsibilities of data science and machine learning work, all of which often get lumped into terminology like &ldquo;models&rdquo;. So rather than overloading the term &ldquo;model&rdquo;, this interpretation directly relates to what a data scientist is doing. Terms like unsupervised and supervised seem irrelevant to me since it&rsquo;s usually pretty obvious if the data scientist is using an outcome variable or not.</p>
+<p>To aggressively abstract this I guess what I&rsquo;m saying is to <em>classify models based on what you&rsquo;re doing or the algorithm you&rsquo;re using rather than the data itself</em>.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Bias-Variance Tradeoff</title>
+            <link>http://imadali.net/posts/bias-variance-tradeoff/</link>
+            <pubDate>Fri, 04 Dec 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/bias-variance-tradeoff/</guid>
+            <description>There&amp;rsquo;s a lot of great diagrams, explanation, and tedious calculations to explain the bias-variance trade off, but I was trying to come up with a pithy explanation for statisticians who understand regression.
+High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate non-linearities, and you want to model it with some regression function $f$. Your first option is super basic; just the mean $y \sim f(\bar{y})$. The mean is not going to be sufficient enough to model the complexities so you&amp;rsquo;ll have high bias (predictions that are very different from the true value).</description>
+            <content type="html"><![CDATA[<p>There&rsquo;s a lot of great diagrams, explanation, and tedious calculations to explain the bias-variance trade off, but I was trying to come up with a pithy explanation for statisticians who understand regression.</p>
+<p><strong>High Bias, Low Variance.</strong> Suppose you have some outcome data $y$ with moderate non-linearities, and you want to model it with some regression function $f$. Your first option is super basic; just the mean $y \sim f(\bar{y})$. The mean is not going to be sufficient enough to model the complexities so you&rsquo;ll have high bias (predictions that are very different from the true value). However, you&rsquo;ll have low variance (predictions with no variation) since $f$ (the mean in this case) is not sufficient enough to capture the variability in the outcome variable.</p>
+<p><strong>Low Bias, High Variance.</strong> Now you start packing $f$ with interaction terms and complex polynomials. The bias is going to go down since the model is really good at handling the complexities in the outcome variable. However, the variance is going to increase since $f$ is probably modeling noise in addition to the outcome variable.</p>
+<p>We can also think about this in terms of underfitting and overfitting to the data. A simple $f$ with high bias and low variance will underfit the data, whereas a complexj $f$ with low bias and high variance will overfit the data.</p>
+<pre><code>underfit data
+high bias
+low variance
+\
+simple f()
+|
+|
+|
+complex f()
+/
+overfit data
+low bias
+high variance
+</code></pre><p>ideally, you&rsquo;re looking for some sweet spot in the middle that balances the bias and the variance. Although, it all depends on the data you&rsquo;re modeling (e.g. in some cases a simple $f$ is better than a more complex $f$, and vice versa).</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Sankey Diagrams and AB Testing</title>
+            <link>http://imadali.net/posts/sankey-diagrams-and-ab-testing/</link>
+            <pubDate>Thu, 03 Dec 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/sankey-diagrams-and-ab-testing/</guid>
+            <description>I have found Sankey diagrams are useful to visualize AB testing (control/treatment groups) or a more complicated funnel.
+Here&amp;rsquo;s an example of a super basic funnel. We have a control group and two variants.
+Here&amp;rsquo;s something a little more complicated. We have different experience paths each with their own control group and variants.</description>
+            <content type="html"><![CDATA[<p>I have found <a href="https://en.wikipedia.org/wiki/Sankey_diagram">Sankey diagrams</a> are useful to visualize AB testing (control/treatment groups) or a more complicated funnel.</p>
+<p>Here&rsquo;s an example of a super basic funnel. We have a control group and two variants.</p>
+<img src="/images/sankey/sankey-simple.jpeg" class="center"/>
+<p>Here&rsquo;s something a little more complicated. We have different experience paths each with their own control group and variants.</p>
+<img src="/images/sankey/sankey-complex.jpeg" class="center"/>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Embeddings</title>
+            <link>http://imadali.net/posts/embeddings/</link>
+            <pubDate>Sun, 29 Nov 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/embeddings/</guid>
+            <description>You can think of a neural network embedding is another form of dimensionality reduction. You&amp;rsquo;re taking a bunch of tokens (words, movies, games, etc) and instead of one-hot encoding them you want to map them down to a lower dimensional space.
+For example, suppose you have a collection of 1,000 tokens. To one-hot encode them means having a very sparse vectors of length 1,000 for each word (where a 1 exists at the index that represents the token, 0 otherwise).</description>
+            <content type="html"><![CDATA[<p>You can think of a neural network embedding is another form of dimensionality reduction. You&rsquo;re taking a bunch of tokens (words, movies, games, etc) and instead of one-hot encoding them you want to map them down to a lower dimensional space.</p>
+<p>For example, suppose you have a collection of 1,000 tokens. To one-hot encode them means having a very sparse vectors of length 1,000 for each word (where a 1 exists at the index that represents the token, 0 otherwise).</p>
+<p>So basically you&rsquo;re taking very high dimensional vectors and mapping them down to a low dimensional space. Preferably you don&rsquo;t want the low dimensional space to be random. You want it to have some structure. For example, vectors that represent similar tokens are close to one another, adding vectors together gets you close to a vector that represents a good mix of the two tokens, etc).</p>
+<p>I like using generated (synthetic) data. It gives you a good understanding of how the data you&rsquo;re modeling was generated. Below I show how to discover an embedding space from some generated data and and simple predictive visualization.</p>
+<h1 id="generating-data">Generating Data</h1>
+<p>Using numpy we generate some data that we can create embeddings with. Suppose we have 5 tokens that have associated effects (i.e. parameters that we can use to generate the data from). Using the tokens and the token effects we generate 10,000 observations from the normal distribution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">N <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>_000
+n_tokens <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+token_effect <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(start<span style="color:#f92672">=-</span><span style="color:#ae81ff">20</span>, stop<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, num<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+<span style="color:#75715e"># reorder the tokens (not necessary but more realistic)</span>
+token_effect <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(token_effect, n_tokens, replace<span style="color:#f92672">=</span>False)
+<span style="color:#75715e"># generate tokens for each observation</span>
+x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(n_tokens, N)
+<span style="color:#75715e"># simulate an outcome for each observation&#39;s token</span>
+y <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(token_effect[x], scale<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, size<span style="color:#f92672">=</span>N)
+</code></pre></div><p>The tokens <code>x[:5]</code> might look something like <code>array([4, 4, 3, 2, 2, 0])</code> and the outcome <code>y[:5]</code> might look something like <code>array([ 18.64902242,  19.22041727, -20.25015504,  11.30246504, 11.15165945, -10.05891201])</code>.</p>
+<h1 id="creating-embeddings">Creating Embeddings</h1>
+<p>Knowing how many tokens we have and what we want our embedding space to look like we can create our embedding model with keras. We define the dimensionality of the embedding layer with the number of unique tokens and the output dimension (which should be substantially less than the number of tokens).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>Sequential()
+model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.</span>Embedding(input_dim <span style="color:#f92672">=</span> n_tokens, output_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, input_length<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))
+model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.</span>Dense(units<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;relu&#39;</span>))
+model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.</span>Dense(units<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;linear&#39;</span>))
+model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.</span>Dense(units<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;linear&#39;</span>))
+model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.</span>Dense(units<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;linear&#39;</span>))
+model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.</span>Dense(units<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;linear&#39;</span>))
+model<span style="color:#f92672">.</span>summary()
+</code></pre></div><p>Now we compile/train the model and plot the loss to confirm that our model configuration (choice of layers, activation functions, loss function, etc) is appropriate.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model<span style="color:#f92672">.</span>compile(optimizer<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;rmsprop&#39;</span>, loss<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mse&#39;</span>)
+history <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>fit(x<span style="color:#f92672">=</span>x, y<span style="color:#f92672">=</span>y, epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>_000, validation_split<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</code></pre></div><img src="/images/embeddings/loss.svg" class="center"/>
+<h1 id="embedding-similarity">Embedding Similarity</h1>
+<p>Our token effect might look something like <code>array([-10., 0., 10., 20., -20.])</code>. In this case we would expect token 3 (which maps to a token effect of 20) to be closest to token 2 (which maps to a token effect of 10) and farthest from token 4 (which maps to a token effect of -20).</p>
+<p>The function below computes the similarity (Euclidean distance) for an indexed embedding vector against all the other embedding vectors. <code>np.argmax(token_effect)</code> gives us the token value that maps to the largest token effect.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">similarities</span>(target_index, embedding_matrix):
+    result <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,embedding_matrix<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]):
+        s <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(embedding_matrix[target_index,] <span style="color:#f92672">-</span> embedding_matrix[i,])
+        result<span style="color:#f92672">.</span>append(s)
+    <span style="color:#66d9ef">return</span>(np<span style="color:#f92672">.</span>array(result))
+
+similarities(np<span style="color:#f92672">.</span>argmax(token_effect), embedding)
+</code></pre></div><p>The above might return similarity values like <code>array([0.7304573 , 0.5255725 , 0.32273838, 0. , 1.0848211 ]</code> which confirm that the embedding corresponding to token 3 is closest to token 2 and farthest from token 4.</p>
+<p>This is a convenient result. For illustrative purposes we used a small number of tokens. But you can see how calculating similarities between vectors of an embedding matrix would be preferred to the one-hot encoded counterpart in situations where you might have thousands of tokens.</p>
+<h1 id="visualizing-predictions">Visualizing Predictions</h1>
+<p>Here&rsquo;s what the outcome variables looks like, color coded by token.</p>
+<img src="/images/embeddings/outcome.svg" class="center"/>
+<p>And here are the predictions using the model along with the outcome variable. This plot doesn&rsquo;t really provide any new information. It just reiterates the fact that the loss from training is sufficiently low.</p>
+<img src="/images/embeddings/pred-check.svg" class="center"/>
+]]></content>
+        </item>
+        
+        <item>
+            <title>OLTP and OLAP</title>
+            <link>http://imadali.net/posts/oltp-and-olap/</link>
+            <pubDate>Tue, 24 Nov 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/oltp-and-olap/</guid>
+            <description>I always mix these up. OLTP (Online Transaction Processing) is responsible for storing data from a device/user/etc. OLAP (Online Analytics Processing) takes information produced by OLTP systems and creates more complex data assets that combine/aggregate OLTP data in ways that are useful to the business.
+For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&amp;rsquo; entire history.</description>
+            <content type="html"><![CDATA[<p>I always mix these up. OLTP (Online Transaction Processing) is responsible for storing data from a device/user/etc. OLAP (Online Analytics Processing) takes information produced by OLTP systems and creates more complex data assets that combine/aggregate OLTP data in ways that are useful to the business.</p>
+<p>For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&rsquo; entire history.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Environment Variables</title>
+            <link>http://imadali.net/posts/environment-variables/</link>
+            <pubDate>Sun, 08 Nov 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/environment-variables/</guid>
+            <description>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
+export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables).</description>
+            <content type="html"><![CDATA[<p>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using <code>export</code> (which sets the environment variable) and we can print the value of the environment variable with <code>printenv</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
+printenv KEY
+$ value
+</code></pre></div><p>To remove the environment variable we can use <code>unset</code> (to unset shell/environment variables).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">unset KEY
+</code></pre></div><p>The other option is to use <code>set</code> (to set shell variables) and <code>export</code> together.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set KEY<span style="color:#f92672">=</span>value
+export KEY
+printenv KEY
+</code></pre></div><p>If you set the environment variable in one shell using the command line and print the value then nothing will return. In order for the environment variables to be recognized in new shell processes you need to set them in your bash profile. For example, in <code>~/.bash_profile</code> you could have the following.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
+</code></pre></div><p>If you save the file and open up a new shell process and run <code>printenv KEY</code> from the command line then <code>value</code> will be returned.</p>
+<p>The <code>PATH</code> environment variable is super useful. Some programs will search this variable for executable. For example, one of the paths in my <code>PATH</code> variable points to the location of texbin so that LaTeX knows where to look when I try to build LaTeX code.</p>
+<p>Reference:</p>
+<ul>
+<li><a href="https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/">https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/</a></li>
+</ul>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Aliasing Different Python Versions</title>
+            <link>http://imadali.net/posts/aliasing-different-python-versions/</link>
+            <pubDate>Fri, 06 Nov 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/aliasing-different-python-versions/</guid>
+            <description>I hit an issue with Python versions when trying to install pyarrow (which, at the time of writing, is not supported by Python 3.9). I use brew to manage my Python versions (see details here) and I wanted to keep the python3 executable to the default version of Python (which is the latest version installed by brew), but still want to have the opportunity to easily use an older version of Python 3.</description>
+            <content type="html"><![CDATA[<p>I hit an issue with Python versions when trying to install pyarrow (which, at the time of writing, is not supported by Python 3.9). I use brew to manage my Python versions (see details <a href="https://formulae.brew.sh/formula/python@3.9">here</a>) and I wanted to keep the <code>python3</code> executable to the default version of Python (which is the latest version installed by brew), but still want to have the opportunity to easily use an older version of Python 3.X when needed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python3 --version
+<span style="color:#75715e"># Python 3.9.0</span>
+python3 -m venv /path/to/virtual/env
+<span style="color:#75715e"># Creates a virtual environment using Python 3.9</span>
+</code></pre></div><p>The way I did this was through a bash alias, which basically allows you to create shortcuts to bash commands. (Here&rsquo;s a <a href="https://linuxize.com/post/how-to-create-bash-aliases/">link</a> to an article that provides a brief overview of bash aliases.)</p>
+<p>Provided that Python 3.8 is installed with brew, I alias <code>python3.8</code> to the brew command to launch Python 3.8, <code>$(brew --prefix)/opt/python@3.8/bin/python3</code>. To make the alias persist when I start new bash sessions I store it in my <code>~/.bash_profile</code> file.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">alias python3.8<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>brew --prefix<span style="color:#66d9ef">)</span><span style="color:#e6db74">/opt/python@3.8/bin/python3&#34;</span>
+python3.8 --version
+<span style="color:#75715e"># Python 3.8.6</span>
+</code></pre></div><p>This way I can create a virtual environment with Python 3.8 in a similar way to how I&rsquo;d create it with the the python3 executable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python3.8 -m venv /path/to/virtual/env
+<span style="color:#75715e"># Creates a virtual environment using Python 3.8</span>
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>SQL Concepts</title>
+            <link>http://imadali.net/posts/sql-concepts/</link>
+            <pubDate>Thu, 29 Oct 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/sql-concepts/</guid>
+            <description>Here&amp;rsquo;s a non-exhaustive laundry list of SQL concepts that I&amp;rsquo;ve found useful. You could think of them as intermediate? advanced? concepts that anyone doing data science or machine learning should probably know. I tried to order the concepts list is loosely in order of complexity, however that may vary from person to person.
+All the examples here are done using the postgres Docker image available here (I talk about how to work with a postgres container in a separate post).</description>
+            <content type="html"><![CDATA[<p>Here&rsquo;s a non-exhaustive laundry list of SQL concepts that I&rsquo;ve found useful. You could think of them as intermediate? advanced? concepts that anyone doing data science or machine learning should probably know. I tried to order the concepts list is loosely in order of complexity, however that may vary from person to person.</p>
+<p>All the examples here are done using the postgres Docker image available <a href="https://hub.docker.com/_/postgres">here</a> (I talk about how to work with a postgres container in a separate post). Below we create the table <code>synthetic</code> and populate it with data that I&rsquo;ll use to illustrate the various concepts.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> synthetic (id VARCHAR(<span style="color:#ae81ff">1</span>), var1 INT, var2 INT);
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> dim (id VARCHAR(<span style="color:#ae81ff">1</span>), meta VARCHAR(<span style="color:#ae81ff">100</span>));
+
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> synthetic (id, var1, var2)
+<span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>),
+(<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>),
+(<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>),
+(<span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>),
+(<span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">0</span>),
+(<span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>),
+(<span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>),
+(<span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">1</span>),
+(<span style="color:#e6db74">&#39;D&#39;</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">0</span>);
+
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> dim (id, meta)
+<span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#e6db74">&#39;supercali&#39;</span>),
+(<span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#e6db74">&#39;fragilistic&#39;</span>),
+(<span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#e6db74">&#39;expiali&#39;</span>),
+(<span style="color:#e6db74">&#39;D&#39;</span>, <span style="color:#e6db74">&#39;docious&#39;</span>),
+(<span style="color:#e6db74">&#39;E&#39;</span>, <span style="color:#e6db74">&#39;!&#39;</span>);
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> synthetic;
+</code></pre></div><pre><code>id | var1 | var2
+----+------+------
+ A  |    1 |    1
+ A  |    1 |    0
+ A  |    2 |    1
+ B  |    5 |    1
+ B  |    8 |    0
+ C  |    3 |    0
+ C  |    4 |    1
+ C  |    9 |    1
+ D  |    7 |    0
+</code></pre><h2 id="processing-order">Processing Order</h2>
+<p>It&rsquo;s useful to know the processing order of a SQL query. It helps you understand when certain parts of your query are executed which will help you optimize your code. For example, if you only need to join data on a filtered set of rows then it might make sense to create CTEs that first filter the data and then perform joins using those CTEs.</p>
+<p>Basically, the processing order of a SQL query goes something like this (see <a href="https://docs.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?redirectedfrom=MSDN&amp;view=sql-server-ver15">this</a> doc for more detail),</p>
+<ol>
+<li>FROM</li>
+<li>JOIN</li>
+<li>WHERE</li>
+<li>GROUP BY</li>
+<li>HAVING</li>
+<li>SELECT (including aggregations, window functions, etc)</li>
+<li>DISTINCT</li>
+<li>ORDER BY</li>
+<li>LIMIT</li>
+</ol>
+<h2 id="joins">Joins</h2>
+<p>Joins are pretty basic and pretty fundamental. Sometimes (actually most of the time) your information is split across multiple tables and you need to join them together in order to get all the information in one place.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> a.id, b.meta
+<span style="color:#66d9ef">FROM</span> synthetic a
+<span style="color:#66d9ef">JOIN</span> dim b
+<span style="color:#66d9ef">ON</span> a.id <span style="color:#f92672">=</span> b.id;
+</code></pre></div><pre><code>id |    meta
+----+-------------
+ A  | supercali
+ A  | supercali
+ A  | supercali
+ B  | fragilistic
+ B  | fragilistic
+ C  | expiali
+ C  | expiali
+ C  | expiali
+ D  | docious
+</code></pre><p>There&rsquo;s also the anti-join. This can come in handy for problems when you want to select the records that don&rsquo;t have a match defined by the join. In this case we want any records that are in <code>dim</code> that are not in <code>synthetic</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> b.<span style="color:#f92672">*</span>
+<span style="color:#66d9ef">FROM</span> synthetic a
+<span style="color:#66d9ef">RIGHT</span> <span style="color:#66d9ef">JOIN</span> dim b
+<span style="color:#66d9ef">ON</span> a.id <span style="color:#f92672">=</span> b.id
+<span style="color:#66d9ef">WHERE</span> a.id <span style="color:#66d9ef">IS</span> <span style="color:#66d9ef">NULL</span>;
+</code></pre></div><pre><code>id | meta
+----+------
+ E  | !
+</code></pre><p>Another way we could have done this anti-join is with <code>NOT IN</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+<span style="color:#66d9ef">FROM</span> dim
+<span style="color:#66d9ef">WHERE</span> id <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">IN</span> (<span style="color:#66d9ef">SELECT</span> id <span style="color:#66d9ef">FROM</span> synthetic);
+</code></pre></div><pre><code>id | meta
+----+------
+ E  | !
+</code></pre><h2 id="case-statements-conditionals">Case Statements (Conditionals)</h2>
+<p>This allows you to implement if-else conditions on columns in your table. The typical formulation of case statements is <code>CASE WHEN &lt;condition&gt; THEN &lt;result&gt; ELSE &lt;result&gt; END &lt;new column name&gt;</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+	, <span style="color:#66d9ef">CASE</span> <span style="color:#66d9ef">WHEN</span> var2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;Y&#39;</span>
+	       <span style="color:#66d9ef">WHEN</span> var2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;N&#39;</span>
+	       <span style="color:#66d9ef">ELSE</span> <span style="color:#66d9ef">Null</span> <span style="color:#66d9ef">END</span> var3
+<span style="color:#66d9ef">FROM</span> synthetic;
+</code></pre></div><pre><code>id | var1 | var2 | var3
+----+------+------+------
+ A  |    1 |    1 | Y
+ A  |    1 |    0 | N
+ A  |    2 |    1 | Y
+ B  |    5 |    1 | Y
+ B  |    8 |    0 | N
+ C  |    3 |    0 | N
+ C  |    4 |    1 | Y
+ C  |    9 |    1 | Y
+ D  |    7 |    0 | N
+</code></pre><h2 id="group-by">Group By</h2>
+<p>This is another obvious one. But because it&rsquo;s so commonly used it&rsquo;s worth mentioning. A <code>GROUP BY</code> enables you to apply aggregation functions (<code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, etc) to parts of a table. These parts are provided by an identifier (or set of identifiers) which allows you to partition the data into groups that you want to apply your aggregation functions over.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+	, <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) id_count
+	, <span style="color:#66d9ef">SUM</span>(var1) var1_sum
+<span style="color:#66d9ef">FROM</span> synthetic
+<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> id;
+</code></pre></div><pre><code>id | id_count | var1_sum
+----+----------+----------
+ B  |        2 |       13
+ C  |        3 |       16
+ D  |        1 |        7
+ A  |        3 |        4
+</code></pre><h2 id="where-vs-having">Where vs Having</h2>
+<p>Most people know of the <code>WHERE</code> statement. It allows you to filter (reduce the rows of your table) by a specific condition.</p>
+<p>You can&rsquo;t use <code>WHERE</code> on a column that was created by an aggregate function. If you do you&rsquo;ll be performing the filter before the aggregation calculations take place. You can use the <code>HAVING</code> statement on a column created by an aggregate function to filter results after the aggregations have taken place.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+<span style="color:#66d9ef">FROM</span> synthetic
+<span style="color:#66d9ef">WHERE</span> var1 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>;
+</code></pre></div><pre><code>id | var1 | var2
+----+------+------
+ A  |    1 |    1
+ A  |    1 |    0
+ A  |    2 |    1
+ C  |    3 |    0
+ C  |    4 |    1
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+	, <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) id_count
+<span style="color:#66d9ef">FROM</span> synthetic
+<span style="color:#66d9ef">WHERE</span> var1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> id
+<span style="color:#66d9ef">HAVING</span> id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A&#39;</span>;
+</code></pre></div><pre><code>id | id_count
+----+----------
+ A  |        2
+</code></pre><h2 id="window-functions">Window Functions</h2>
+<p>Window functions allow you to perform row-wise calculations on partitions (groups) of your data while allowing you to consider other rows in the calculation. This is useful when you want to create ranks, cumulative sums, rolling averages, etc. There is no group by aggregation taking place. The output table produced after applying a window function will always have the same number of rows as the original table.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+	, var1
+	, RANK() OVER (<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_rank
+	, LAG(var1, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">Null</span>) OVER (PARTITION <span style="color:#66d9ef">BY</span> Id <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_lag
+<span style="color:#66d9ef">FROM</span> synthetic
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> id, var1;
+</code></pre></div><pre><code>id | var1 | var1_rank | var1_lag
+----+------+-----------+----------
+ A  |    1 |         1 |
+ A  |    1 |         1 |        1
+ A  |    2 |         3 |        1
+ B  |    5 |         6 |
+ B  |    8 |         8 |        5
+ C  |    3 |         4 |
+ C  |    4 |         5 |        3
+ C  |    9 |         9 |        4
+ D  |    7 |         7 |
+</code></pre><h2 id="rows-precedingfollowing">Rows Preceding/Following</h2>
+<p>How do window functions know which data to consider before and/or after the row in question? It does this by using <code>ROWS # PRECEDING # FOLLOWING</code>, where # is how many rows you want the function to consider preceding/following the row you are currently at.</p>
+<p>For example, to compute the cumulative sum we use the <code>SUM</code> window function and specify <code>ROWS UNBOUNDED PRECEDING</code>. This means that we are considering all previous rows (within the partition) in addition to the current row when calculating the cumulative sum. If we don&rsquo;t specify this then we&rsquo;ll just get the entire sum for each partition assigned to each row of the partition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+	, var1
+	, <span style="color:#66d9ef">SUM</span>(var1) OVER (PARTITION <span style="color:#66d9ef">BY</span> Id <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1 <span style="color:#66d9ef">ROWS</span> UNBOUNDED PRECEDING) var1_cumsum_1
+	, <span style="color:#66d9ef">SUM</span>(var1) OVER (PARTITION <span style="color:#66d9ef">BY</span> Id <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1 <span style="color:#66d9ef">ROWS</span> <span style="color:#ae81ff">1</span> PRECEDING) var1_cumsum_2
+<span style="color:#66d9ef">FROM</span> synthetic;
+</code></pre></div><pre><code>id | var1 | var1_cumsum_1 | var1_cumsum_2
+----+------+---------------+---------------
+ A  |    1 |             1 |             1
+ A  |    1 |             2 |             2
+ A  |    2 |             4 |             3
+ B  |    5 |             5 |             5
+ B  |    8 |            13 |            13
+ C  |    3 |             3 |             3
+ C  |    4 |             7 |             7
+ C  |    9 |            16 |            13
+ D  |    7 |             7 |             7
+</code></pre><p>Here&rsquo;s what happens if we don&rsquo;t provide <code>PRECEDING</code> or <code>FOLLOWING</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+	, var1
+	, <span style="color:#66d9ef">SUM</span>(var1) OVER (PARTITION <span style="color:#66d9ef">BY</span> Id <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_cumsum_1
+	, <span style="color:#66d9ef">SUM</span>(var1) OVER (PARTITION <span style="color:#66d9ef">BY</span> Id <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_cumsum_2
+<span style="color:#66d9ef">FROM</span> synthetic;
+</code></pre></div><pre><code>id | var1 | var1_cumsum_1 | var1_cumsum_2
+----+------+---------------+---------------
+ A  |    1 |             2 |             2
+ A  |    1 |             2 |             2
+ A  |    2 |             4 |             4
+ B  |    5 |             5 |             5
+ B  |    8 |            13 |            13
+ C  |    3 |             3 |             3
+ C  |    4 |             7 |             7
+ C  |    9 |            16 |            16
+ D  |    7 |             7 |             7
+</code></pre><h2 id="rank-vs-dense-rank-vs-row-number">Rank vs Dense Rank vs Row Number</h2>
+<p>This one always trips me up. Dense rank and rank will be the same except when there are ties. In tie situations dense will always give you consecutive ranks (no gaps in ranking values) where as rank will skip ranks in situations where there are ties.</p>
+<p>Rank is similar to row number, however rank provides the same value in situations where there are ties.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+	, var1
+	, RANK() OVER (<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_rank
+	, DENSE_RANK() OVER (<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_dense_rank
+	, ROW_NUMBER() OVER (<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_row_number
+<span style="color:#66d9ef">FROM</span> synthetic
+<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1;
+</code></pre></div><pre><code>id | var1 | var1_rank | var1_dense_rank | var1_row_number
+----+------+-----------+-----------------+-----------------
+ A  |    1 |         1 |               1 |               1
+ A  |    1 |         1 |               1 |               2
+ A  |    2 |         3 |               2 |               3
+ C  |    3 |         4 |               3 |               4
+ C  |    4 |         5 |               4 |               5
+ B  |    5 |         6 |               5 |               6
+ D  |    7 |         7 |               6 |               7
+ B  |    8 |         8 |               7 |               8
+ C  |    9 |         9 |               8 |               9
+</code></pre><h2 id="views">Views</h2>
+<p>A view represents a table. It&rsquo;s not a table that&rsquo;s stored on disk. Rather the SQL code to construct the table is stored. Typically, every time you call a view, the SQL code that defines that view is executed to generate the table. (I say typically since sometimes the results can be stored/read from a cache). You&rsquo;ll notice that a view is not stored in the &ldquo;Table&rdquo; section of the database, but in a separate &ldquo;View&rdquo; section&hellip; because it ain&rsquo;t a table.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">VIEW</span> synthetic_agg <span style="color:#66d9ef">AS</span>
+<span style="color:#66d9ef">SELECT</span> id
+	, <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) id_count
+<span style="color:#66d9ef">FROM</span> synthetic
+<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> id;
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> synthetic_agg;
+</code></pre></div><pre><code>id | id_count
+----+----------
+ B  |        2
+ C  |        3
+ D  |        1
+ A  |        3
+</code></pre><h2 id="user-defined-functions">User Defined Functions</h2>
+<p>Just as in any programing language, functions in SQL allow you to parameterize your query. The way you specify functions will vary depending on the variant of SQL used by your choice of SQL server provider.</p>
+<p>Here&rsquo;s a function that returns a filtered table that has the same schema as the <code>synthetic</code> table.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">REPLACE</span> <span style="color:#66d9ef">FUNCTION</span> synthetic_filter(param INT)
+<span style="color:#66d9ef">RETURNS</span> <span style="color:#66d9ef">SETOF</span> synthetic
+<span style="color:#66d9ef">AS</span>
+<span style="color:#960050;background-color:#1e0010">$$</span>
+	<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+	<span style="color:#66d9ef">FROM</span> synthetic
+	<span style="color:#66d9ef">WHERE</span> var1 <span style="color:#f92672">=</span> param;
+<span style="color:#960050;background-color:#1e0010">$$</span>
+<span style="color:#66d9ef">LANGUAGE</span> <span style="color:#66d9ef">SQL</span>;
+</code></pre></div><pre><code>id | var1 | var2
+----+------+------
+ A  |    1 |    1
+ A  |    1 |    0
+</code></pre><p>Here&rsquo;s a function that returns a schema that&rsquo;s different from the <code>synthetic</code> table (we have to define the schema of the returning table).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">REPLACE</span> <span style="color:#66d9ef">FUNCTION</span> synthetic_grouped(param INT)
+<span style="color:#66d9ef">RETURNS</span> <span style="color:#66d9ef">TABLE</span> (id VARCHAR(<span style="color:#ae81ff">1</span>), id_count INT)
+<span style="color:#66d9ef">AS</span>
+<span style="color:#960050;background-color:#1e0010">$$</span>
+	<span style="color:#66d9ef">SELECT</span> id, <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) id_count
+	<span style="color:#66d9ef">FROM</span> synthetic
+	<span style="color:#66d9ef">WHERE</span> var2 <span style="color:#f92672">=</span> param
+	<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> id;
+<span style="color:#960050;background-color:#1e0010">$$</span>
+<span style="color:#66d9ef">LANGUAGE</span> <span style="color:#66d9ef">SQL</span>;
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> synthetic_grouped(<span style="color:#ae81ff">1</span>);
+</code></pre></div><pre><code>id | id_count
+----+----------
+ A  |        2
+ B  |        1
+ C  |        2
+</code></pre><p>Finally, here&rsquo;s a function that returns a single value (in this case a <code>VARCHAR</code>). These return types  are useful to define complicated row-wise operations or for operations that need to be reused.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">CREATE OR REPLACE FUNCTION var2_condition(param INT)
+RETURNS VARCHAR(<span style="color:#ae81ff">1</span>)
+AS
+<span style="color:#960050;background-color:#1e0010">$$</span>
+	SELECT CASE WHEN param <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> THEN <span style="color:#e6db74">&#39;Y&#39;</span>
+	       WHEN param <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> THEN <span style="color:#e6db74">&#39;N&#39;</span>
+	       ELSE Null END;
+<span style="color:#960050;background-color:#1e0010">$$</span>
+LANGUAGE SQL;
+
+SELECT <span style="color:#f92672">*</span>, var2_condition(var2) var2_char
+FROM synthetic;
+</code></pre></div><pre><code>id | var1 | var2 | var2_char
+----+------+------+-----------
+ A  |    1 |    1 | Y
+ A  |    1 |    0 | N
+ A  |    2 |    1 | Y
+ B  |    5 |    1 | Y
+ B  |    8 |    0 | N
+ C  |    3 |    0 | N
+ C  |    4 |    1 | Y
+ C  |    9 |    1 | Y
+ D  |    7 |    0 | N
+</code></pre><h2 id="cte-common-table-expression">CTE (Common Table Expression)</h2>
+<p>CTEs allow you to reference a table created by one query in another query, without having to write the table to disk (in other words you don&rsquo;t have to use <code>CREATE TABLE</code>). Basically you&rsquo;re keeping the table in memory temporarily.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">WITH</span> tmp_table <span style="color:#66d9ef">AS</span> (
+	<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+	<span style="color:#66d9ef">FROM</span> synthetic
+	<span style="color:#66d9ef">WHERE</span> var2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+)
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+<span style="color:#66d9ef">FROM</span> tmp_table;
+</code></pre></div><pre><code>id | var1 | var2
+----+------+------
+ A  |    1 |    1
+ A  |    2 |    1
+ B  |    5 |    1
+ C  |    4 |    1
+ C  |    9 |    1
+</code></pre><h2 id="knowing-when-to-write-a-table-to-disk">Knowing When to Write a Table to Disk</h2>
+<p>Sometimes it&rsquo;s obvious when to create a table. Typically you&rsquo;ll do it when you want to share the result with someone or some service. But sometimes it&rsquo;s worth breaking up a complicated ETL workflow into tables that are written to disk. This helps you do QA on different components of the ETL workflow. It also helps when a part of the workflow errors out for some reason. You don&rsquo;t have to start the entire ETL workflow from the beginning. The process can just start at the point where the error took place. Just make sure you clean up tables that aren&rsquo;t actively being used so that they don&rsquo;t unnecessarily consume space.</p>
+<p>It&rsquo;s important to know the tradeoffs though. Writing to disk can be slower since you have to spend time writing/reading from disk. Keeping things in memory circumvents this inefficiency&hellip; at the expense of holding the data in memory (typically you have more space on disk than you do in memory). If your code errors out and you kept all your data in memory then whatever transformations you did to that data won&rsquo;t be saved.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Creating a Single Metric</title>
+            <link>http://imadali.net/posts/creating-a-single-metric/</link>
+            <pubDate>Thu, 15 Oct 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/creating-a-single-metric/</guid>
+            <description>Sometimes I find myself having to combine several data features into a single metric. It&amp;rsquo;s bad practice to combine the features if they are on different scales. You end up capturing differences in their scale rather than differences in the underlying metric. So the best approach in these situations is to center the data (subtract the mean) and scale the data (divide by the standard deviation). This is how you eliminate the scale (it&amp;rsquo;s also part of the data pre-processing you should do before clustering).</description>
+            <content type="html"><![CDATA[<p>Sometimes I find myself having to combine several data features into a single metric. It&rsquo;s bad practice to combine the features if they are on different scales. You end up capturing differences in their scale rather than differences in the underlying metric. So the best approach in these situations is to center the data (subtract the mean) and scale the data (divide by the standard deviation). This is how you eliminate the scale (it&rsquo;s also part of the data pre-processing you should do before clustering). Once you&rsquo;ve done all this you can then combine the features by taking row-wise means (or weighted means if having equal weights is not sufficient for the business problem).</p>
+<p>In some cases this type of re-scaling might not be enough. You may want to force a vector of data to be bounded between two variables (e.g. 0 and 1 or -1 and 1). This is the approach that I take in Python.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1000</span>)
+new_min <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+new_max <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+max <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(x)
+min <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>min(x)
+z <span style="color:#f92672">=</span> (new_max <span style="color:#f92672">-</span> new_min) <span style="color:#f92672">/</span> (max <span style="color:#f92672">-</span> min) <span style="color:#f92672">*</span> (x <span style="color:#f92672">-</span> max) <span style="color:#f92672">+</span> new_max
+</code></pre></div><p>Reference:</p>
+<ul>
+<li><a href="https://stats.stackexchange.com/questions/70801/how-to-normalize-data-to-0-1-range">https://stats.stackexchange.com/questions/70801/how-to-normalize-data-to-0-1-range</a></li>
+</ul>
+]]></content>
+        </item>
+        
+        <item>
+            <title>One Sentence Per Line</title>
+            <link>http://imadali.net/posts/one-sentence-per-line/</link>
+            <pubDate>Wed, 30 Sep 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/one-sentence-per-line/</guid>
+            <description>I like this concept and should practice it more often. From what I understand it&amp;rsquo;ll make the Git diffs look a lot cleaner. Ironically I didn&amp;rsquo;t do it for this blog post.</description>
+            <content type="html"><![CDATA[<p>I like <a href="">this</a> concept and should practice it more often. From what I understand it&rsquo;ll make the Git diffs look a lot cleaner. Ironically I didn&rsquo;t do it for this blog post.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Value from Less</title>
+            <link>http://imadali.net/posts/value-from-less/</link>
+            <pubDate>Mon, 28 Sep 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/value-from-less/</guid>
+            <description>I&amp;rsquo;ve been thinking about minimalism a lot lately. Sometimes you get caught up in thinking buying/bringing things into your life will give you value. But it&amp;rsquo;s all really just superficial value. When you have less around you it causes you to reflect about what gives you value. Maybe it&amp;rsquo;s introducing a new object that provides functional value in your daily life. Or maybe it&amp;rsquo;s learning something new, or picking up a project that you&amp;rsquo;ve forgotten&amp;hellip;</description>
+            <content type="html"><![CDATA[<p>I&rsquo;ve been thinking about minimalism a lot lately. Sometimes you get caught up in thinking buying/bringing things into your life will give you value. But it&rsquo;s all really just superficial value. When you have less around you it causes you to reflect about what gives you value. Maybe it&rsquo;s introducing a new object that provides functional value in your daily life. Or maybe it&rsquo;s learning something new, or picking up a project that you&rsquo;ve forgotten&hellip;</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>PySpark Application Execution</title>
+            <link>http://imadali.net/posts/pyspark-application-execution/</link>
+            <pubDate>Wed, 16 Sep 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/pyspark-application-execution/</guid>
+            <description>It took me a while to really understand how Spark (specifically PySpark) works under the hood. Specifically, I&amp;rsquo;m referring to what happens when I, as the user, submit a PySpark data processing job to a cluster. Even after all my digging around I&amp;rsquo;m still uncertain about how a few things work. I&amp;rsquo;m kinda of surprised at how convoluted the documentation is for a library/framework that&amp;rsquo;s so popular in industry. Nevertheless, this is my attempt at putting together a very high-level overview of how Spark works, from the perspective of the PySpark interface.</description>
+            <content type="html"><![CDATA[<p>It took me a while to really understand how Spark (specifically PySpark) works under the hood. Specifically, I&rsquo;m referring to what happens when I, as the user, submit a PySpark data processing job to a cluster. Even after all my digging around I&rsquo;m still uncertain about how a few things work. I&rsquo;m kinda of surprised at how convoluted the documentation is for a library/framework that&rsquo;s so popular in industry. Nevertheless, this is my attempt at putting together a very high-level overview of how Spark works, from the perspective of the PySpark interface. I&rsquo;ve broken things down into a key concept, some Spark terminology, and finally how Spark executes an application.</p>
+<h2 id="key-concept">Key Concept</h2>
+<p><strong>Spark processes all data in memory. This makes it efficient since you&rsquo;re not wasting time reading/writing data from disk</strong>. (That&rsquo;s an inefficiency you face with MapReduce. The output of the mapping process is written to disk before it&rsquo;s used in the reduce process.)</p>
+<h2 id="terminology">Terminology</h2>
+<p>Now for some terminology.</p>
+<ul>
+<li><strong>Transformation Functions</strong>: Spark functions that transform data but do not return a result (<code>.filter()</code>, <code>.join()</code>, <code>.groupBy()</code>, etc). Transformations are lazily executed; this means that they will only be executed when an action function is called.</li>
+<li><strong>Action Functions</strong>: Spark functions that require something to be returned back to the user (<code>.show()</code>, <code>.collect()</code>, <code>.count()</code>, etc). They require the Spark Application to be deployed and data processing to take place so that a result can be returned.</li>
+<li><strong>Spark Application</strong>: A set of instructions that describe a connection to the Spark cluster along with a sequence of transformation and action functions to process the data (i.e. your PySpark code).</li>
+<li><strong>Spark Context:</strong> The connection you establish between your Spark application and the Spark cluster. (In PySpark you create this connection with something like <code>spark = SparkSession.builder.appName('foo').getOrCreate()</code>.)</li>
+<li><strong>Driver Process</strong>: This is the process that is responsible for sending your Spark Application to the cluster and receiving the results after the completion of the application.</li>
+<li><strong>Cluster Manager</strong>: This is responsible for allocating resources to the executor processes  and monitoring them in order to complete the tasks described in the Spark Application.</li>
+<li><strong>Executor Process</strong>: These processes are responsible for actually reading/writing data and computing the transformation/action functions.</li>
+<li><strong>Main Node</strong>: Where the cluster manager runs.</li>
+<li><strong>Secondary Node:</strong> Where the executor processes run.</li>
+<li><strong>Driver Node:</strong> Where the driver process runs.</li>
+</ul>
+<h2 id="spark-application-execution">Spark Application Execution</h2>
+<p>The process of running a simple query like <code>df.filter(...).show()</code>  in your application goes some thing this:</p>
+<ol>
+<li>The user writes their PySpark application which consists of resource requirements and transformations/actions on the data.</li>
+<li>This application is deployed on the driver which creates a Spark Session which is the connection to the Spark cluster. The driver could be on the user&rsquo;s side (client/local mode) or on the Spark cluster (cluster mode).</li>
+<li>The driver takes your Spark application&rsquo;s transformation and action functions and creates a DAG (directed acyclic graph) to determine the optimal computation procedure.</li>
+<li>The driver submits your Spark application via an API like PySpark.</li>
+<li>The cluster manager on the main node allocates the resources (to the executors on the secondary nodes) required to complete your job.</li>
+<li>The executors run the tasks required to complete your job by reading/writing data, shuffling information, and doing the transformations/action requested by the user. When they complete the result is sent back to the driver</li>
+</ol>
+<p>I&rsquo;m big on visuals. So here&rsquo;s my attempt at illustrating the workflow.</p>
+<img src="/images/pyspark-workflow.jpeg" class="center"/>
+<p>References:</p>
+<ul>
+<li><a href="https://www.amazon.com/gp/product/1491912219?pf_rd_r=KMR6FX0K611ZCESDF4HY&amp;pf_rd_p=5ae2c7f8-e0c6-4f35-9071-dc3240e894a8">https://www.amazon.com/gp/product/1491912219?pf_rd_r=KMR6FX0K611ZCESDF4HY&amp;pf_rd_p=5ae2c7f8-e0c6-4f35-9071-dc3240e894a8</a></li>
+<li><a href="https://www.informit.com/articles/article.aspx?p=2928186">https://www.informit.com/articles/article.aspx?p=2928186</a></li>
+</ul>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Why Graphs Should not be Stored in a Relational Database</title>
+            <link>http://imadali.net/posts/why-graphs-should-not-be-stored-in-a-relational-databases/</link>
+            <pubDate>Wed, 16 Sep 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/why-graphs-should-not-be-stored-in-a-relational-databases/</guid>
+            <description>Suppose you have graph-like data that describes the (undirected) relationship between target and destination. If we store these relationships in a traditional relational database with a single key to query on we would have something like this,
+target, destination A, B A, C B, A B, C C, A C, B ... So to get all relationships associated with A we can just filter A on the target column. This is inefficient since we are replicating a lot of information (e.</description>
+            <content type="html"><![CDATA[<p>Suppose you have graph-like data that describes the (undirected) relationship between <code>target</code> and <code>destination</code>. If we store these relationships in a traditional relational database with a single key to query on we would have something like this,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">target, destination
+A, B
+A, C
+B, A
+B, C
+C, A
+C, B
+<span style="color:#f92672">...</span>
+</code></pre></div><p>So to get all relationships associated with A we can just filter A on the target column. This is inefficient since we are replicating a lot of information (e.g. storing both A, B and B, A, even though the relationship is the same.</p>
+<p>Alternatively we could store it as,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">target, destination
+A, B
+A, C
+B, C
+</code></pre></div><p>But now to get all relationships with A we have to filter on both the target and the destination column, which is a little clumsy.</p>
+<p>If we store it in a graph like database then we would have a single column to query on (the nodes) which will give us all the relationships for a given node (by following the edges for the node we&rsquo;re filtering on).</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>PySpark UDFs</title>
+            <link>http://imadali.net/posts/pyspark-udfs/</link>
+            <pubDate>Tue, 15 Sep 2020 00:22:23 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/pyspark-udfs/</guid>
+            <description>These are some of my notes on creating UDFs (user defined functions) in PySpark.
+UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&amp;rsquo;re working with modular components that build up to the entire ETL workflow).
+Here I show how to create a PySpark UDF which uses,</description>
+            <content type="html"><![CDATA[<p>These are some of my notes on creating UDFs (user defined functions) in <a href="https://spark.apache.org/docs/latest/api/python/pyspark.html">PySpark</a>.</p>
+<p>UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&rsquo;re working with modular components that build up to the entire ETL workflow).</p>
+<p>Here I show how to create a PySpark UDF which uses,</p>
+<ol>
+<li>a single column</li>
+<li>multiple columns</li>
+<li>an external library function</li>
+<li>aggregation by packing columns in to a list.</li>
+</ol>
+<p>(All code shown below uses PySpark 3.0.1.)</p>
+<p>To start, I generate some data that I&rsquo;ll use to illustrate all of the UDF constructions I mentioned above.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> pyspark.sql <span style="color:#f92672">import</span> SparkSession
+<span style="color:#75715e"># needed for udfs</span>
+<span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> udf, lit, collect_list
+<span style="color:#f92672">from</span> pyspark.sql.types <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+
+spark <span style="color:#f92672">=</span> SparkSession<span style="color:#f92672">.</span>builder<span style="color:#f92672">.</span>appName(<span style="color:#e6db74">&#39;udf_tutorial&#39;</span>)<span style="color:#f92672">.</span>getOrCreate()
+N <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;identifier&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>], N, replace<span style="color:#f92672">=</span>True),
+        <span style="color:#e6db74">&#39;var1&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, N),
+        <span style="color:#e6db74">&#39;var2&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#e6db74">&#39;Y&#39;</span>,<span style="color:#e6db74">&#39;N&#39;</span>], N, replace<span style="color:#f92672">=</span>True)}
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data)
+<span style="color:#66d9ef">print</span>(df)
+</code></pre></div><p>This produces the following table.</p>
+<pre><code>identifier      var1    var2
+0            2 -0.015862    N
+1            5  3.792773    N
+2            4  2.653766    Y
+3            2 -2.231594    Y
+4            3  4.900761    N
+..         ...       ...  ...
+95           2  5.026429    Y
+96           5  3.123079    Y
+97           1  1.880323    N
+98           3 -6.005374    Y
+99           5  1.074175    N
+</code></pre><p>Before diving into the different UDFs it&rsquo;s worth outlining what the workflow ill look like. Typically the process of creating/using a UDF goes something like this:</p>
+<ol>
+<li>Define your function in Python.</li>
+<li>Register your function with Spark and specify the return type. (See this <a href="https://spark.apache.org/docs/latest/api/python/_modules/pyspark/sql/types.html">code</a> possible return types.)</li>
+<li>Apply your UDF to your Spark data frame.</li>
+<li>Breathe.</li>
+</ol>
+<h2 id="single-column">Single Column</h2>
+<p>Here I&rsquo;m creating a UDF that takes a single column and an external parameter as arguments. First I define the function. In this example, the function returns the product between each element of the column and the parameter we provide. I&rsquo;m using try/except statements for better error handling.</p>
+<p>The <code>lit</code> function will be used to provide the parameter argument as a string, which means it needs to be converted to a float in order to be used for the mathematical operation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_sc</span>(v1, a):
+    <span style="color:#66d9ef">try</span>:
+        a <span style="color:#f92672">=</span> float(a)
+        <span style="color:#66d9ef">return</span>(v1 <span style="color:#f92672">*</span> a)
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">return</span>(None)
+</code></pre></div><p>Now I register the UDF a specify the return type as <code>FloatType()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">udf_sc_reg <span style="color:#f92672">=</span> udf(udf_sc, FloatType())
+</code></pre></div><p>Now I can use the UDF with the Spark data frame created above.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_sc_reg(<span style="color:#e6db74">&#39;var1&#39;</span>, lit(<span style="color:#e6db74">&#39;2&#39;</span>)))
+sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>+----------+--------------------+----+------------+
+|identifier|                var1|var2|        var3|
++----------+--------------------+----+------------+
+|         2|-0.01586150202926495|   N|-0.031723004|
+|         5|  3.7927732716658635|   N|   7.5855465|
+|         4|   2.653765608323036|   Y|   5.3075314|
+|         2|  -2.231594107013259|   Y|   -4.463188|
+|         3|   4.900761231566397|   N|    9.801522|
++----------+--------------------+----+------------+
+</code></pre><h2 id="multiple-columns">Multiple Columns</h2>
+<p>The approach is similar if multiple columns are needed in the UDF. Here the UDF has more complicated conditional statements.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_mc</span>(v1, v2):
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#66d9ef">if</span> v2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;N&#39;</span>:
+            a <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>
+        <span style="color:#66d9ef">elif</span> v2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Y&#39;</span>:
+            a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>
+        <span style="color:#66d9ef">else</span>:
+            a <span style="color:#f92672">=</span> None
+        <span style="color:#66d9ef">return</span>(v1 <span style="color:#f92672">+</span> a)
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">return</span>(None)
+
+udf_mc_reg <span style="color:#f92672">=</span> udf(udf_mc, FloatType())
+
+sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_mc_reg(<span style="color:#e6db74">&#39;var1&#39;</span>,<span style="color:#e6db74">&#39;var2&#39;</span>))
+sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>+----------+--------------------+----+----------+
+|identifier|                var1|var2|      var3|
++----------+--------------------+----+----------+
+|         2|-0.01586150202926495|   N|-0.5158615|
+|         5|  3.7927732716658635|   N| 3.2927732|
+|         4|   2.653765608323036|   Y| 3.1537657|
+|         2|  -2.231594107013259|   Y|-1.7315941|
+|         3|   4.900761231566397|   N|  4.400761|
++----------+--------------------+----+----------+
+</code></pre><h2 id="external-library">External Library</h2>
+<p>Sometimes it&rsquo;s useful to use a function provided by an external library (e.g. numpy, scipy, etc). It&rsquo;s pretty straightforward to do this. You just provide the function in your UDF. However, if you&rsquo;re working in a distributed setup you&rsquo;ll need to have the library installed on every node in the cluster (not just the main node).</p>
+<p>Here I use the <code>expit</code> (inverse logit) function in the scipy library to transform the <code>var1</code> column. The result is returned as an array (just a lil flex) containing both the original value and the transformed value. The type returned by <code>expit</code> (<code>numpy.float64</code>) is converted to a base Python float since it needs to match PySpark&rsquo;s <code>FloatType()</code> type.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> scipy.special <span style="color:#f92672">import</span> expit
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_el</span>(v1):
+    <span style="color:#66d9ef">try</span>:
+        inv_logit <span style="color:#f92672">=</span> float(expit(v1))
+        <span style="color:#66d9ef">return</span>([v1, inv_logit])
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">return</span>(None)
+
+udf_el_reg <span style="color:#f92672">=</span> udf(udf_el, ArrayType(FloatType()))
+
+sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_el_reg(<span style="color:#e6db74">&#39;var1&#39;</span>))
+sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>+----------+--------------------+----+--------------------+
+|identifier|                var1|var2|                var3|
++----------+--------------------+----+--------------------+
+|         2|-0.01586150202926495|   N|[-0.015861502, 0....|
+|         5|  3.7927732716658635|   N|[3.7927732, 0.977...|
+|         4|   2.653765608323036|   Y|[2.6537657, 0.934...|
+|         2|  -2.231594107013259|   Y|[-2.231594, 0.096...|
+|         3|   4.900761231566397|   N|[4.900761, 0.9926...|
++----------+--------------------+----+--------------------+
+</code></pre><h2 id="custom-aggregate">Custom Aggregate</h2>
+<p>At the time of writing this, it&rsquo;s not possible to implement UDAFs (user defined aggregate functions) the way one can in Spark. The work around is to implement them by collecting all the elements of a group into a list using <code>collect_list</code> and then applying a UDF to each groups&rsquo; list.</p>
+<p>In the code below I take things a little further (another flex) and return an array of <em>different</em> types (using <code>StructType()</code> and <code>StructField()</code>). Another option when returning an array would be to force everything to a single type and convert it back to the appropriate type when you flatten that array to a data frame later on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_ca</span>(x):
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#66d9ef">return</span>([int(len(x)), float(np<span style="color:#f92672">.</span>mean(x))])
+    <span style="color:#66d9ef">except</span>:
+        <span style="color:#66d9ef">return</span>(None)
+
+schema <span style="color:#f92672">=</span> StructType([StructField(<span style="color:#e6db74">&#39;length&#39;</span>, IntegerType(), False),
+                     StructField(<span style="color:#e6db74">&#39;mean&#39;</span>, FloatType(), False)])
+
+udf_ca_reg <span style="color:#f92672">=</span> udf(udf_ca, schema)
+
+sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>groupBy(<span style="color:#e6db74">&#39;identifier&#39;</span>)<span style="color:#f92672">.</span>agg(collect_list(<span style="color:#e6db74">&#39;var1&#39;</span>)<span style="color:#f92672">.</span>alias(<span style="color:#e6db74">&#39;var1_list&#39;</span>))<span style="color:#f92672">.</span>select(udf_ca_reg(<span style="color:#e6db74">&#39;var1_list&#39;</span>)<span style="color:#f92672">.</span>alias(<span style="color:#e6db74">&#39;gpd_metrics&#39;</span>))
+sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="color:#f92672">=</span>False)
+</code></pre></div><pre><code>+---------------+
+|gpd_metrics    |
++---------------+
+|[18, 2.6149726]|
+|[18, 2.82972]  |
+|[23, 2.8389266]|
+|[17, 2.7891133]|
+|[24, 3.4916883]|
++---------------+
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed<span style="color:#f92672">.</span>printSchema()
+</code></pre></div><pre><code>root
+ |-- gpd_metrics: struct (nullable = true)
+ |    |-- length: integer (nullable = false)
+ |    |-- mean: float (nullable = false)
+</code></pre>]]></content>
+        </item>
+        
+        <item>
+            <title>Makefiles for Workflow</title>
+            <link>http://imadali.net/posts/makefiles-for-workflow/</link>
+            <pubDate>Sat, 12 Sep 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/makefiles-for-workflow/</guid>
+            <description>Makefiles for Workflow Date: 09-12-2020
+The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.
+A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary.</description>
+            <content type="html"><![CDATA[<h1 id="makefiles-for-workflow">Makefiles for Workflow</h1>
+<p>Date: 09-12-2020</p>
+<p>The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.</p>
+<p>A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary. If you make a modification to any of the dependencies then running <code>make</code> or <code>make target-name</code> will  rerun your commands to update the target.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target: dependencies
+	commands
+</code></pre></div><p>We can still use makefiles in situations where we&rsquo;re not compiling code. Below is a simplified example of how I&rsquo;m using it in a Data Science like workflow.</p>
+<p>We have some Python code that generates data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># generate.py</span>
+
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+
+N <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+data <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame({<span style="color:#e6db74">&#39;x&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, N)})
+
+data<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#39;./data.csv&#39;</span>, index<span style="color:#f92672">=</span>False)
+</code></pre></div><p>And some code that computes the maximum likelihood estimate (MLE) from that data (assuming that the data is normally distributed).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># estimate.py</span>
+
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> scipy.optimize <span style="color:#f92672">import</span> minimize
+<span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> norm
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Running simulation...&#39;</span>)
+
+data <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;data.csv&#39;</span>)
+x <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;x&#39;</span>]
+
+<span style="color:#75715e"># MLE (minimization problem turned into a maximization problem)</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">objective_function</span>(params, x):
+    log_likelihood <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+    <span style="color:#66d9ef">for</span> value <span style="color:#f92672">in</span> x:
+        log_likelihood <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>log(norm<span style="color:#f92672">.</span>pdf(value, params[<span style="color:#ae81ff">0</span>], params[<span style="color:#ae81ff">1</span>]))
+    <span style="color:#66d9ef">return</span>(<span style="color:#f92672">-</span>log_likelihood)
+
+bnds <span style="color:#f92672">=</span> ((None, None), (<span style="color:#ae81ff">0.5</span>, None))
+result <span style="color:#f92672">=</span> minimize(fun<span style="color:#f92672">=</span>objective_function, x0<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.5</span>], bounds<span style="color:#f92672">=</span>bnds, args<span style="color:#f92672">=</span>(x))
+result <span style="color:#f92672">=</span> dict(result)
+
+<span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;./mle_result.txt&#39;</span>, <span style="color:#e6db74">&#34;w&#34;</span>) <span style="color:#66d9ef">as</span> f:
+    f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;Timestamp: {0}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(datetime<span style="color:#f92672">.</span>now()))
+    <span style="color:#66d9ef">for</span> key, value <span style="color:#f92672">in</span> result<span style="color:#f92672">.</span>items():
+        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;{0}: {1}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(key, value))
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Data: mean [{0}], sd [{1}]&#39;</span><span style="color:#f92672">.</span>format(np<span style="color:#f92672">.</span>mean(x), np<span style="color:#f92672">.</span>std(x)))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;MLE: mean [{0}], sd [{1}]&#39;</span><span style="color:#f92672">.</span>format(result[<span style="color:#e6db74">&#39;x&#39;</span>][<span style="color:#ae81ff">0</span>], result[<span style="color:#e6db74">&#39;x&#39;</span>][<span style="color:#ae81ff">1</span>]))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;... complete&#39;</span>)
+</code></pre></div><p>In this case the workflow might involve,</p>
+<ol>
+<li>Simulating the model (generating data and finding the MLE)</li>
+<li>Querying the data that we generated.</li>
+<li>Cleaning up all the files (i.e. the output from the python scripts).</li>
+</ol>
+<p>We can wrap all of this up in a makefile.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Makefile</span>
+
+simulate:
+	@python generate.py
+	@python estimate.py
+
+preview:
+	@head -n <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>nrow<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> data.csv
+
+clean:
+	@rm ./data.csv
+	@rm ./mle_result.txt
+</code></pre></div><p>So running <code>make simulate</code> will run the python scripts and create the data and MLE result. Running <code>make preview nrow=6</code> will print the first 6 rows of the data file. And running <code>make clean</code> will remove  the data file and MLE result. (The usage of <code>@</code> is specific to the make utility and prevents the command from being echoed to the standard output.)</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Programming Language Type Checking</title>
+            <link>http://imadali.net/posts/programming-language-type-checking/</link>
+            <pubDate>Tue, 08 Sep 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/programming-language-type-checking/</guid>
+            <description>Date: 09-08-2020
+Type checking is the way in which a programming language enforces variable types (int, float, bool, etc). But I always forget what the difference is between strongly/weakly typed and statically/dynamically typed.
+Static vs Dynamic This defines whether the type checking is enforced at compile time or run time. If the language does type checking at compile time then it is statically typed (e.g. C++). This would prevent any type errors from occurring during run time.</description>
+            <content type="html"><![CDATA[<p>Date: 09-08-2020</p>
+<p>Type checking is the way in which a programming language enforces variable types (int, float, bool, etc). But I always forget what the difference is between strongly/weakly typed and statically/dynamically typed.</p>
+<h2 id="static-vs-dynamic">Static vs Dynamic</h2>
+<p>This defines whether the type checking is enforced at compile time or run time. If the language does type checking at compile time then it is statically typed (e.g. C++). This would prevent any type errors from occurring during run time. If it does type checking at run time then it is dynamically typed (e.g. Python).</p>
+<h2 id="strong-vs-weak">Strong vs Weak</h2>
+<p>This defines whether the language does type conversions implicitly. If it does not do conversions implicitly then it is strongly typed (e.g. Python). If it does do conversions implicitly then it&rsquo;s weakly typed (e.g. R).</p>
+<p>For example, in Python if we have a vector with a single element that is a <code>string</code> type and append an <code>int</code> to that vector, the type of both elements is preserved.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;foo&#39;</span>]
+x<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">1</span>)
+<span style="color:#66d9ef">print</span>(x)
+<span style="color:#75715e"># [&#39;foo&#39;, 1]</span>
+</code></pre></div><p>But when you implement analogous code in R the type of each element is not preserved. The <code>int</code> variable that you append gets implicitly converted to a <code>string</code> variable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">&lt;-</span> c(<span style="color:#e6db74">&#34;foo&#34;</span>)
+x <span style="color:#f92672">=</span> append(x, <span style="color:#ae81ff">1</span>)
+<span style="color:#66d9ef">print</span>(x)
+<span style="color:#75715e"># &#34;foo&#34; &#34;1&#34;</span>
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Confidence Intervals and Standard Deviations and Standard Errors</title>
+            <link>http://imadali.net/posts/confidence-intervals-and-standard-deviations-and-standard-errors/</link>
+            <pubDate>Wed, 02 Sep 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/confidence-intervals-and-standard-deviations-and-standard-errors/</guid>
+            <description>Questions come up a lot about how to interpret these things. We can build an understanding from the ground up, starting with a few basic metrics that are commonly calculated off of the data.
+Measures of Central Tendency Sometimes we want a measure of central tendency, or a good typical value that you can expect to observe given the data.
+Mean The mean is the sum of all the values divided by the number of values.</description>
+            <content type="html"><![CDATA[<p>Questions come up a lot about how to interpret these things. We can build an understanding from the ground up, starting with a few basic metrics that are commonly calculated off of the data.</p>
+<h1 id="measures-of-central-tendency">Measures of Central Tendency</h1>
+<p>Sometimes we want a measure of central tendency, or a good typical value that you can expect to observe given the data.</p>
+<h2 id="mean">Mean</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Mean">mean</a> is the sum of all the values divided by the number of values.</p>
+<h2 id="median">Median</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Median">median</a> is the middle value (or average of the two middle values) when you order the data sequentially.</p>
+<h2 id="mode">Mode</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Mode">mode</a> is the value that occurs most frequently.</p>
+<h1 id="measures-of-dispersion">Measures of Dispersion</h1>
+<p>Sometimes a measure of central tendency is not enough. We also want to understand how much variability there is in the data around the central tendency. Enter variance.</p>
+<h2 id="variance">Variance</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Variance">variance</a> is the sum of the squared deviations from the mean. If we are dealing with a sample (as we are here). Then we divide that sum by the number of observations. This is the sample variance. Since the deviations are squared we&rsquo;re not really operating on the same units at the data.</p>
+<h2 id="standard-deviation">Standard Deviation</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a> is the square root of the variance. By taking the square root this metric can be expressed in the same units as the data.</p>
+<h2 id="standard-error">Standard Error</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Standard_error">standard error</a> is the standard deviation of a statistic&rsquo;s <a href="https://en.wikipedia.org/wiki/Sampling_distribution">sampling distribution</a> (the distribution of a statistic that behaves like a random variable, like the mean). So if it were possible to draw multiple samples from the population and compute the mean of each sample (the sample mean) then the standard deviation of all those means is the standard error of the mean. In most situations you can&rsquo;t do that so you compute the standard error as the standard deviation of the sample divided by the square root of the number of observations.</p>
+<p>This formula works because of how variance is expected to behave a with a large samples. The larger the sample you draw from the population the more close the sample mean approximates the population mean. This means that the sampling distribution will tend to cluster around the population mean. Dividing variance by the sample size gives this behavior.</p>
+<h2 id="confidence-interval">Confidence Interval</h2>
+<p>A <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> (CI) is another metric that you can compute from a statistic. It tells you the probability that a statistic could take on a range of values if that statistic was repeatedly observed (according to some confidence level chosen by the researcher). For example, you might want to know what is the 90% confidence interval of the mean for the above data. In other words, if we could observe the sampling distribution of the mean, where would 90% of those means lie. You know the mean $\bar{x}$ and the standard error of of the mean $\text{SE}(\bar{x})=\frac{\sigma}{\sqrt{n}}$. From the standard normal distribution <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a> you know that 90% of the distribution is contained between -1.64 and +1.64. With that you can find your confidence interval bounds by computing,</p>
+<p>$$
+\text{CI}_{\text{lower}} = \bar{x}-1.64\cdot SE(x)
+$$</p>
+<p>$$
+\text{CI}_{\text{upper}} = \bar{x}+1.64\cdot SE(x)
+$$</p>
+<p>That&rsquo;s the easy way (there&rsquo;s no context as to how/why we come to that formula). The hard way is understanding why you apply that formula in situations where the data is (approximately) normally distributed. The method shown here to derive confidence intervals is the <a href="https://en.wikipedia.org/wiki/Pivotal_quantity">pivotal quantity</a> method.</p>
+<p>You start by computing your statistic using the data. In this example we&rsquo;re computing the mean $\bar{x}$. This has a sampling distribution $\bar{x} \sim \mathcal{N}(\mu,\sigma^2)$ since it&rsquo;s a statistic that is a random variable. But we can&rsquo;t do inference on that statistic; its sampling distribution has unknown parameters. One thing we can do is transform the statistic to be distributed standard normal so that it is a pivotal quantity (the probability distribution does not depend on the unknown parameters).</p>
+<p>$$Z = \frac{\bar{x}-\mu}{\sigma^2/n} \sim \mathcal{N}(0,1)$$</p>
+<p>We can do inference on $Z$ using the standard normal probability density function. Specifically, want to find the confidence interval bounds such that,</p>
+<p>$$P(-Z_{\alpha/2} \leq Z \leq Z_{\alpha/2}) = 1-\alpha$$</p>
+<p>where $\alpha\in(0,1)$ is a chosen confidence level. $Z_{\alpha/2}$ is calculated from the standard normal quantile function evaluated at $\frac{\alpha}{2}$, and tells us the value such that $\frac{\alpha}{2}$ proportion of the distribution lies below this value. Finally, $1-\alpha$ is how often we would like to observe $Z$ between $-Z_{\alpha/2}$ and $Z_{\alpha/2}$. So if $\alpha = 0.05$ then $\text{CDF}^{-1}(0.05/2) \approx -1.96$, which means $1-\alpha=0.90$ proportion (90%) of the data lies between -1.96 and 1.96 under the standard normal distribution.</p>
+<p>But we don&rsquo;t really care about the probability of observing the standard normal variable $Z$. We&rsquo;re interested in $\mu$. So we can take the confidence interval equation above, substitute the pivotal quantity, and solve for the probability of observing $\mu$.</p>
+<p>$$P(-Z_{\alpha/2} \leq Z \leq Z_{\alpha/2}) = 1-\alpha$$</p>
+<p>$$P(-Z_{\alpha/2} \leq \frac{\bar{x}-\mu}{\sigma^2/n} \leq Z_{\alpha/2}) = 1-\alpha$$</p>
+<p>$$P(-\bar{x} -Z_{\alpha/2} \cdot \frac{\sigma^2}{n} \leq -\mu \leq -\bar{x} + Z_{\alpha/2} \cdot \frac{\sigma^2}{n}) = 1-\alpha$$</p>
+<p>$$P(\bar{x} + Z_{\alpha/2} \cdot \frac{\sigma^2}{n} \geq \mu \geq \bar{x} - Z_{\alpha/2} \cdot \frac{\sigma^2}{n}) = 1-\alpha$$</p>
+<p>$$P(\bar{x} - Z_{\alpha/2} \cdot \frac{\sigma^2}{n} \leq \mu \leq \bar{x} + Z_{\alpha/2} \cdot \frac{\sigma^2}{n}) = 1-\alpha$$</p>
+<p>This maps back to our quick formula at the beginning of this section. The derivation shows how a confidence interval is not simply the probability that $\bar{x}$ is between a range. It is the probability that $\bar{x}$ takes on a value between a range under the sampling distribution of $\bar{x}$. <strong>A confidence interval describes the bounds around a statistic, such that a realization of a value from the sampling distribution of your statistic is within those bounds with some probability (a probability that you define).</strong></p>
+<p>The short of it is that this is a pretty fucked up way to do inference, and it&rsquo;s not surprising how often confidence intervals get interpreted incorrectly.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Closures</title>
+            <link>http://imadali.net/posts/closures/</link>
+            <pubDate>Thu, 20 Aug 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/closures/</guid>
+            <description>Closures is a programming concept that took me a while to wrap my head around. To understand closures you need to understand function scope and factory functions. In the example below, x is accessible in the global scope. You can reference x inside and outside the function. However, y and z are accessible only within the local scope of the function foo. So you can reference x, y and z inside the function, but you can&amp;rsquo;t reference y and z outside of the function.</description>
+            <content type="html"><![CDATA[<p>Closures is a programming concept that took me a while to wrap my head around. To understand closures you need to understand <strong>function scope</strong> and <strong>factory functions</strong>. In the example below, <code>x</code> is accessible in the global scope. You can reference <code>x</code> inside and outside the function. However, <code>y</code> and <code>z</code> are accessible only within the local scope of the function <code>foo</code>. So you can reference <code>x</code>, <code>y</code> and <code>z</code> inside the function, but you can&rsquo;t reference <code>y</code> and <code>z</code> outside of the function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">foo</span>(y):
+	z <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+	<span style="color:#66d9ef">return</span>(x<span style="color:#f92672">+</span>y<span style="color:#f92672">+</span>z)
+
+<span style="color:#75715e"># usage</span>
+foo(<span style="color:#ae81ff">2</span>)
+</code></pre></div><p>A factory function is simply a function that returns another function. In the example below <code>A</code> is a factory function that generates function <code>B</code> every time it is executed. Function <code>B</code> references the argument <code>x</code> that is defined in function <code>A</code> . So when we call <code>f = A(4)</code> the function will persist the value <code>x=4</code>, so it can do the operation <code>x+y</code> that when we execute <code>f(3)</code>. So function <code>B</code> has access to the the scope of its enclosing function, function <code>A</code>, even after function <code>A</code> has finished executing. This is a closure. This is different from the function <code>foo</code> defined above, where all local variables (<code>y</code> and <code>z</code> ) are eliminated after the function finishes its execution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">A</span>(x):
+	<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">B</span>(y):
+		<span style="color:#66d9ef">return</span>(x<span style="color:#f92672">+</span>y)
+	<span style="color:#66d9ef">return</span>(B)
+
+<span style="color:#75715e"># usage</span>
+f <span style="color:#f92672">=</span> A(<span style="color:#ae81ff">4</span>)
+f
+f(<span style="color:#ae81ff">3</span>)
+f(<span style="color:#ae81ff">1</span>)
+</code></pre></div><p>To tie it to a formal definition, <strong>a closure allows the variables defined in the enclosing scope of the function to persist even after the enclosing function has executed.</strong></p>
+<p>For reference, here are some useful links:</p>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/python-closures/">https://www.geeksforgeeks.org/python-closures/</a></li>
+<li><a href="https://stackoverflow.com/questions/36636/what-is-a-closure">https://stackoverflow.com/questions/36636/what-is-a-closure</a></li>
+<li><a href="https://www.datacamp.com/community/tutorials/decorators-python">https://www.datacamp.com/community/tutorials/decorators-python</a></li>
+<li><a href="https://realpython.com/inner-functions-what-are-they-good-for/">https://realpython.com/inner-functions-what-are-they-good-for/</a></li>
+</ul>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Streaming Data Between Python Programs</title>
+            <link>http://imadali.net/posts/streaming-data-between-python-programs/</link>
+            <pubDate>Sun, 05 Jul 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/streaming-data-between-python-programs/</guid>
+            <description>Whenever I share data between programs I often write the data out to disk. But what would the relationship between the two programs look like if I want to stream the data instead of write it out to disk? Using the subprocess module in Python we can pass data between two python programs. The subprocess module enables you to execute command line arguments from within a Python script.
+For example, the Python code below executes the pwd command and stores the results as a variable.</description>
+            <content type="html"><![CDATA[<p>Whenever I share data between programs I often write the data out to disk. But what would the relationship between the two programs look like if I want to stream the data instead of write it out to disk? Using the subprocess module in Python we can pass data between two python programs. The subprocess module enables you to execute command line arguments from within a Python script.</p>
+<p>For example, the Python code below executes the <code>pwd</code> command and stores the results as a variable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> subprocess
+subprocess<span style="color:#f92672">.</span>run([<span style="color:#e6db74">&#34;pwd&#34;</span>])
+</code></pre></div><p>In order to accomplish this, imagine we have a sensor that generates a timestamp. This represented by the code below. The sensor output is printed to stdout.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># sensor.py</span>
+
+<span style="color:#f92672">import</span> time
+<span style="color:#f92672">import</span> datetime
+
+<span style="color:#75715e"># print(&#39;sensor timestamp: {0}.&#39;.format(ts), flush=True)</span>
+<span style="color:#66d9ef">while</span> True:
+    ts <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#39;%Y%m</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">-%H%M%S&#39;</span>)
+    result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sensor timestamp: {0}.&#39;</span><span style="color:#f92672">.</span>format(ts)
+    <span style="color:#66d9ef">print</span>(result, flush<span style="color:#f92672">=</span>True)
+    time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">2</span>)
+</code></pre></div><p>Within print I have set <code>flush=True</code> since I need the buffer to be flushed (i.e. emptied to the terminal) every time the print statement is executed. The buffer is a temporary location for your data when it is moved between processes. Flushing the buffer when writing to standard out forces it to write the results to the terminal (even when it normally wouldn&rsquo;t do so). On its own, Python&rsquo;s print statement automatically flushes the buffer everytime it&rsquo;s called. However, in this situation we have to force this behavior since standard output is buffered when connected via a pipe. If we didn&rsquo;t flush the buffer then we wouldn&rsquo;t see the results of the print statement until the process terminated (in this case never, since we&rsquo;re using a while loop).</p>
+<p>In order to collect this data suppose we need to listen the output of the sensor. This is accomplished with the code below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># listener.py</span>
+
+<span style="color:#f92672">import</span> subprocess
+
+process <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>Popen([<span style="color:#e6db74">&#39;python&#39;</span>, <span style="color:#e6db74">&#39;sensor.py&#39;</span>], stdout<span style="color:#f92672">=</span>subprocess<span style="color:#f92672">.</span>PIPE)
+<span style="color:#75715e"># stdout, stderr = process.communicate() # not useful for this example cause communicate will wait for the process to finish</span>
+
+<span style="color:#66d9ef">while</span> process<span style="color:#f92672">.</span>poll() <span style="color:#f92672">is</span> None:
+    result <span style="color:#f92672">=</span> process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>readline()<span style="color:#f92672">.</span>decode()
+    <span style="color:#66d9ef">print</span>(result<span style="color:#f92672">.</span>strip())
+</code></pre></div><p>The listener.py code is doing several things by way of the subprocess module. <code>subprocess.Popen</code> allows you to spawn a process. The argument <code>stdout</code> allows you to capture the standard output of the process. We set <code>stdout = subprocess.PIPE</code> since we want a pipe to be open to standard output. I check to see if the spawed process is still running with <code>process.poll</code>. We then read the entire line of output with <code>process.stdout.readline()</code> and print the result.</p>
+<p>Executing the following command in terminal,</p>
+<pre><code>python listener.py
+</code></pre><p>gives us the following output,</p>
+<pre><code>sensor timestamp: 20200705-005927.
+sensor timestamp: 20200705-005929.
+sensor timestamp: 20200705-005931.
+...
+</code></pre>]]></content>
+        </item>
+        
+        <item>
+            <title>Coding Binary Variables</title>
+            <link>http://imadali.net/posts/coding-binary-variables/</link>
+            <pubDate>Sun, 28 Jun 2020 13:11:33 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/coding-binary-variables/</guid>
+            <description>Some things to keep in mind when coding binary (dummy) variables. This stackoverflow post is quite helpful.</description>
+            <content type="html"><![CDATA[<p>Some things to keep in mind when coding binary (dummy) variables. This stackoverflow <a href="https://stats.stackexchange.com/questions/59578/dummy-coding-for-contrasts-0-1-vs-1-1">post</a> is quite helpful.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Convex Combinations</title>
+            <link>http://imadali.net/posts/convex-combinations/</link>
+            <pubDate>Sun, 21 Jun 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/convex-combinations/</guid>
+            <description>A while back I came across convex combinations in this paper that outlines the math of how to detect who&amp;rsquo;s guarding whom in basketball player tracking data. I then used them in a Stan case study.
+A convex combination helps you define any point inside a shape using a vector of coefficients that sum to one. So say you have a vector of coefficients alpha, and x-coordinates x and y-coordinates y.</description>
+            <content type="html"><![CDATA[<p>A while back I came across convex combinations in this paper that outlines the math of how to detect who&rsquo;s guarding whom in basketball player tracking data. I then used them in a Stan case study.</p>
+<p>A convex combination helps you define any point inside a shape using a vector of coefficients that sum to one. So say you have a vector of coefficients <code>alpha</code>, and x-coordinates <code>x</code> and y-coordinates <code>y</code>. Then then <code>x_new = alpha * x</code> and <code>y_new = alpha * y</code> will always be within the shape defined by the coordinates <code>x, y</code>.</p>
+<p>Here&rsquo;s a brief Python script that simulates this result.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># convex.py</span>
+
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+
+k <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
+x <span style="color:#f92672">=</span> [<span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.8</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.3</span>]
+y <span style="color:#f92672">=</span> [<span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.6</span>, <span style="color:#ae81ff">0.7</span>]
+
+<span style="color:#75715e"># convex combination</span>
+alpha <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>dirichlet(alpha<span style="color:#f92672">=</span>k, size<span style="color:#f92672">=</span>N)
+x_new <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>matmul(alpha, x)
+y_new <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>matmul(alpha, y)
+
+plt<span style="color:#f92672">.</span>plot(x <span style="color:#f92672">+</span> [x[<span style="color:#ae81ff">0</span>]], y <span style="color:#f92672">+</span> [y[<span style="color:#ae81ff">0</span>]], color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#000000&#39;</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;o&#39;</span>, lw<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+plt<span style="color:#f92672">.</span>ylim((<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>))
+plt<span style="color:#f92672">.</span>xlim((<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>))
+plt<span style="color:#f92672">.</span>scatter(x_new, y_new, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#76d7c450&#39;</span>, edgecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;none&#39;</span>, s<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#39;./convex.svg&#39;</span>, format<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;svg&#39;</span>)
+plt<span style="color:#f92672">.</span>close()
+</code></pre></div><p>Here we generate <code>alpha</code> from the Dirichlet distribution since realizations from this distribution have the property of summing to to one. The resulting plot of a single run of the script looks something like the figure below. Each green point is a convex combination of the coordinates  (-0.5, -0.5), (0.8, 0.6), and (-0.3, 0.7).</p>
+<img src="/images/convex.svg" class="center"/>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Types of ETL Transformations</title>
+            <link>http://imadali.net/posts/types-of-etl-transformations/</link>
+            <pubDate>Sun, 31 May 2020 18:13:39 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/types-of-etl-transformations/</guid>
+            <description>In ETL, I&amp;rsquo;ve found that most people think of the &amp;ldquo;transform&amp;rdquo; step as just a simple transformation on the new data. This might be the case if you&amp;rsquo;re converting variable types or applying simple row-wise transformations. But it&amp;rsquo;s more nuanced than that, particularly when your transformations are aggregations. In my experience, I&amp;rsquo;ve found three common types of transformations that take place. My loose categorization for them is historical, new data, and sliding window transformations.</description>
+            <content type="html"><![CDATA[<p>In ETL, I&rsquo;ve found that most people think of the &ldquo;transform&rdquo; step as just a simple transformation on the new data. This might be the case if you&rsquo;re converting variable types or applying simple row-wise transformations. But it&rsquo;s more nuanced than that, particularly when your transformations are aggregations. In my experience, I&rsquo;ve found three common types of transformations that take place. My loose categorization for them is historical, new data, and sliding window transformations.</p>
+<h2 id="historical">Historical</h2>
+<p>In <strong>historical</strong> transformations you&rsquo;re applying a transformation over the entire history of data after the new data comes in.</p>
+<img src="/images/etl/historical.png" width=300 class="center"/>
+<h2 id="new-data">New Data</h2>
+<p>With <strong>new data</strong> transformations you&rsquo;re applying a transformation to only new data coming in.</p>
+<img src="/images/etl/new-data.png" width=300 class="center"/>
+<h2 id="sliding-window">Sliding Window</h2>
+<p>With <strong>sliding window</strong> transformations you&rsquo;re apply a transformation to the new data and to a subset of the history.</p>
+<img src="/images/etl/sliding-window.png" width=300 class="center"/>
+<h2 id="useful-tricks">Useful Tricks</h2>
+<p>Implementing transformations in practice can be challenging. Instead of just dealing with the transformation itself you&rsquo;re responsible for making sure that it is applied on some cadence. This is particularly problematic when trying to make sure code runs efficiently over large amounts of data.</p>
+<p>With new data transformations the update pretty much takes care of itself, provided that the new data coming in is small enough. With historical and sliding window transformations the updates can be time consuming (even simple ones) if you don&rsquo;t make them efficient.</p>
+<h3 id="updating-historical">Updating Historical</h3>
+<p>Suppose we want to keep some sort of <strong>historical aggregation up-to-date</strong>. For example, we want to maintain a table that tells us how many hours each user has spent watching movies using a streaming service platform. (Assume that the data we have available records how long each user has spent watching each movie, and that this data updates daily.) One approach to solve this would be,</p>
+<ol>
+<li>read in <em>all</em> of the data</li>
+<li>group by users</li>
+<li>sum the column that records time spent watching movies.</li>
+</ol>
+<p>This is pretty inefficient (even if we stored data in a columnar format) since we have to read in all of the historical data as well as the new data to compute the sum.</p>
+<p>A more efficient approach would be to first do a one-off historical backfill of the user-level sum (defined in steps 1-3) using all of the historical data to date. Then as the new data comes in we implement the summation aggregation (defined in steps 1-3) <em>only on the new data</em>. Finally, since we&rsquo;re dealing with summation, we can simply add the new data aggregation with the historical aggregation (at the user-level of course).</p>
+<p>Each time this is scheduled to run we&rsquo;re only running transformations on the new data rather than all of the data, making this approach way more efficient. This approach basically computes the information of a &ldquo;historical&rdquo; transformation but did it with the efficiency of a &ldquo;new data&rdquo; transformation.</p>
+<h3 id="updating-sliding-window">Updating Sliding Window</h3>
+<p>You have to be a bit more creative when trying to keep <strong>sliding window transformations up-to-date</strong>. Suppose we want to create the same table described above. Now instead of applying a transformation over the full history of user behavior we want to do it over a 1 week window.</p>
+<p>A simple approach would be to do the 1 week transformation every time new data comes in. But with large data this can be infeasible.</p>
+<p>If we follow the steps in the previous section, we get the new data aggregation (which is 1 day&rsquo;s worth of data) and the historical aggregation (which, in this case, is 1 week&rsquo;s worth of data). Summing them gives us 8 days worth of data. We still need to drop the first day that comes with the historical aggregation. Since we&rsquo;re dealing with sums, we can do this by calculating the aggregation for just first day and subtract it from the sum of the new data aggregation and the historical aggregation.</p>
+<p>This is more efficient since we&rsquo;re applying transformations over only two time intervals (in this case days) of data; the first day and the latest day. Both these time intervals combined are smaller than applying the transformation over a week of data.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Data Engineering Concepts</title>
+            <link>http://imadali.net/posts/data-engineering-concepts/</link>
+            <pubDate>Sun, 31 May 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/data-engineering-concepts/</guid>
+            <description>Working in industry as a data scientist I&amp;rsquo;ve found it useful to maintain some understanding of data engineering concepts, even if it&amp;rsquo;s just at a high-level. This facilitates communication with data engineers who form part of the bridge between data and data scientists in most tech companies (in my experience). Below is a non-exhaustive laundry list of concepts that I&amp;rsquo;ve found useful to know.
+Data Model A data model organizes the Data and defines the relationship between them.</description>
+            <content type="html"><![CDATA[<p>Working in industry as a data scientist I&rsquo;ve found it useful to maintain some understanding of data engineering concepts, even if it&rsquo;s just at a high-level. This facilitates communication with data engineers who form part of the bridge between data and data scientists in most tech companies (in my experience). Below is a non-exhaustive laundry list of concepts that I&rsquo;ve found useful to know.</p>
+<h2 id="data-model">Data Model</h2>
+<p>A data model organizes the Data and defines the relationship between them. Typically you might see it as an outline of database/schema design, available tables, and how these tables can be linked to one another (in relational databases).</p>
+<h2 id="data-lineage">Data Lineage</h2>
+<p>Data lineage describes what happens to the data as it moves from its origin to its final destination. Depending on the team this destination could be another data repository or it could be a machine learning model. As a data scientist it&rsquo;s helpful to understand data lineage since it help you determine whether the assumptions you&rsquo;re making in your problem solving are appropriate.</p>
+<h2 id="partitioning">Partitioning</h2>
+<p>Partitioning is just a generic process of splitting up a table to make it more efficient to query. The reason being that you only read the partition(s) into memory that you&rsquo;d want to query. Basically you&rsquo;re offloading a part of your query (specifically the part that involves filtering the data) to the partitioning logic.</p>
+<p>Partitioning by time is fairly popular. For example, we might find ourselves querying recent data compared more compared to historical data. It would probably make sense to split up the data between recent and historical so that, for most of our queries, we only hit the recent partition as opposed to all of the data.</p>
+<p>However, suppose we have partitioned by time but want to query all of a give user&rsquo;s data. The partition work that we have done is irrelevant. We have to read all the data into memory since we can&rsquo;t be certain that there is no data for a given user in any of the partitions. In this case it might be useful to partition by user instead.</p>
+<p>In some cases it might be useful to partition by both time <em>and</em> user. However, if we make the partition definition too granular then we could end up increasing our query time (i.e. we will be doing a lot of reads from disk).</p>
+<p><a href="https://www.digitalocean.com/community/tutorials/understanding-database-sharding#sharding-architectures">Sharding</a> is a type of horizontal partitioning that separates the rows of a table into multiple tables (partitions).</p>
+<p>The advantages of sharding are that it</p>
+<ol>
+<li>Reduces query time</li>
+<li>Mitigates the impact of outages</li>
+<li>Facilitates horizontal scaling (i.e. the addition of new servers to grow out the database).</li>
+</ol>
+<p>The disadvantages are that it,</p>
+<ol>
+<li>May result in data loss since the process of sharding can be complex</li>
+<li>Is diffcult to revert back to non-sharded architecture.</li>
+<li>Might result in unbalanced shards (i.e. depending on the sharding logic and the data we might end up with more records in a given shard compared to other shards).</li>
+</ol>
+<p>Three ways to implement sharding are,</p>
+<ol>
+<li><strong>Key based</strong>. This uses a hash function to determine which shard each record should go into. This can be problematic when creating new shards since it requires updating the hash function and therefore updating all the old shards.</li>
+<li><strong>Range based</strong>. This uses contiguous non-overlapping splits of a range of a particular column to determine which shard each record should belong to.</li>
+<li><strong>Directory based</strong>. This uses a lookup table (directory) to determine which determines that shard that each record should go into. This can be problematic when sharding on columns that have high cardinality as there will be a lot of records to maintain in the lookup table.</li>
+</ol>
+<h2 id="columnar-data">Columnar Data</h2>
+<p>To understand a column store database it&rsquo;s useful to understand its counterpart, a row store database. Suppose you&rsquo;re querying a subset of columns of a data table. With row storage you have to read all the rows into memory and the drop whatever columns you don&rsquo;t require (even if the data is partitioned by a certain column). With column storage you only read the columns that you query. This is more efficient. In order to accomplish this type of querying you have to store the data in a column-wise format.</p>
+<h2 id="scheduled-date-vs-execution-date">Scheduled Date vs Execution Date</h2>
+<p>It&rsquo;s important to be able to have access to both the scheduled run date and the execution run date of a job. The scheduled date is the date that the job was scheduled to run and the execution date is the date at which a job actually runs.</p>
+<p>In most cases they will be the same. They differ when you want to trigger a previous run of your job in such a way that your job operates as if it was running at a previous date (the scheduled run date) not today&rsquo;s date (the execution date).</p>
+<h2 id="idempotent-jobs">Idempotent Jobs</h2>
+<p>A job is idempotent if the output is the same even when you run it multiple times with the same parameters. For example, if you trigger the same job multiple times then you shouldn&rsquo;t end up with duplicated data. If you do then your job fails to be idempotent.</p>
+<p>Here are some strategies to keep your job idempotent:</p>
+<ul>
+<li><strong>Scheduled Date</strong>: Read data a reasonable amount of data in and perform transformations on it using the scheduled date instead of the execution date.</li>
+<li><strong>Atomic</strong>: Make your job atomic by allowing it to succeed completely, otherwise it should fail completely. The entire job should fail if one part of the job does not complete successfully. In these situations you should also clean up or undo any changes you&rsquo;ve made to existing data. In Python this can be done using try/except logic.</li>
+<li><strong>Purge</strong>: Delete before writing data produced by your job. This will prevent jobs from duplicating data in situation where they need to be rerun.</li>
+</ul>
+<h2 id="sql-and-nosql-databases">SQL and NoSQL Databases</h2>
+<p>A SQL database is your typical relational database. It contains tables whose columns some sort of relationship between one another. For example, there might be one table that contains information about movies watched by users, where movies are identified by some movie ID. This may be combined with another table that has movie IDs and the corresponding meta information about the movie (title, genre, runtime, etc).</p>
+<p>A NoSQL database is sort of like a catchall for everything that&rsquo;s not a SQL database. There are reasons for not storing data in relational format. For example, it might not be sensible to store images or audio files in key-value pairs instead of a relational table format (although meta information about these objects might be stored in such a way). Or say we want to be able to find all the users that watched a movie that a given user watched. It probably makes more sense to store this information in a graph database instead of a relational database.</p>
+<h2 id="data-warehouse">Data Warehouse</h2>
+<p>Hitting raw data files is not an efficient way to create business intelligence reports or ad hoc queries with your data. A data warehouse sits on top of your raw data and provides centralized access to all data (most likely cleaned and transformed) for users. Often a data warehouse is used to enable users to access data with SQL queries and is optimized for read performance over write performance.</p>
+<h2 id="data-federation">Data Federation</h2>
+<p>In some cases you might have multiple databases responsible for storing different types of data or collecting data from different locations. Data federation defines a common data model for these databases so that the application can query a single data source.</p>
+<h2 id="data-replication">Data Replication</h2>
+<p>This pretty much does what it says on the tin. In some cases you might want to,</p>
+<ul>
+<li>Increase the availability of your data so that your application is not bottlenecked by hitting a single data source.</li>
+<li>Ensure the reliability of data access so that your applications are not vulnerable if a data source goes down for some reason.</li>
+<li>Speed up query performance.</li>
+</ul>
+<p>If you copy the original data (replication) into multiple servers then you&rsquo;re increasing the availability/reliability/speed through horizontal scaling. You could do a <strong>full replication</strong> the data which would involve a complete copy of all the data into additional servers, or you could do a <strong>partial replication</strong> data which would only copy a subset of the data into additional servers. While this comes with the advantages outlined above, there are storage costs to consider when duplicating data (particularly massive amounts of data). There is also the additional overhead of monitoring and making sure that the replicates stay in sync with updates to the source data (including updates to historical data).</p>
+<h2 id="caching">Caching</h2>
+<p>This isn&rsquo;t strictly a data engineering concept, but it&rsquo;s a way to access data to ensure a streamline front end application experience (e.g. when you want to reduce the latency of a table/graphic that is presented to a user). Typically it&rsquo;s faster to access data from memory than it is from disk. Caching basically stores a portion of your data in memory. When a data request is made, you first check to see if it is in the cache. If it&rsquo;s not available then you defer to the database. Typically you&rsquo;d want to cache data that&rsquo;s frequently requested by the application.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>In High Dimensional Space</title>
+            <link>http://imadali.net/posts/in-high-dimensional-space/</link>
+            <pubDate>Tue, 12 May 2020 00:22:23 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/in-high-dimensional-space/</guid>
+            <description>&amp;hellip; no one can hear you scream. Actually the party line that gets tossed around is something like,
+ distances become meaningless in high-dimensions.
+ Here &amp;ldquo;high-dimensions&amp;rdquo; is referring to wide data (observations having a lot of features). &amp;ldquo;Meaningless&amp;rdquo; is kind of vague. What really happens is that the distance between near points and the distance between far points in low-dimensional space become approximately equal in high-dimensional space. To put it differently,</description>
+            <content type="html"><![CDATA[<p>&hellip; no one can hear you scream. Actually the party line that gets tossed around is something like,</p>
+<blockquote>
+<p>distances become meaningless in high-dimensions.</p>
+</blockquote>
+<p>Here &ldquo;high-dimensions&rdquo; is referring to wide data (observations having a lot of features). &ldquo;Meaningless&rdquo; is kind of vague. What really happens is that the distance between near points and the distance between far points in low-dimensional space become approximately equal in high-dimensional space. To put it differently,</p>
+<blockquote>
+<p>the ratio of the distance of near and far points approaches 1 in high dimensions.</p>
+</blockquote>
+<p>So in high dimensions the notion of distance becomes&hellip; meaningless. <a href="https://stats.stackexchange.com/questions/99171/why-is-euclidean-distance-not-a-good-metric-in-high-dimensions/99191#99191">This</a> is a great Stack Overflow post that provides some more detail.</p>
+<p>Simulations tend to help me solidify theoretical concepts. So let&rsquo;s create some fake data where two points are close to one another and two points are far apart, and see what happens to the ratio of distances between these points as we add dimensions to data. The code for the results provided below is available <a href="https://github.com/imadmali/blog-notebooks/tree/master/high-dimensional-space">here</a>.</p>
+<p>Below is a plot of three points: A = (2,5), B = (1,6), and C = (-6,-6). In this low dimensional space point A is close to point B but far from point C.</p>
+<img src="https://raw.githubusercontent.com/imadmali/blog-notebooks/master/high-dimensional-space/figs/hds_0.png" alt="hds_0" width=400 class="center"/>
+<p>The distance measurement we are referring to is <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a>. One way to compute it in Python is,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">euclidean_distance</span>(x,y):
+  x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(x)
+  y <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(y)
+  result <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(x<span style="color:#f92672">-</span>y)
+  <span style="color:#66d9ef">return</span>(result)
+</code></pre></div><p>We&rsquo;re interested in the ratio between the distance of point A to point B and point A to point C. We also want to know how this ratio changes when we include dimensions to these observations. So for each additional dimension we calculate and store this distance ratio. Since we&rsquo;re using fake data we add random dimensions (drawn from the normal distribution). 58 new dimensions are generated which gives us 60 dimensions in total. This result is simulated 500 times to make sure that our inference on the distance ratio result is stable, and not due to random chance.</p>
+<p>Below is a plot of all the distance ratio calculations for a sample of the simulations. As a higher dimensional space is considered, the distance between near and far points become more similar. The distance ratio tends towards 1.</p>
+<img src="https://raw.githubusercontent.com/imadmali/blog-notebooks/master/high-dimensional-space/figs/hds_2.png" alt="hds_2" width=400 class="center"/>
+<p>To make things more convincing we plot a histogram of the final distance ratio (calculated using all 60 dimensions). These final ratios are centered around 1, confirming the concern with distance being meaningless in high dimensions (recall that in two dimensions point A is closer to B than C).</p>
+<img src="https://raw.githubusercontent.com/imadmali/blog-notebooks/master/high-dimensional-space/figs/hds_1.png" alt="hds_1" width=400 class="center"/>
+<p>It would be interesting to see if this result changes as we change the variation in the data. Below we run the same simulations with different standard deviation values (0.5,1,3,5) when generating the additional dimensions. With a higher standard deviation we reach a distance ratio of 1 with fewer additional dimensions than with a lower standard deviation. So the higher the variability in the additional dimensions the more sensitive distance is to becoming meaningless as we add dimensions.</p>
+<img src="https://raw.githubusercontent.com/imadmali/blog-notebooks/master/high-dimensional-space/figs/hds_3.png" alt="hds_3" class="center"/>
+<p>So it&rsquo;s pretty clear that the concept of Euclidean distance does not hold up in high dimensions. And this is exacerbated if there is a lot of variation in the data. <a href="https://en.wikipedia.org/wiki/Principal_component_analysis">PCA</a>, <a href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-SNE</a>, <a href="https://en.wikipedia.org/wiki/Word_embedding">neural network embeddings</a>, or other dimensionality reduction techniques will help reduce the dimensions of the data you are working with while preserving the relevant information, allowing you to work with Euclidean distance more appropriately.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Git</title>
+            <link>http://imadali.net/posts/git/</link>
+            <pubDate>Sat, 09 May 2020 16:14:19 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/git/</guid>
+            <description>I always forget certain git commands. Especially when I don&amp;rsquo;t use them often enough or am involved in a workflow that doesn&amp;rsquo;t use git to it&amp;rsquo;s fullest extent. So here&amp;rsquo;s a list of git commands in some sort of loose categorization (some of which I hope I remember now and others that I would like to be reminded of in case I forget).
+Cloning and Configs Show the remote info. (Note, origin is the default name for remote that the repository was cloned from.</description>
+            <content type="html"><![CDATA[<p>I always forget certain git commands. Especially when I don&rsquo;t use them often enough or am involved in a workflow that doesn&rsquo;t use git to it&rsquo;s fullest extent. So here&rsquo;s a list of git commands in some sort of loose categorization (some of which I hope I remember now and others that I would like to be reminded of in case I forget).</p>
+<h2 id="cloning-and-configs">Cloning and Configs</h2>
+<p>Show the remote info. (Note, origin is the default name for remote that the repository was cloned from.)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git remote show origin
+</code></pre></div><p>Cloning a repository that&rsquo;s available on GitHub.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/username/repository.git
+</code></pre></div><p>Sometimes you may need to clone with a different user name. This is useful if you have a personal and a work GitHub with different username/password. [<a href="https://stackoverflow.com/questions/39644366/git-clone-with-different-username-account">link</a>]</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://username@github.com/username/repository.git
+</code></pre></div><p>You may need to set your user name and email for your local repository (not your global git config). This is useful if you don&rsquo;t want your personal email associated with commits made to a work repository (and vice versa).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config user.name &lt;user name&gt;
+git config user.email &lt;user email&gt;
+</code></pre></div><h2 id="branching-and-merging">Branching and merging</h2>
+<p>List all the branches in your repository.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch
+</code></pre></div><p>List all remote branches.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch -m
+</code></pre></div><p>Delete a branch called <code>feature</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch -d feature
+</code></pre></div><p>To create a branch called <code>feature</code> and work on that branch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch feature
+git checkout feature
+<span style="color:#75715e"># or</span>
+git checkout -b feature
+</code></pre></div><p>To push your new branch <code>feature</code> and track it on GitHub.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push -u origin feature
+</code></pre></div><p>To pull and updated version of the branch you&rsquo;re working on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout feature
+git pull
+</code></pre></div><p>To pull a newly created branch <code>new-feature</code> (that&rsquo;s not on your local machine).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git fetch
+git checkout new-feature
+</code></pre></div><h2 id="merging">Merging</h2>
+<p>To update a branch from another branch (e.g. updating your <code>feature</code> branch with new commits in <code>master</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout feature
+git merge master
+</code></pre></div><p>If you want to rebase then use the rebase option.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout feature
+git merge master --rebase
+</code></pre></div><h2 id="merging-vs-rebasing">Merging vs rebasing</h2>
+<p>Some useful links that&rsquo;ll probably describe the difference better than I ever can.</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase">https://stackoverflow.com/questions/18930527/difference-between-git-pull-and-git-pull-rebase</a></li>
+<li><a href="https://stackoverflow.com/questions/16666089/whats-the-difference-between-git-merge-and-git-rebase/16666418#16666418">https://stackoverflow.com/questions/16666089/whats-the-difference-between-git-merge-and-git-rebase/16666418#16666418</a></li>
+</ul>
+<h2 id="diff">Diff</h2>
+<p>Sometimes it&rsquo;s useful to look at the difference between the original file and the changes you&rsquo;ve made via the command line. Before adding the file,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff foo.txt
+</code></pre></div><p>and after adding the file</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff --cached foo.txt
+</code></pre></div><h2 id="submodules">Submodules</h2>
+<p>So useful, and something I often overlook. There&rsquo;s a great overview of submodules on the GitHub <a href="https://github.blog/2016-02-01-working-with-submodules/">blog</a>. A git submodule allows you to keep a git repository as a subdirectory of another git repository (<a href="https://www.atlassian.com/git/tutorials/git-submodule">link</a>). Submodules are static in that they track a specific commit and won&rsquo;t be automatically updated.</p>
+<p>To create a submodule into the folder <code>foo</code> using from branch <code>master</code> living at <code>url/to/remote/repo</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git submodule add -b master url/to/remote/repo foo
+</code></pre></div><p>To update a submodule.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd foo
+git checkout master
+git pull
+git cd ..
+git add .
+git commit -m <span style="color:#e6db74">&#34;updating submodule in foo&#34;</span>
+</code></pre></div><p>To clone a repository that uses submodules.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone --recursive url/to/remote/repo
+</code></pre></div><p>Hugo&rsquo;s <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">directions</a> on deploying a statically generated website on GitHub is a good example of using submodules. In this case, the submodule is in the <code>public</code> folder which is connected to the <code>[username.github.io](http://username.github.io)</code> repository. And this folder contains the site files generated by hugo when you build your site.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Python Decorators are Just Wrappers</title>
+            <link>http://imadali.net/posts/python-decorators-are-just-wrappers/</link>
+            <pubDate>Wed, 06 May 2020 02:21:39 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/python-decorators-are-just-wrappers/</guid>
+            <description>Python decorators are just wrappers&amp;hellip; that return functions Part of my issue with understanding how decorators work was that I was treating them as a function/class that is returning a variable. I should have been thinking of them as a function/class returning a modified (i.e. decorated) function/class. As mentioned succinctly here, &amp;ldquo;Decorators are a form of metaprogramming; they enhance the action of the function or method they decorate.&amp;rdquo; So a decorator is just a wrapper of the function that you want to modify (that returns a function).</description>
+            <content type="html"><![CDATA[<h2 id="python-decorators-are-just-wrappers-that-return-functions">Python decorators are just wrappers&hellip; that return functions</h2>
+<p>Part of my issue with understanding how decorators work was that I was treating
+them as a function/class that is returning a variable. I should have been
+thinking of them as a function/class returning a modified (i.e. decorated)
+function/class. As mentioned succinctly
+<a href="https://en.wikipedia.org/wiki/Python_syntax_and_semantics#Decorators">here</a>,
+&ldquo;Decorators are a form of metaprogramming; they enhance the action of the
+function or method they decorate.&rdquo; So a decorator is just a wrapper of the
+function that you want to modify (that returns a function).</p>
+<p>So if we want to decorate the function <code>func</code> with the function <code>decor</code> then the
+sequence of evaluation would be <code>modified_func = decor(func)(func_args)</code>.</p>
+<p>Before going into what a decorator is, it&rsquo;s useful to understand what it isn&rsquo;t.
+Casually wrapping a function in another function may not be sufficient. To
+Illustrate this I&rsquo;ve created a function <code>to_decorate</code> (a function that returns
+its input divided by 2) that I want to decorate.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_decorate</span>(x):
+    <span style="color:#66d9ef">return</span>(x<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)
+to_decorate(<span style="color:#ae81ff">2</span>)
+</code></pre></div><p>The <code>not_decorator</code> function below does not act as a decorator even though it is
+a wrapper for <code>to_decorate</code>. The <code>not_decorator</code> function is modifying the
+result of <code>to_decorate</code> instead of modifying the <code>to_decorate</code> function itself.
+We have to actually evaluate the function that is the argument to
+<code>not_decorator</code>. Because we have to evaluate it, the function that is the
+argument to <code>not_decorator</code> must also take in an argument. The result is that
+this function ends up returning a variable rather than a function/class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># modifying the output of func so func has to be evaluated not modified</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">not_decorator</span>(func):
+    <span style="color:#66d9ef">return</span>(abs(func))
+</code></pre></div><p>The code below will error out since the <code>to_decorate</code> function is looking for an
+argument.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate)
+</code></pre></div><p>Passing an argument will allow it to run, but it&rsquo;s still not a decorator since
+it&rsquo;s returning a variable instead of a function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate(<span style="color:#ae81ff">2</span>))
+<span style="color:#66d9ef">print</span>(not_decorated)
+</code></pre></div><p>Let&rsquo;s define the function <code>decorator</code> which takes a function as an input,
+evaluates the absolute value of the result of the function (the modification), a
+returns a function as opposed to the result.</p>
+<p>We have to wrap the modification in the <code>inner</code> wrapper otherwise we won&rsquo;t be
+able to return a function/class. This was the issue with <code>not_decorator()</code>
+above.</p>
+<p>&hellip;</p>
+<h2 id="what-about-modifying-a-function-with-multiple-decorators">What about modifying a function with multiple decorators?</h2>
+<p>&hellip;</p>
+<h2 id="what-about-passing-arguments-to-decorators">What about passing arguments to decorators?</h2>
+<p>&hellip;</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Overloading Operators</title>
+            <link>http://imadali.net/posts/overloading-operators/</link>
+            <pubDate>Wed, 01 Jan 2020 23:17:00 -0700</pubDate>
+            
+            <guid>http://imadali.net/posts/overloading-operators/</guid>
+            <description>Way back when I was learning to code, the concept of overloading operators was confusing to me. I think this was partly due to the R language not having the typical definition of classes, which made it a little less straightforward to understand why operator overloading might be useful.
+The need for operator overloading arises when you try to answer the following question:
+ &amp;ldquo;When you combine two variables with the + operator how does Python know when to add them if they&amp;rsquo;re integers or concatenate them if they&amp;rsquo;re strings?</description>
+            <content type="html"><![CDATA[<p>Way back when I was learning to code, the concept of <strong>overloading operators</strong>
+was confusing to me. I think this was partly due to the R language not having
+the <a href="http://adv-r.had.co.nz/OO-essentials.html">typical definition of classes</a>,
+which made it a little less straightforward to understand why operator
+overloading might be useful.</p>
+<p>The need for operator overloading arises when you try to answer the following
+question:</p>
+<blockquote>
+<p>&ldquo;When you combine two variables with the <code>+</code> operator how does Python know
+when to add them if they&rsquo;re integers or concatenate them if they&rsquo;re
+strings?&rdquo;</p>
+</blockquote>
+<p>Basically you need to tell Python what to do with the <code>+</code> operator so that it
+knows what to do given variables of a different type.</p>
+<p>We can accomplish this by defining a class, which allows us to bundle together
+objects (i.e. data attributes) and functions that allow us to interact with
+these objects (i.e. methods). The class below defines creates a <code>data</code> attribute
+that contains the list of numbers that the user provides when it is
+instantiated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">vec0</span>:
+    <span style="color:#66d9ef">def</span> __init__(self, data):
+        self<span style="color:#f92672">.</span>data <span style="color:#f92672">=</span> data
+
+x <span style="color:#f92672">=</span> vec0([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>])
+<span style="color:#66d9ef">print</span>(type(x))
+</code></pre></div><p>Suppose we want to implement element-wise addition: add an a value to each
+element in the list. If we try to do something like <code>x + 3</code> we&rsquo;ll get a
+<code>TypeError</code>. We could use list comprehension but that would look a little
+clunky.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x_sum <span style="color:#f92672">=</span> [item <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> x<span style="color:#f92672">.</span>data]
+<span style="color:#66d9ef">print</span>(x_sum)
+</code></pre></div><p>A more concise way to implement this is to overload the <code>+</code> operator. We can do
+this by defining the add method in the above class. Below we inherit the methods
+from the class defined above and overload the addition operator to implement
+element-wise addition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">vec1</span>(vec0):
+    <span style="color:#66d9ef">def</span> __add__(self, y):
+        result <span style="color:#f92672">=</span> [item <span style="color:#f92672">+</span> y <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>data]
+        <span style="color:#66d9ef">return</span>(result)
+
+x <span style="color:#f92672">=</span> vec1([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>])
+<span style="color:#66d9ef">print</span>(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>)
+</code></pre></div><p>That&rsquo;s all there is to it. You can overload all sorts of operators. A <a href="https://docs.python.org/3/library/operator.html">list of
+operators</a> is provided in the
+Python documentation.</p>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>

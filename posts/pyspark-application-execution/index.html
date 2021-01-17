@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Imad Ali ">
+<meta name="description" content="It took me a while to really understand how Spark (specifically PySpark) works under the hood. Specifically, I&amp;rsquo;m referring to what happens when I, as the user, submit a PySpark data processing job to a cluster. Even after all my digging around I&amp;rsquo;m still uncertain about how a few things work. I&amp;rsquo;m kinda of surprised at how convoluted the documentation is for a library/framework that&amp;rsquo;s so popular in industry. Nevertheless, this is my attempt at putting together a very high-level overview of how Spark works, from the perspective of the PySpark interface." />
+<meta name="keywords" content=", Python, PySpark, Data Engineering" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://imadali.net/posts/pyspark-application-execution/" />
+
+
+    <title>
+        
+            PySpark Application Execution :: Imad Ali 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+
+
+
+
+
+
+<meta itemprop="name" content="PySpark Application Execution">
+<meta itemprop="description" content="It took me a while to really understand how Spark (specifically PySpark) works under the hood. Specifically, I&rsquo;m referring to what happens when I, as the user, submit a PySpark data processing job to a cluster. Even after all my digging around I&rsquo;m still uncertain about how a few things work. I&rsquo;m kinda of surprised at how convoluted the documentation is for a library/framework that&rsquo;s so popular in industry. Nevertheless, this is my attempt at putting together a very high-level overview of how Spark works, from the perspective of the PySpark interface.">
+<meta itemprop="datePublished" content="2020-09-16T16:14:19-07:00" />
+<meta itemprop="dateModified" content="2020-09-16T16:14:19-07:00" />
+<meta itemprop="wordCount" content="557">
+
+
+
+<meta itemprop="keywords" content="Python,PySpark,Data Engineering," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PySpark Application Execution"/>
+<meta name="twitter:description" content="It took me a while to really understand how Spark (specifically PySpark) works under the hood. Specifically, I&rsquo;m referring to what happens when I, as the user, submit a PySpark data processing job to a cluster. Even after all my digging around I&rsquo;m still uncertain about how a few things work. I&rsquo;m kinda of surprised at how convoluted the documentation is for a library/framework that&rsquo;s so popular in industry. Nevertheless, this is my attempt at putting together a very high-level overview of how Spark works, from the perspective of the PySpark interface."/>
+
+
+
+    <meta property="og:title" content="PySpark Application Execution" />
+<meta property="og:description" content="It took me a while to really understand how Spark (specifically PySpark) works under the hood. Specifically, I&rsquo;m referring to what happens when I, as the user, submit a PySpark data processing job to a cluster. Even after all my digging around I&rsquo;m still uncertain about how a few things work. I&rsquo;m kinda of surprised at how convoluted the documentation is for a library/framework that&rsquo;s so popular in industry. Nevertheless, this is my attempt at putting together a very high-level overview of how Spark works, from the perspective of the PySpark interface." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://imadali.net/posts/pyspark-application-execution/" />
+<meta property="article:published_time" content="2020-09-16T16:14:19-07:00" />
+<meta property="article:modified_time" content="2020-09-16T16:14:19-07:00" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-16 16:14:19 -0700 PDT" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="http://imadali.net" style="text-decoration: none;">
+    <div class="logo">
+        
+        
+            <span class="logo__text">imad ali</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://imadali.net/posts/">Posts</a></li><li><a href="http://imadali.net/projects/">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://imadali.net/posts/pyspark-application-execution/">PySpark Application Execution</a>
+            </h1>
+
+            <div class="post-info">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-09-16
+              </p>
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>3 minutes
+              </p>
+            </div>
+
+            
+
+            <div class="post-content">
+                <p>It took me a while to really understand how Spark (specifically PySpark) works under the hood. Specifically, I&rsquo;m referring to what happens when I, as the user, submit a PySpark data processing job to a cluster. Even after all my digging around I&rsquo;m still uncertain about how a few things work. I&rsquo;m kinda of surprised at how convoluted the documentation is for a library/framework that&rsquo;s so popular in industry. Nevertheless, this is my attempt at putting together a very high-level overview of how Spark works, from the perspective of the PySpark interface. I&rsquo;ve broken things down into a key concept, some Spark terminology, and finally how Spark executes an application.</p>
+<h2 id="key-concept">Key Concept</h2>
+<p><strong>Spark processes all data in memory. This makes it efficient since you&rsquo;re not wasting time reading/writing data from disk</strong>. (That&rsquo;s an inefficiency you face with MapReduce. The output of the mapping process is written to disk before it&rsquo;s used in the reduce process.)</p>
+<h2 id="terminology">Terminology</h2>
+<p>Now for some terminology.</p>
+<ul>
+<li><strong>Transformation Functions</strong>: Spark functions that transform data but do not return a result (<code>.filter()</code>, <code>.join()</code>, <code>.groupBy()</code>, etc). Transformations are lazily executed; this means that they will only be executed when an action function is called.</li>
+<li><strong>Action Functions</strong>: Spark functions that require something to be returned back to the user (<code>.show()</code>, <code>.collect()</code>, <code>.count()</code>, etc). They require the Spark Application to be deployed and data processing to take place so that a result can be returned.</li>
+<li><strong>Spark Application</strong>: A set of instructions that describe a connection to the Spark cluster along with a sequence of transformation and action functions to process the data (i.e. your PySpark code).</li>
+<li><strong>Spark Context:</strong> The connection you establish between your Spark application and the Spark cluster. (In PySpark you create this connection with something like <code>spark = SparkSession.builder.appName('foo').getOrCreate()</code>.)</li>
+<li><strong>Driver Process</strong>: This is the process that is responsible for sending your Spark Application to the cluster and receiving the results after the completion of the application.</li>
+<li><strong>Cluster Manager</strong>: This is responsible for allocating resources to the executor processes  and monitoring them in order to complete the tasks described in the Spark Application.</li>
+<li><strong>Executor Process</strong>: These processes are responsible for actually reading/writing data and computing the transformation/action functions.</li>
+<li><strong>Main Node</strong>: Where the cluster manager runs.</li>
+<li><strong>Secondary Node:</strong> Where the executor processes run.</li>
+<li><strong>Driver Node:</strong> Where the driver process runs.</li>
+</ul>
+<h2 id="spark-application-execution">Spark Application Execution</h2>
+<p>The process of running a simple query like <code>df.filter(...).show()</code>  in your application goes some thing this:</p>
+<ol>
+<li>The user writes their PySpark application which consists of resource requirements and transformations/actions on the data.</li>
+<li>This application is deployed on the driver which creates a Spark Session which is the connection to the Spark cluster. The driver could be on the user&rsquo;s side (client/local mode) or on the Spark cluster (cluster mode).</li>
+<li>The driver takes your Spark application&rsquo;s transformation and action functions and creates a DAG (directed acyclic graph) to determine the optimal computation procedure.</li>
+<li>The driver submits your Spark application via an API like PySpark.</li>
+<li>The cluster manager on the main node allocates the resources (to the executors on the secondary nodes) required to complete your job.</li>
+<li>The executors run the tasks required to complete your job by reading/writing data, shuffling information, and doing the transformations/action requested by the user. When they complete the result is sent back to the driver</li>
+</ol>
+<p>I&rsquo;m big on visuals. So here&rsquo;s my attempt at illustrating the workflow.</p>
+<img src="/images/pyspark-workflow.jpeg" class="center"/>
+<p>References:</p>
+<ul>
+<li><a href="https://www.amazon.com/gp/product/1491912219?pf_rd_r=KMR6FX0K611ZCESDF4HY&amp;pf_rd_p=5ae2c7f8-e0c6-4f35-9071-dc3240e894a8">https://www.amazon.com/gp/product/1491912219?pf_rd_r=KMR6FX0K611ZCESDF4HY&amp;pf_rd_p=5ae2c7f8-e0c6-4f35-9071-dc3240e894a8</a></li>
+<li><a href="https://www.informit.com/articles/article.aspx?p=2928186">https://www.informit.com/articles/article.aspx?p=2928186</a></li>
+</ul>
+
+            </div>
+        </article>
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://imadali.net/tags/python">Python</a></span><span class="tag"><a href="http://imadali.net/tags/pyspark">PySpark</a></span><span class="tag"><a href="http://imadali.net/tags/data-engineering">Data Engineering</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>557 Words</p>
+        </div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy 2020 Imad Ali</span>
+            <span>Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/rhazdon/hugo-theme-hello-friend-ng">Hello Friend NG</a></span>
+        </div>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload='renderMathInElement(document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    });'></script>
+
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Math on Imad Ali</title>
+    <link>http://imadali.net/tags/math/</link>
+    <description>Recent content in Math on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 07 Dec 2020 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Similarity Measures</title>
+      <link>http://imadali.net/posts/similarity-measures/</link>
+      <pubDate>Mon, 07 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/similarity-measures/</guid>
+      <description>My favorite summary of cosine vs Euclidean distance metrics is that Euclidean distance focuses on the distance between two points whereas cosine distance focuses on the angle between two vectors.
+Refresher on Cosine Similarity and Euclidean Distance Cosine similarity is the dot product of two vectors divided by the product of the vector norms. It has a lower bound of -1 and and upper bound of 1.
+np.dot(A, B) / (np.</description>
+    </item>
+    
+    <item>
+      <title>Creating a Single Metric</title>
+      <link>http://imadali.net/posts/creating-a-single-metric/</link>
+      <pubDate>Thu, 15 Oct 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/creating-a-single-metric/</guid>
+      <description>Sometimes I find myself having to combine several data features into a single metric. It&amp;rsquo;s bad practice to combine the features if they are on different scales. You end up capturing differences in their scale rather than differences in the underlying metric. So the best approach in these situations is to center the data (subtract the mean) and scale the data (divide by the standard deviation). This is how you eliminate the scale (it&amp;rsquo;s also part of the data pre-processing you should do before clustering).</description>
+    </item>
+    
+    <item>
+      <title>Convex Combinations</title>
+      <link>http://imadali.net/posts/convex-combinations/</link>
+      <pubDate>Sun, 21 Jun 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/convex-combinations/</guid>
+      <description>A while back I came across convex combinations in this paper that outlines the math of how to detect who&amp;rsquo;s guarding whom in basketball player tracking data. I then used them in a Stan case study.
+A convex combination helps you define any point inside a shape using a vector of coefficients that sum to one. So say you have a vector of coefficients alpha, and x-coordinates x and y-coordinates y.</description>
+    </item>
+    
+  </channel>
+</rss>

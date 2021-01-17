@@ -6,9 +6,348 @@
     <description>Recent content on Imad Ali</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Fri, 15 Jan 2021 16:14:19 -0700</lastBuildDate>
     
 	<atom:link href="http://imadali.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A Year of... Blogging?</title>
+      <link>http://imadali.net/posts/a-year-of-blogging/</link>
+      <pubDate>Fri, 15 Jan 2021 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/a-year-of-blogging/</guid>
+      <description>Maybe it wasn&amp;rsquo;t really &amp;ldquo;blogging&amp;rdquo;&amp;hellip; depends on your definition. I did a pretty bad job of regularly posting what I was writing. Ok, to be brutally honest I didn&amp;rsquo;t actually post any of what I wrote until the new year. But I did regularly write and collect my thoughts throughout 2020 (thanks to Notion for making it so easy). That&amp;rsquo;s the important part, right?
+The whole process was incredibly invaluable. Writing did two things for me:</description>
+    </item>
+    
+    <item>
+      <title>SQL Prototyping with Docker</title>
+      <link>http://imadali.net/posts/sql-prototyping-with-docker/</link>
+      <pubDate>Tue, 12 Jan 2021 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/sql-prototyping-with-docker/</guid>
+      <description>So recently I ran into a bit of a snafu. I wanted to do some SQL prototyping (with postgres) on my local machine but didn&amp;rsquo;t have the appropriate permissions to install and mess around with it. The postgres Docker image really came in handy. Below are some notes about what I did to get up and running with postgres in Docker. I thought they might come in handy to a Data Scientist or Machine Learning engineer facing a similar situation.</description>
+    </item>
+    
+    <item>
+      <title>An Imagineer Retires</title>
+      <link>http://imadali.net/posts/an-imagineer-retires/</link>
+      <pubDate>Mon, 11 Jan 2021 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/an-imagineer-retires/</guid>
+      <description>Imagineer Joe Rohde retires and, in an interview, said the following that strongly resonated with me&amp;hellip;
+ Before you start to make decisions, you have got to do a tremendous amount of work on the fundamental reason why you are doing this at all. You will lose yourself in micro-decisions if you do not first sit down and figure out what this whole thing is about. What are we trying to say.</description>
+    </item>
+    
+    <item>
+      <title>Explaining Linear Regression with Skittles</title>
+      <link>http://imadali.net/posts/explaining-linear-regression-with-skittles/</link>
+      <pubDate>Fri, 11 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/explaining-linear-regression-with-skittles/</guid>
+      <description>Take a bunch of skittles and toss them onto a table. Draw a line on the table that best represents the skittles. This is linear regression with one predictor.
+Now imagine you could toss those skittles and have them suspend at different heights above the table. Where would you place a sheet of paper so that you could best represent the position of all the skittles. This is linear regression with N predictors.</description>
+    </item>
+    
+    <item>
+      <title>Win Probability from the Point Differential</title>
+      <link>http://imadali.net/posts/win-probability-from-the-point-differential-b298d245fe63427cac5aac73d601b812/</link>
+      <pubDate>Fri, 11 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/win-probability-from-the-point-differential-b298d245fe63427cac5aac73d601b812/</guid>
+      <description>Most people model win/loss as binary in situations where win/loss is calculated in a non-binary way (e.g. in sports). But you lose a lot of information by labeling a win as binary instead of as its point differential. It&amp;rsquo;s better to model the point differential directly and then map that to a probability (which you can then label as win/loss).
+For example, if your point differential follows the normal distribution you can use the normal CDF to map that score to a probability.</description>
+    </item>
+    
+    <item>
+      <title>Levels of AI as Levels of Automation</title>
+      <link>http://imadali.net/posts/levels-of-ai-as-levels-of-automation/</link>
+      <pubDate>Thu, 10 Dec 2020 00:22:23 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/levels-of-ai-as-levels-of-automation/</guid>
+      <description>Date: 2020-12-10
+I was thinking about the levels of automation for self-driving cars and that made me think about a neat way to interpret the &amp;ldquo;levels&amp;rdquo; of AI. The interpretation is not directly related to how AI concepts are being used in self-driving cars. Rather the interpretation is about the relationship between the driver and the car, and how it parallels the relationship between a researcher and software. So instead of having a driver and a car you have a researcher/engineer/whatever and some software that maintains an autonomous system.</description>
+    </item>
+    
+    <item>
+      <title>Similarity Measures</title>
+      <link>http://imadali.net/posts/similarity-measures/</link>
+      <pubDate>Mon, 07 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/similarity-measures/</guid>
+      <description>My favorite summary of cosine vs Euclidean distance metrics is that Euclidean distance focuses on the distance between two points whereas cosine distance focuses on the angle between two vectors.
+Refresher on Cosine Similarity and Euclidean Distance Cosine similarity is the dot product of two vectors divided by the product of the vector norms. It has a lower bound of -1 and and upper bound of 1.
+np.dot(A, B) / (np.</description>
+    </item>
+    
+    <item>
+      <title>Models as Actions</title>
+      <link>http://imadali.net/posts/models-as-actions/</link>
+      <pubDate>Sat, 05 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/models-as-actions/</guid>
+      <description>People typically categorize data science and machine learning work (as if there&amp;rsquo;s a difference -_-) in terms of supervised and unsupervised learning. But to me that&amp;rsquo;s a little too reductionist. Data science covers so much ground depending on the industry your working in and what your role is. For example, consider the following responsibilities&amp;hellip;
+ All ETL and feature engineering that has to be done to transform data. Optimizing loss functions to ensure predictive accuracy in supervised/unsupervised learning, deep learning, etc.</description>
+    </item>
+    
+    <item>
+      <title>Bias-Variance Tradeoff</title>
+      <link>http://imadali.net/posts/bias-variance-tradeoff/</link>
+      <pubDate>Fri, 04 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/bias-variance-tradeoff/</guid>
+      <description>There&amp;rsquo;s a lot of great diagrams, explanation, and tedious calculations to explain the bias-variance trade off, but I was trying to come up with a pithy explanation for statisticians who understand regression.
+High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate non-linearities, and you want to model it with some regression function $f$. Your first option is super basic; just the mean $y \sim f(\bar{y})$. The mean is not going to be sufficient enough to model the complexities so you&amp;rsquo;ll have high bias (predictions that are very different from the true value).</description>
+    </item>
+    
+    <item>
+      <title>Sankey Diagrams and AB Testing</title>
+      <link>http://imadali.net/posts/sankey-diagrams-and-ab-testing/</link>
+      <pubDate>Thu, 03 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/sankey-diagrams-and-ab-testing/</guid>
+      <description>I have found Sankey diagrams are useful to visualize AB testing (control/treatment groups) or a more complicated funnel.
+Here&amp;rsquo;s an example of a super basic funnel. We have a control group and two variants.
+Here&amp;rsquo;s something a little more complicated. We have different experience paths each with their own control group and variants.</description>
+    </item>
+    
+    <item>
+      <title>Embeddings</title>
+      <link>http://imadali.net/posts/embeddings/</link>
+      <pubDate>Sun, 29 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/embeddings/</guid>
+      <description>You can think of a neural network embedding is another form of dimensionality reduction. You&amp;rsquo;re taking a bunch of tokens (words, movies, games, etc) and instead of one-hot encoding them you want to map them down to a lower dimensional space.
+For example, suppose you have a collection of 1,000 tokens. To one-hot encode them means having a very sparse vectors of length 1,000 for each word (where a 1 exists at the index that represents the token, 0 otherwise).</description>
+    </item>
+    
+    <item>
+      <title>OLTP and OLAP</title>
+      <link>http://imadali.net/posts/oltp-and-olap/</link>
+      <pubDate>Tue, 24 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/oltp-and-olap/</guid>
+      <description>I always mix these up. OLTP (Online Transaction Processing) is responsible for storing data from a device/user/etc. OLAP (Online Analytics Processing) takes information produced by OLTP systems and creates more complex data assets that combine/aggregate OLTP data in ways that are useful to the business.
+For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&amp;rsquo; entire history.</description>
+    </item>
+    
+    <item>
+      <title>Environment Variables</title>
+      <link>http://imadali.net/posts/environment-variables/</link>
+      <pubDate>Sun, 08 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/environment-variables/</guid>
+      <description>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
+export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables).</description>
+    </item>
+    
+    <item>
+      <title>Aliasing Different Python Versions</title>
+      <link>http://imadali.net/posts/aliasing-different-python-versions/</link>
+      <pubDate>Fri, 06 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/aliasing-different-python-versions/</guid>
+      <description>I hit an issue with Python versions when trying to install pyarrow (which, at the time of writing, is not supported by Python 3.9). I use brew to manage my Python versions (see details here) and I wanted to keep the python3 executable to the default version of Python (which is the latest version installed by brew), but still want to have the opportunity to easily use an older version of Python 3.</description>
+    </item>
+    
+    <item>
+      <title>SQL Concepts</title>
+      <link>http://imadali.net/posts/sql-concepts/</link>
+      <pubDate>Thu, 29 Oct 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/sql-concepts/</guid>
+      <description>Here&amp;rsquo;s a non-exhaustive laundry list of SQL concepts that I&amp;rsquo;ve found useful. You could think of them as intermediate? advanced? concepts that anyone doing data science or machine learning should probably know. I tried to order the concepts list is loosely in order of complexity, however that may vary from person to person.
+All the examples here are done using the postgres Docker image available here (I talk about how to work with a postgres container in a separate post).</description>
+    </item>
+    
+    <item>
+      <title>Creating a Single Metric</title>
+      <link>http://imadali.net/posts/creating-a-single-metric/</link>
+      <pubDate>Thu, 15 Oct 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/creating-a-single-metric/</guid>
+      <description>Sometimes I find myself having to combine several data features into a single metric. It&amp;rsquo;s bad practice to combine the features if they are on different scales. You end up capturing differences in their scale rather than differences in the underlying metric. So the best approach in these situations is to center the data (subtract the mean) and scale the data (divide by the standard deviation). This is how you eliminate the scale (it&amp;rsquo;s also part of the data pre-processing you should do before clustering).</description>
+    </item>
+    
+    <item>
+      <title>One Sentence Per Line</title>
+      <link>http://imadali.net/posts/one-sentence-per-line/</link>
+      <pubDate>Wed, 30 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/one-sentence-per-line/</guid>
+      <description>I like this concept and should practice it more often. From what I understand it&amp;rsquo;ll make the Git diffs look a lot cleaner. Ironically I didn&amp;rsquo;t do it for this blog post.</description>
+    </item>
+    
+    <item>
+      <title>Value from Less</title>
+      <link>http://imadali.net/posts/value-from-less/</link>
+      <pubDate>Mon, 28 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/value-from-less/</guid>
+      <description>I&amp;rsquo;ve been thinking about minimalism a lot lately. Sometimes you get caught up in thinking buying/bringing things into your life will give you value. But it&amp;rsquo;s all really just superficial value. When you have less around you it causes you to reflect about what gives you value. Maybe it&amp;rsquo;s introducing a new object that provides functional value in your daily life. Or maybe it&amp;rsquo;s learning something new, or picking up a project that you&amp;rsquo;ve forgotten&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>PySpark Application Execution</title>
+      <link>http://imadali.net/posts/pyspark-application-execution/</link>
+      <pubDate>Wed, 16 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/pyspark-application-execution/</guid>
+      <description>It took me a while to really understand how Spark (specifically PySpark) works under the hood. Specifically, I&amp;rsquo;m referring to what happens when I, as the user, submit a PySpark data processing job to a cluster. Even after all my digging around I&amp;rsquo;m still uncertain about how a few things work. I&amp;rsquo;m kinda of surprised at how convoluted the documentation is for a library/framework that&amp;rsquo;s so popular in industry. Nevertheless, this is my attempt at putting together a very high-level overview of how Spark works, from the perspective of the PySpark interface.</description>
+    </item>
+    
+    <item>
+      <title>Why Graphs Should not be Stored in a Relational Database</title>
+      <link>http://imadali.net/posts/why-graphs-should-not-be-stored-in-a-relational-databases/</link>
+      <pubDate>Wed, 16 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/why-graphs-should-not-be-stored-in-a-relational-databases/</guid>
+      <description>Suppose you have graph-like data that describes the (undirected) relationship between target and destination. If we store these relationships in a traditional relational database with a single key to query on we would have something like this,
+target, destination A, B A, C B, A B, C C, A C, B ... So to get all relationships associated with A we can just filter A on the target column. This is inefficient since we are replicating a lot of information (e.</description>
+    </item>
+    
+    <item>
+      <title>PySpark UDFs</title>
+      <link>http://imadali.net/posts/pyspark-udfs/</link>
+      <pubDate>Tue, 15 Sep 2020 00:22:23 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/pyspark-udfs/</guid>
+      <description>These are some of my notes on creating UDFs (user defined functions) in PySpark.
+UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&amp;rsquo;re working with modular components that build up to the entire ETL workflow).
+Here I show how to create a PySpark UDF which uses,</description>
+    </item>
+    
+    <item>
+      <title>Makefiles for Workflow</title>
+      <link>http://imadali.net/posts/makefiles-for-workflow/</link>
+      <pubDate>Sat, 12 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/makefiles-for-workflow/</guid>
+      <description>Makefiles for Workflow Date: 09-12-2020
+The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.
+A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary.</description>
+    </item>
+    
+    <item>
+      <title>Programming Language Type Checking</title>
+      <link>http://imadali.net/posts/programming-language-type-checking/</link>
+      <pubDate>Tue, 08 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/programming-language-type-checking/</guid>
+      <description>Date: 09-08-2020
+Type checking is the way in which a programming language enforces variable types (int, float, bool, etc). But I always forget what the difference is between strongly/weakly typed and statically/dynamically typed.
+Static vs Dynamic This defines whether the type checking is enforced at compile time or run time. If the language does type checking at compile time then it is statically typed (e.g. C++). This would prevent any type errors from occurring during run time.</description>
+    </item>
+    
+    <item>
+      <title>Confidence Intervals and Standard Deviations and Standard Errors</title>
+      <link>http://imadali.net/posts/confidence-intervals-and-standard-deviations-and-standard-errors/</link>
+      <pubDate>Wed, 02 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/confidence-intervals-and-standard-deviations-and-standard-errors/</guid>
+      <description>Questions come up a lot about how to interpret these things. We can build an understanding from the ground up, starting with a few basic metrics that are commonly calculated off of the data.
+Measures of Central Tendency Sometimes we want a measure of central tendency, or a good typical value that you can expect to observe given the data.
+Mean The mean is the sum of all the values divided by the number of values.</description>
+    </item>
+    
+    <item>
+      <title>Closures</title>
+      <link>http://imadali.net/posts/closures/</link>
+      <pubDate>Thu, 20 Aug 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/closures/</guid>
+      <description>Closures is a programming concept that took me a while to wrap my head around. To understand closures you need to understand function scope and factory functions. In the example below, x is accessible in the global scope. You can reference x inside and outside the function. However, y and z are accessible only within the local scope of the function foo. So you can reference x, y and z inside the function, but you can&amp;rsquo;t reference y and z outside of the function.</description>
+    </item>
+    
+    <item>
+      <title>Streaming Data Between Python Programs</title>
+      <link>http://imadali.net/posts/streaming-data-between-python-programs/</link>
+      <pubDate>Sun, 05 Jul 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/streaming-data-between-python-programs/</guid>
+      <description>Whenever I share data between programs I often write the data out to disk. But what would the relationship between the two programs look like if I want to stream the data instead of write it out to disk? Using the subprocess module in Python we can pass data between two python programs. The subprocess module enables you to execute command line arguments from within a Python script.
+For example, the Python code below executes the pwd command and stores the results as a variable.</description>
+    </item>
+    
+    <item>
+      <title>Coding Binary Variables</title>
+      <link>http://imadali.net/posts/coding-binary-variables/</link>
+      <pubDate>Sun, 28 Jun 2020 13:11:33 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/coding-binary-variables/</guid>
+      <description>Some things to keep in mind when coding binary (dummy) variables. This stackoverflow post is quite helpful.</description>
+    </item>
+    
+    <item>
+      <title>Convex Combinations</title>
+      <link>http://imadali.net/posts/convex-combinations/</link>
+      <pubDate>Sun, 21 Jun 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/convex-combinations/</guid>
+      <description>A while back I came across convex combinations in this paper that outlines the math of how to detect who&amp;rsquo;s guarding whom in basketball player tracking data. I then used them in a Stan case study.
+A convex combination helps you define any point inside a shape using a vector of coefficients that sum to one. So say you have a vector of coefficients alpha, and x-coordinates x and y-coordinates y.</description>
+    </item>
+    
+    <item>
+      <title>Types of ETL Transformations</title>
+      <link>http://imadali.net/posts/types-of-etl-transformations/</link>
+      <pubDate>Sun, 31 May 2020 18:13:39 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/types-of-etl-transformations/</guid>
+      <description>In ETL, I&amp;rsquo;ve found that most people think of the &amp;ldquo;transform&amp;rdquo; step as just a simple transformation on the new data. This might be the case if you&amp;rsquo;re converting variable types or applying simple row-wise transformations. But it&amp;rsquo;s more nuanced than that, particularly when your transformations are aggregations. In my experience, I&amp;rsquo;ve found three common types of transformations that take place. My loose categorization for them is historical, new data, and sliding window transformations.</description>
+    </item>
+    
+    <item>
+      <title>Data Engineering Concepts</title>
+      <link>http://imadali.net/posts/data-engineering-concepts/</link>
+      <pubDate>Sun, 31 May 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/data-engineering-concepts/</guid>
+      <description>Working in industry as a data scientist I&amp;rsquo;ve found it useful to maintain some understanding of data engineering concepts, even if it&amp;rsquo;s just at a high-level. This facilitates communication with data engineers who form part of the bridge between data and data scientists in most tech companies (in my experience). Below is a non-exhaustive laundry list of concepts that I&amp;rsquo;ve found useful to know.
+Data Model A data model organizes the Data and defines the relationship between them.</description>
+    </item>
+    
+    <item>
+      <title>In High Dimensional Space</title>
+      <link>http://imadali.net/posts/in-high-dimensional-space/</link>
+      <pubDate>Tue, 12 May 2020 00:22:23 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/in-high-dimensional-space/</guid>
+      <description>&amp;hellip; no one can hear you scream. Actually the party line that gets tossed around is something like,
+ distances become meaningless in high-dimensions.
+ Here &amp;ldquo;high-dimensions&amp;rdquo; is referring to wide data (observations having a lot of features). &amp;ldquo;Meaningless&amp;rdquo; is kind of vague. What really happens is that the distance between near points and the distance between far points in low-dimensional space become approximately equal in high-dimensional space. To put it differently,</description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>http://imadali.net/posts/git/</link>
+      <pubDate>Sat, 09 May 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/git/</guid>
+      <description>I always forget certain git commands. Especially when I don&amp;rsquo;t use them often enough or am involved in a workflow that doesn&amp;rsquo;t use git to it&amp;rsquo;s fullest extent. So here&amp;rsquo;s a list of git commands in some sort of loose categorization (some of which I hope I remember now and others that I would like to be reminded of in case I forget).
+Cloning and Configs Show the remote info. (Note, origin is the default name for remote that the repository was cloned from.</description>
+    </item>
+    
+    <item>
+      <title>Python Decorators are Just Wrappers</title>
+      <link>http://imadali.net/posts/python-decorators-are-just-wrappers/</link>
+      <pubDate>Wed, 06 May 2020 02:21:39 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/python-decorators-are-just-wrappers/</guid>
+      <description>Python decorators are just wrappers&amp;hellip; that return functions Part of my issue with understanding how decorators work was that I was treating them as a function/class that is returning a variable. I should have been thinking of them as a function/class returning a modified (i.e. decorated) function/class. As mentioned succinctly here, &amp;ldquo;Decorators are a form of metaprogramming; they enhance the action of the function or method they decorate.&amp;rdquo; So a decorator is just a wrapper of the function that you want to modify (that returns a function).</description>
+    </item>
+    
+    <item>
+      <title>Overloading Operators</title>
+      <link>http://imadali.net/posts/overloading-operators/</link>
+      <pubDate>Wed, 01 Jan 2020 23:17:00 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/overloading-operators/</guid>
+      <description>Way back when I was learning to code, the concept of overloading operators was confusing to me. I think this was partly due to the R language not having the typical definition of classes, which made it a little less straightforward to understand why operator overloading might be useful.
+The need for operator overloading arises when you try to answer the following question:
+ &amp;ldquo;When you combine two variables with the + operator how does Python know when to add them if they&amp;rsquo;re integers or concatenate them if they&amp;rsquo;re strings?</description>
+    </item>
     
   </channel>
 </rss>

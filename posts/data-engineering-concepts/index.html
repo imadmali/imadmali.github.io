@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Imad Ali ">
+<meta name="description" content="Working in industry as a data scientist I&amp;rsquo;ve found it useful to maintain some understanding of data engineering concepts, even if it&amp;rsquo;s just at a high-level. This facilitates communication with data engineers who form part of the bridge between data and data scientists in most tech companies (in my experience). Below is a non-exhaustive laundry list of concepts that I&amp;rsquo;ve found useful to know.
+Data Model A data model organizes the Data and defines the relationship between them." />
+<meta name="keywords" content=", Data Engineering" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://imadali.net/posts/data-engineering-concepts/" />
+
+
+    <title>
+        
+            Data Engineering Concepts :: Imad Ali 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Data Engineering Concepts">
+<meta itemprop="description" content="Working in industry as a data scientist I&rsquo;ve found it useful to maintain some understanding of data engineering concepts, even if it&rsquo;s just at a high-level. This facilitates communication with data engineers who form part of the bridge between data and data scientists in most tech companies (in my experience). Below is a non-exhaustive laundry list of concepts that I&rsquo;ve found useful to know.
+Data Model A data model organizes the Data and defines the relationship between them.">
+<meta itemprop="datePublished" content="2020-05-31T16:14:19-07:00" />
+<meta itemprop="dateModified" content="2020-05-31T16:14:19-07:00" />
+<meta itemprop="wordCount" content="1520">
+
+
+
+<meta itemprop="keywords" content="Data Engineering," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Data Engineering Concepts"/>
+<meta name="twitter:description" content="Working in industry as a data scientist I&rsquo;ve found it useful to maintain some understanding of data engineering concepts, even if it&rsquo;s just at a high-level. This facilitates communication with data engineers who form part of the bridge between data and data scientists in most tech companies (in my experience). Below is a non-exhaustive laundry list of concepts that I&rsquo;ve found useful to know.
+Data Model A data model organizes the Data and defines the relationship between them."/>
+
+
+
+    <meta property="og:title" content="Data Engineering Concepts" />
+<meta property="og:description" content="Working in industry as a data scientist I&rsquo;ve found it useful to maintain some understanding of data engineering concepts, even if it&rsquo;s just at a high-level. This facilitates communication with data engineers who form part of the bridge between data and data scientists in most tech companies (in my experience). Below is a non-exhaustive laundry list of concepts that I&rsquo;ve found useful to know.
+Data Model A data model organizes the Data and defines the relationship between them." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://imadali.net/posts/data-engineering-concepts/" />
+<meta property="article:published_time" content="2020-05-31T16:14:19-07:00" />
+<meta property="article:modified_time" content="2020-05-31T16:14:19-07:00" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-05-31 16:14:19 -0700 PDT" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="http://imadali.net" style="text-decoration: none;">
+    <div class="logo">
+        
+        
+            <span class="logo__text">imad ali</span>
+            <span class="logo__cursor" style=
+                  "visibility:hidden;
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="http://imadali.net/posts/">Posts</a></li><li><a href="http://imadali.net/projects/">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <article>
+            <h1 class="post-title">
+                <a href="http://imadali.net/posts/data-engineering-concepts/">Data Engineering Concepts</a>
+            </h1>
+
+            <div class="post-info">
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-31
+              </p>
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>8 minutes
+              </p>
+            </div>
+
+            
+
+            <div class="post-content">
+                <p>Working in industry as a data scientist I&rsquo;ve found it useful to maintain some understanding of data engineering concepts, even if it&rsquo;s just at a high-level. This facilitates communication with data engineers who form part of the bridge between data and data scientists in most tech companies (in my experience). Below is a non-exhaustive laundry list of concepts that I&rsquo;ve found useful to know.</p>
+<h2 id="data-model">Data Model</h2>
+<p>A data model organizes the Data and defines the relationship between them. Typically you might see it as an outline of database/schema design, available tables, and how these tables can be linked to one another (in relational databases).</p>
+<h2 id="data-lineage">Data Lineage</h2>
+<p>Data lineage describes what happens to the data as it moves from its origin to its final destination. Depending on the team this destination could be another data repository or it could be a machine learning model. As a data scientist it&rsquo;s helpful to understand data lineage since it help you determine whether the assumptions you&rsquo;re making in your problem solving are appropriate.</p>
+<h2 id="partitioning">Partitioning</h2>
+<p>Partitioning is just a generic process of splitting up a table to make it more efficient to query. The reason being that you only read the partition(s) into memory that you&rsquo;d want to query. Basically you&rsquo;re offloading a part of your query (specifically the part that involves filtering the data) to the partitioning logic.</p>
+<p>Partitioning by time is fairly popular. For example, we might find ourselves querying recent data compared more compared to historical data. It would probably make sense to split up the data between recent and historical so that, for most of our queries, we only hit the recent partition as opposed to all of the data.</p>
+<p>However, suppose we have partitioned by time but want to query all of a give user&rsquo;s data. The partition work that we have done is irrelevant. We have to read all the data into memory since we can&rsquo;t be certain that there is no data for a given user in any of the partitions. In this case it might be useful to partition by user instead.</p>
+<p>In some cases it might be useful to partition by both time <em>and</em> user. However, if we make the partition definition too granular then we could end up increasing our query time (i.e. we will be doing a lot of reads from disk).</p>
+<p><a href="https://www.digitalocean.com/community/tutorials/understanding-database-sharding#sharding-architectures">Sharding</a> is a type of horizontal partitioning that separates the rows of a table into multiple tables (partitions).</p>
+<p>The advantages of sharding are that it</p>
+<ol>
+<li>Reduces query time</li>
+<li>Mitigates the impact of outages</li>
+<li>Facilitates horizontal scaling (i.e. the addition of new servers to grow out the database).</li>
+</ol>
+<p>The disadvantages are that it,</p>
+<ol>
+<li>May result in data loss since the process of sharding can be complex</li>
+<li>Is diffcult to revert back to non-sharded architecture.</li>
+<li>Might result in unbalanced shards (i.e. depending on the sharding logic and the data we might end up with more records in a given shard compared to other shards).</li>
+</ol>
+<p>Three ways to implement sharding are,</p>
+<ol>
+<li><strong>Key based</strong>. This uses a hash function to determine which shard each record should go into. This can be problematic when creating new shards since it requires updating the hash function and therefore updating all the old shards.</li>
+<li><strong>Range based</strong>. This uses contiguous non-overlapping splits of a range of a particular column to determine which shard each record should belong to.</li>
+<li><strong>Directory based</strong>. This uses a lookup table (directory) to determine which determines that shard that each record should go into. This can be problematic when sharding on columns that have high cardinality as there will be a lot of records to maintain in the lookup table.</li>
+</ol>
+<h2 id="columnar-data">Columnar Data</h2>
+<p>To understand a column store database it&rsquo;s useful to understand its counterpart, a row store database. Suppose you&rsquo;re querying a subset of columns of a data table. With row storage you have to read all the rows into memory and the drop whatever columns you don&rsquo;t require (even if the data is partitioned by a certain column). With column storage you only read the columns that you query. This is more efficient. In order to accomplish this type of querying you have to store the data in a column-wise format.</p>
+<h2 id="scheduled-date-vs-execution-date">Scheduled Date vs Execution Date</h2>
+<p>It&rsquo;s important to be able to have access to both the scheduled run date and the execution run date of a job. The scheduled date is the date that the job was scheduled to run and the execution date is the date at which a job actually runs.</p>
+<p>In most cases they will be the same. They differ when you want to trigger a previous run of your job in such a way that your job operates as if it was running at a previous date (the scheduled run date) not today&rsquo;s date (the execution date).</p>
+<h2 id="idempotent-jobs">Idempotent Jobs</h2>
+<p>A job is idempotent if the output is the same even when you run it multiple times with the same parameters. For example, if you trigger the same job multiple times then you shouldn&rsquo;t end up with duplicated data. If you do then your job fails to be idempotent.</p>
+<p>Here are some strategies to keep your job idempotent:</p>
+<ul>
+<li><strong>Scheduled Date</strong>: Read data a reasonable amount of data in and perform transformations on it using the scheduled date instead of the execution date.</li>
+<li><strong>Atomic</strong>: Make your job atomic by allowing it to succeed completely, otherwise it should fail completely. The entire job should fail if one part of the job does not complete successfully. In these situations you should also clean up or undo any changes you&rsquo;ve made to existing data. In Python this can be done using try/except logic.</li>
+<li><strong>Purge</strong>: Delete before writing data produced by your job. This will prevent jobs from duplicating data in situation where they need to be rerun.</li>
+</ul>
+<h2 id="sql-and-nosql-databases">SQL and NoSQL Databases</h2>
+<p>A SQL database is your typical relational database. It contains tables whose columns some sort of relationship between one another. For example, there might be one table that contains information about movies watched by users, where movies are identified by some movie ID. This may be combined with another table that has movie IDs and the corresponding meta information about the movie (title, genre, runtime, etc).</p>
+<p>A NoSQL database is sort of like a catchall for everything that&rsquo;s not a SQL database. There are reasons for not storing data in relational format. For example, it might not be sensible to store images or audio files in key-value pairs instead of a relational table format (although meta information about these objects might be stored in such a way). Or say we want to be able to find all the users that watched a movie that a given user watched. It probably makes more sense to store this information in a graph database instead of a relational database.</p>
+<h2 id="data-warehouse">Data Warehouse</h2>
+<p>Hitting raw data files is not an efficient way to create business intelligence reports or ad hoc queries with your data. A data warehouse sits on top of your raw data and provides centralized access to all data (most likely cleaned and transformed) for users. Often a data warehouse is used to enable users to access data with SQL queries and is optimized for read performance over write performance.</p>
+<h2 id="data-federation">Data Federation</h2>
+<p>In some cases you might have multiple databases responsible for storing different types of data or collecting data from different locations. Data federation defines a common data model for these databases so that the application can query a single data source.</p>
+<h2 id="data-replication">Data Replication</h2>
+<p>This pretty much does what it says on the tin. In some cases you might want to,</p>
+<ul>
+<li>Increase the availability of your data so that your application is not bottlenecked by hitting a single data source.</li>
+<li>Ensure the reliability of data access so that your applications are not vulnerable if a data source goes down for some reason.</li>
+<li>Speed up query performance.</li>
+</ul>
+<p>If you copy the original data (replication) into multiple servers then you&rsquo;re increasing the availability/reliability/speed through horizontal scaling. You could do a <strong>full replication</strong> the data which would involve a complete copy of all the data into additional servers, or you could do a <strong>partial replication</strong> data which would only copy a subset of the data into additional servers. While this comes with the advantages outlined above, there are storage costs to consider when duplicating data (particularly massive amounts of data). There is also the additional overhead of monitoring and making sure that the replicates stay in sync with updates to the source data (including updates to historical data).</p>
+<h2 id="caching">Caching</h2>
+<p>This isn&rsquo;t strictly a data engineering concept, but it&rsquo;s a way to access data to ensure a streamline front end application experience (e.g. when you want to reduce the latency of a table/graphic that is presented to a user). Typically it&rsquo;s faster to access data from memory than it is from disk. Caching basically stores a portion of your data in memory. When a data request is made, you first check to see if it is in the cache. If it&rsquo;s not available then you defer to the database. Typically you&rsquo;d want to cache data that&rsquo;s frequently requested by the application.</p>
+
+            </div>
+        </article>
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://imadali.net/tags/data-engineering">Data Engineering</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1520 Words</p>
+        </div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy 2020 Imad Ali</span>
+            <span>Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/rhazdon/hugo-theme-hello-friend-ng">Hello Friend NG</a></span>
+        </div>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload='renderMathInElement(document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    });'></script>
+
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+
+
+
+    </body>
+</html>

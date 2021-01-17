@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics on Imad Ali</title>
+    <link>http://imadali.net/tags/statistics/</link>
+    <description>Recent content in Statistics on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Dec 2020 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Explaining Linear Regression with Skittles</title>
+      <link>http://imadali.net/posts/explaining-linear-regression-with-skittles/</link>
+      <pubDate>Fri, 11 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/explaining-linear-regression-with-skittles/</guid>
+      <description>Take a bunch of skittles and toss them onto a table. Draw a line on the table that best represents the skittles. This is linear regression with one predictor.
+Now imagine you could toss those skittles and have them suspend at different heights above the table. Where would you place a sheet of paper so that you could best represent the position of all the skittles. This is linear regression with N predictors.</description>
+    </item>
+    
+    <item>
+      <title>Win Probability from the Point Differential</title>
+      <link>http://imadali.net/posts/win-probability-from-the-point-differential-b298d245fe63427cac5aac73d601b812/</link>
+      <pubDate>Fri, 11 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/win-probability-from-the-point-differential-b298d245fe63427cac5aac73d601b812/</guid>
+      <description>Most people model win/loss as binary in situations where win/loss is calculated in a non-binary way (e.g. in sports). But you lose a lot of information by labeling a win as binary instead of as its point differential. It&amp;rsquo;s better to model the point differential directly and then map that to a probability (which you can then label as win/loss).
+For example, if your point differential follows the normal distribution you can use the normal CDF to map that score to a probability.</description>
+    </item>
+    
+    <item>
+      <title>Sankey Diagrams and AB Testing</title>
+      <link>http://imadali.net/posts/sankey-diagrams-and-ab-testing/</link>
+      <pubDate>Thu, 03 Dec 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/sankey-diagrams-and-ab-testing/</guid>
+      <description>I have found Sankey diagrams are useful to visualize AB testing (control/treatment groups) or a more complicated funnel.
+Here&amp;rsquo;s an example of a super basic funnel. We have a control group and two variants.
+Here&amp;rsquo;s something a little more complicated. We have different experience paths each with their own control group and variants.</description>
+    </item>
+    
+    <item>
+      <title>Creating a Single Metric</title>
+      <link>http://imadali.net/posts/creating-a-single-metric/</link>
+      <pubDate>Thu, 15 Oct 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/creating-a-single-metric/</guid>
+      <description>Sometimes I find myself having to combine several data features into a single metric. It&amp;rsquo;s bad practice to combine the features if they are on different scales. You end up capturing differences in their scale rather than differences in the underlying metric. So the best approach in these situations is to center the data (subtract the mean) and scale the data (divide by the standard deviation). This is how you eliminate the scale (it&amp;rsquo;s also part of the data pre-processing you should do before clustering).</description>
+    </item>
+    
+    <item>
+      <title>Confidence Intervals and Standard Deviations and Standard Errors</title>
+      <link>http://imadali.net/posts/confidence-intervals-and-standard-deviations-and-standard-errors/</link>
+      <pubDate>Wed, 02 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/confidence-intervals-and-standard-deviations-and-standard-errors/</guid>
+      <description>Questions come up a lot about how to interpret these things. We can build an understanding from the ground up, starting with a few basic metrics that are commonly calculated off of the data.
+Measures of Central Tendency Sometimes we want a measure of central tendency, or a good typical value that you can expect to observe given the data.
+Mean The mean is the sum of all the values divided by the number of values.</description>
+    </item>
+    
+    <item>
+      <title>Convex Combinations</title>
+      <link>http://imadali.net/posts/convex-combinations/</link>
+      <pubDate>Sun, 21 Jun 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/convex-combinations/</guid>
+      <description>A while back I came across convex combinations in this paper that outlines the math of how to detect who&amp;rsquo;s guarding whom in basketball player tracking data. I then used them in a Stan case study.
+A convex combination helps you define any point inside a shape using a vector of coefficients that sum to one. So say you have a vector of coefficients alpha, and x-coordinates x and y-coordinates y.</description>
+    </item>
+    
+    <item>
+      <title>In High Dimensional Space</title>
+      <link>http://imadali.net/posts/in-high-dimensional-space/</link>
+      <pubDate>Tue, 12 May 2020 00:22:23 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/in-high-dimensional-space/</guid>
+      <description>&amp;hellip; no one can hear you scream. Actually the party line that gets tossed around is something like,
+ distances become meaningless in high-dimensions.
+ Here &amp;ldquo;high-dimensions&amp;rdquo; is referring to wide data (observations having a lot of features). &amp;ldquo;Meaningless&amp;rdquo; is kind of vague. What really happens is that the distance between near points and the distance between far points in low-dimensional space become approximately equal in high-dimensional space. To put it differently,</description>
+    </item>
+    
+  </channel>
+</rss>

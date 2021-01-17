@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Writing on Imad Ali</title>
+    <link>http://imadali.net/tags/writing/</link>
+    <description>Recent content in Writing on Imad Ali</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Jan 2021 16:14:19 -0700</lastBuildDate>
+    
+	<atom:link href="http://imadali.net/tags/writing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A Year of... Blogging?</title>
+      <link>http://imadali.net/posts/a-year-of-blogging/</link>
+      <pubDate>Fri, 15 Jan 2021 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/a-year-of-blogging/</guid>
+      <description>Maybe it wasn&amp;rsquo;t really &amp;ldquo;blogging&amp;rdquo;&amp;hellip; depends on your definition. I did a pretty bad job of regularly posting what I was writing. Ok, to be brutally honest I didn&amp;rsquo;t actually post any of what I wrote until the new year. But I did regularly write and collect my thoughts throughout 2020 (thanks to Notion for making it so easy). That&amp;rsquo;s the important part, right?
+The whole process was incredibly invaluable. Writing did two things for me:</description>
+    </item>
+    
+    <item>
+      <title>An Imagineer Retires</title>
+      <link>http://imadali.net/posts/an-imagineer-retires/</link>
+      <pubDate>Mon, 11 Jan 2021 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/an-imagineer-retires/</guid>
+      <description>Imagineer Joe Rohde retires and, in an interview, said the following that strongly resonated with me&amp;hellip;
+ Before you start to make decisions, you have got to do a tremendous amount of work on the fundamental reason why you are doing this at all. You will lose yourself in micro-decisions if you do not first sit down and figure out what this whole thing is about. What are we trying to say.</description>
+    </item>
+    
+    <item>
+      <title>Levels of AI as Levels of Automation</title>
+      <link>http://imadali.net/posts/levels-of-ai-as-levels-of-automation/</link>
+      <pubDate>Thu, 10 Dec 2020 00:22:23 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/levels-of-ai-as-levels-of-automation/</guid>
+      <description>Date: 2020-12-10
+I was thinking about the levels of automation for self-driving cars and that made me think about a neat way to interpret the &amp;ldquo;levels&amp;rdquo; of AI. The interpretation is not directly related to how AI concepts are being used in self-driving cars. Rather the interpretation is about the relationship between the driver and the car, and how it parallels the relationship between a researcher and software. So instead of having a driver and a car you have a researcher/engineer/whatever and some software that maintains an autonomous system.</description>
+    </item>
+    
+    <item>
+      <title>Aliasing Different Python Versions</title>
+      <link>http://imadali.net/posts/aliasing-different-python-versions/</link>
+      <pubDate>Fri, 06 Nov 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/aliasing-different-python-versions/</guid>
+      <description>I hit an issue with Python versions when trying to install pyarrow (which, at the time of writing, is not supported by Python 3.9). I use brew to manage my Python versions (see details here) and I wanted to keep the python3 executable to the default version of Python (which is the latest version installed by brew), but still want to have the opportunity to easily use an older version of Python 3.</description>
+    </item>
+    
+    <item>
+      <title>One Sentence Per Line</title>
+      <link>http://imadali.net/posts/one-sentence-per-line/</link>
+      <pubDate>Wed, 30 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/one-sentence-per-line/</guid>
+      <description>I like this concept and should practice it more often. From what I understand it&amp;rsquo;ll make the Git diffs look a lot cleaner. Ironically I didn&amp;rsquo;t do it for this blog post.</description>
+    </item>
+    
+    <item>
+      <title>Value from Less</title>
+      <link>http://imadali.net/posts/value-from-less/</link>
+      <pubDate>Mon, 28 Sep 2020 16:14:19 -0700</pubDate>
+      
+      <guid>http://imadali.net/posts/value-from-less/</guid>
+      <description>I&amp;rsquo;ve been thinking about minimalism a lot lately. Sometimes you get caught up in thinking buying/bringing things into your life will give you value. But it&amp;rsquo;s all really just superficial value. When you have less around you it causes you to reflect about what gives you value. Maybe it&amp;rsquo;s introducing a new object that provides functional value in your daily life. Or maybe it&amp;rsquo;s learning something new, or picking up a project that you&amp;rsquo;ve forgotten&amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>
