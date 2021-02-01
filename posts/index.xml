@@ -5,8 +5,39 @@
         <description>Recent content in Posts on Imad Ali</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 15 Jan 2021 16:14:19 -0700</lastBuildDate>
+        <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate>
         <atom:link href="http://imadali.net/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>MAE, MSE, and RMSE</title>
+            <link>http://imadali.net/posts/mae-mse-and-rmse/</link>
+            <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+            
+            <guid>http://imadali.net/posts/mae-mse-and-rmse/</guid>
+            <description>The difference between MAE (mean absolute error), MSE (mean squared error), and RMSE (root mean squared error) is subtle, and I&amp;rsquo;ve seen people new to machine learning often choose RMSE without understanding its benefits. As a brief reminder, these metrics are just loss functions (i.e. a lower score is better) and are way to measure predictive accuracy. They calculate a single metric to summarize loss when you have a data set of size $N$, and an continuous outcome $y_n$ and it&amp;rsquo;s associated prediction $\hat{y}_n$ (based on the model you choose).</description>
+            <content type="html"><![CDATA[<p>The difference between MAE (mean absolute error), MSE (mean squared error), and RMSE (root mean squared error) is subtle, and I&rsquo;ve seen people new to machine learning often choose RMSE without understanding its benefits. As a brief reminder, these metrics are just loss functions (i.e. a lower score is better) and are way to measure predictive accuracy. They calculate a single metric to summarize loss when you have a data set of size $N$, and an <em>continuous</em> outcome $y_n$ and it&rsquo;s associated prediction $\hat{y}_n$ (based on the model you choose).</p>
+<p><strong>MAE</strong>:</p>
+<p>$$\text{MAE}=\frac{1}{N}\sum_{n}|y_n - \hat{y}_n|$$</p>
+<p><strong>MSE</strong>:</p>
+<p>$$\text{MSE}=\frac{1}{N}\sum_{n}(y_n-\hat{y_n})^2 $$</p>
+<p><strong>RMSE</strong>:</p>
+<p>$$\text{RMSE}=\sqrt{MSE}$$</p>
+<p>Here&rsquo;s an advantage to using MAE:</p>
+<ul>
+<li>You can interpret the metric in terms of the units that your data is measured in. For example, if your model is predicting minutes spent on a streaming platform then the MAE of the model is interpreted as the average difference between the actual minutes and predicted minutes spent on the platform.</li>
+</ul>
+<p>Here&rsquo;s an advantage to using MSE:</p>
+<ul>
+<li>The square transformation in MSE causes large error values to be disproportionately large in comparison to the absolute value of differences in MAE. Larger errors end up having a much larger effect. This is particularly useful when you want the model to be penalized more for generating larger errors. (One disadvantage however is that it causes your model to be sensitive to outliers.)</li>
+<li>The derivative of MSE is well defined. On the other hand, the derivative of MAE is not well defined when $y_n = \hat{y}_n$ (i.e. the absolute value function is not differentiable at 0). This is important since we use derivatives to minimize loss functions!</li>
+</ul>
+<p>In addition to the MSE points above, here&rsquo;s another advantage to using RMSE:</p>
+<ul>
+<li>Because we&rsquo;re taking the square root, the RMSE can be interpreted in terms of the units that the data is actually measured in.</li>
+</ul>
+<p>So if you&rsquo;re willing to accept disproportionately large error values, then RMSE gives you well defined derivates <em>and</em> interpretability.</p>
+]]></content>
+        </item>
         
         <item>
             <title>A Year of... Blogging?</title>
@@ -1019,12 +1050,9 @@ sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="col
             <pubDate>Sat, 12 Sep 2020 16:14:19 -0700</pubDate>
             
             <guid>http://imadali.net/posts/makefiles-for-workflow/</guid>
-            <description>Makefiles for Workflow Date: 09-12-2020
-The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.
-A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary.</description>
-            <content type="html"><![CDATA[<h1 id="makefiles-for-workflow">Makefiles for Workflow</h1>
-<p>Date: 09-12-2020</p>
-<p>The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.</p>
+            <description>The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.
+A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary. If you make a modification to any of the dependencies then running make or make target-name will rerun your commands to update the target.</description>
+            <content type="html"><![CDATA[<p>The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.</p>
 <p>A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary. If you make a modification to any of the dependencies then running <code>make</code> or <code>make target-name</code> will  rerun your commands to update the target.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target: dependencies
 	commands
@@ -1513,7 +1541,7 @@ git merge master --rebase
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff --cached foo.txt
 </code></pre></div><h2 id="submodules">Submodules</h2>
 <p>So useful, and something I often overlook. There&rsquo;s a great overview of submodules on the GitHub <a href="https://github.blog/2016-02-01-working-with-submodules/">blog</a>. A git submodule allows you to keep a git repository as a subdirectory of another git repository (<a href="https://www.atlassian.com/git/tutorials/git-submodule">link</a>). Submodules are static in that they track a specific commit and won&rsquo;t be automatically updated.</p>
-<p>To create a submodule into the folder <code>foo</code> using from branch <code>master</code> living at <code>url/to/remote/repo</code>.</p>
+<p>To create a submodule in the folder <code>foo</code> using branch <code>master</code> living at <code>url/to/remote/repo</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git submodule add -b master url/to/remote/repo foo
 </code></pre></div><p>To update a submodule.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd foo

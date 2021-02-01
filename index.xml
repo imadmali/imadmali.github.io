@@ -6,10 +6,19 @@
     <description>Recent content on Imad Ali</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Jan 2021 16:14:19 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://imadali.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MAE, MSE, and RMSE</title>
+      <link>http://imadali.net/posts/mae-mse-and-rmse/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://imadali.net/posts/mae-mse-and-rmse/</guid>
+      <description>The difference between MAE (mean absolute error), MSE (mean squared error), and RMSE (root mean squared error) is subtle, and I&amp;rsquo;ve seen people new to machine learning often choose RMSE without understanding its benefits. As a brief reminder, these metrics are just loss functions (i.e. a lower score is better) and are way to measure predictive accuracy. They calculate a single metric to summarize loss when you have a data set of size $N$, and an continuous outcome $y_n$ and it&amp;rsquo;s associated prediction $\hat{y}_n$ (based on the model you choose).</description>
+    </item>
     
     <item>
       <title>A Year of... Blogging?</title>
@@ -224,9 +233,8 @@ Here I show how to create a PySpark UDF which uses,</description>
       <pubDate>Sat, 12 Sep 2020 16:14:19 -0700</pubDate>
       
       <guid>http://imadali.net/posts/makefiles-for-workflow/</guid>
-      <description>Makefiles for Workflow Date: 09-12-2020
-The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.
-A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary.</description>
+      <description>The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.
+A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary. If you make a modification to any of the dependencies then running make or make target-name will rerun your commands to update the target.</description>
     </item>
     
     <item>
