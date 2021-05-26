@@ -147,7 +147,7 @@ For example, in console gaming OLTP might involve recording data from the consol
       <pubDate>Sun, 08 Nov 2020 16:14:19 -0700</pubDate>
       
       <guid>http://imadali.net/posts/environment-variables/</guid>
-      <description>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
+      <description>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
 export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables).</description>
     </item>
     

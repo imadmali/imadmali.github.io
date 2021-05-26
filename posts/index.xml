@@ -405,9 +405,9 @@ For example, in console gaming OLTP might involve recording data from the consol
             <pubDate>Sun, 08 Nov 2020 16:14:19 -0700</pubDate>
             
             <guid>http://imadali.net/posts/environment-variables/</guid>
-            <description>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
+            <description>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
 export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables).</description>
-            <content type="html"><![CDATA[<p>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using <code>export</code> (which sets the environment variable) and we can print the value of the environment variable with <code>printenv</code>.</p>
+            <content type="html"><![CDATA[<p>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using <code>export</code> (which sets the environment variable) and we can print the value of the environment variable with <code>printenv</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
 printenv KEY
 $ value
@@ -417,10 +417,10 @@ $ value
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set KEY<span style="color:#f92672">=</span>value
 export KEY
 printenv KEY
-</code></pre></div><p>If you set the environment variable in one shell using the command line and print the value then nothing will return. In order for the environment variables to be recognized in new shell processes you need to set them in your bash profile. For example, in <code>~/.bash_profile</code> you could have the following.</p>
+</code></pre></div><p>If you set the environment variable in one shell using the command line and then move to a new terminal to print the value then nothing will return. In order for the environment variables to be recognized in new shell processes you need to set them in your bash profile. For example, in <code>~/.bash_profile</code> you could have the following.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
 </code></pre></div><p>If you save the file and open up a new shell process and run <code>printenv KEY</code> from the command line then <code>value</code> will be returned.</p>
-<p>The <code>PATH</code> environment variable is super useful. Some programs will search this variable for executable. For example, one of the paths in my <code>PATH</code> variable points to the location of texbin so that LaTeX knows where to look when I try to build LaTeX code.</p>
+<p>A common use case of environment variables is with the <code>PATH</code> variable. Some programs will search this variable for executable. For example, one of the paths in my <code>PATH</code> variable points to the location of texbin so that LaTeX knows where to look when I try to build LaTeX code.</p>
 <p>Reference:</p>
 <ul>
 <li><a href="https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/">https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/</a></li>

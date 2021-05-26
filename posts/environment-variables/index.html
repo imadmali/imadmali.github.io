@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Imad Ali ">
-<meta name="description" content="Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
+<meta name="description" content="Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
 export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables)." />
 <meta name="keywords" content=", Bash" />
 <meta name="robots" content="noodp" />
@@ -34,24 +34,24 @@ export KEY=value printenv KEY $ value To remove the environment variable we can 
 
 
 <meta itemprop="name" content="Environment Variables">
-<meta itemprop="description" content="Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
+<meta itemprop="description" content="Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
 export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables).">
 <meta itemprop="datePublished" content="2020-11-08T16:14:19-07:00" />
 <meta itemprop="dateModified" content="2020-11-08T16:14:19-07:00" />
-<meta itemprop="wordCount" content="235">
+<meta itemprop="wordCount" content="247">
 
 
 
 <meta itemprop="keywords" content="Bash," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Environment Variables"/>
-<meta name="twitter:description" content="Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
+<meta name="twitter:description" content="Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
 export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables)."/>
 
 
 
     <meta property="og:title" content="Environment Variables" />
-<meta property="og:description" content="Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
+<meta property="og:description" content="Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
 export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables)." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://imadali.net/posts/environment-variables/" />
@@ -96,7 +96,7 @@ export KEY=value printenv KEY $ value To remove the environment variable we can 
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="http://imadali.net/posts/">Posts</a></li><li><a href="http://imadali.net/projects/">Projects</a></li>
+    <ul class="menu__inner"><li><a href="http://imadali.net/blog/">Blog</a></li><li><a href="http://imadali.net/projects/">Projects</a></li>
     </ul>
 </nav>
 
@@ -138,7 +138,7 @@ export KEY=value printenv KEY $ value To remove the environment variable we can 
             
 
             <div class="post-content">
-                <p>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follows Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using <code>export</code> (which sets the environment variable) and we can print the value of the environment variable with <code>printenv</code>.</p>
+                <p>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using <code>export</code> (which sets the environment variable) and we can print the value of the environment variable with <code>printenv</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
 printenv KEY
 $ value
@@ -148,10 +148,10 @@ $ value
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set KEY<span style="color:#f92672">=</span>value
 export KEY
 printenv KEY
-</code></pre></div><p>If you set the environment variable in one shell using the command line and print the value then nothing will return. In order for the environment variables to be recognized in new shell processes you need to set them in your bash profile. For example, in <code>~/.bash_profile</code> you could have the following.</p>
+</code></pre></div><p>If you set the environment variable in one shell using the command line and then move to a new terminal to print the value then nothing will return. In order for the environment variables to be recognized in new shell processes you need to set them in your bash profile. For example, in <code>~/.bash_profile</code> you could have the following.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
 </code></pre></div><p>If you save the file and open up a new shell process and run <code>printenv KEY</code> from the command line then <code>value</code> will be returned.</p>
-<p>The <code>PATH</code> environment variable is super useful. Some programs will search this variable for executable. For example, one of the paths in my <code>PATH</code> variable points to the location of texbin so that LaTeX knows where to look when I try to build LaTeX code.</p>
+<p>A common use case of environment variables is with the <code>PATH</code> variable. Some programs will search this variable for executable. For example, one of the paths in my <code>PATH</code> variable points to the location of texbin so that LaTeX knows where to look when I try to build LaTeX code.</p>
 <p>Reference:</p>
 <ul>
 <li><a href="https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/">https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/</a></li>
@@ -165,7 +165,7 @@ printenv KEY
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://imadali.net/tags/bash">Bash</a></span>
                 </p>
 
-            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>235 Words</p>
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>247 Words</p>
         </div>
 
         
