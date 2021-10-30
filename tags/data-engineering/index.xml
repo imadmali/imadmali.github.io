@@ -6,11 +6,7 @@
     <description>Recent content in Data Engineering on Imad Ali</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Nov 2020 16:14:19 -0700</lastBuildDate>
-    
-	<atom:link href="http://imadali.net/tags/data-engineering/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 24 Nov 2020 16:14:19 -0700</lastBuildDate><atom:link href="http://imadali.net/tags/data-engineering/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OLTP and OLAP</title>
       <link>http://imadali.net/posts/oltp-and-olap/</link>
@@ -18,7 +14,7 @@
       
       <guid>http://imadali.net/posts/oltp-and-olap/</guid>
       <description>I always mix these up. OLTP (Online Transaction Processing) is responsible for storing data from a device/user/etc. OLAP (Online Analytics Processing) takes information produced by OLTP systems and creates more complex data assets that combine/aggregate OLTP data in ways that are useful to the business.
-For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&amp;rsquo; entire history.</description>
+For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&#39; entire history.</description>
     </item>
     
     <item>

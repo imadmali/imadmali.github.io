@@ -67,24 +67,24 @@ The whole process was incredibly invaluable. Writing did two things for me:</des
             <description>So recently I ran into a bit of a snafu. I wanted to do some SQL prototyping (with postgres) on my local machine but didn&amp;rsquo;t have the appropriate permissions to install and mess around with it. The postgres Docker image really came in handy. Below are some notes about what I did to get up and running with postgres in Docker. I thought they might come in handy to a Data Scientist or Machine Learning engineer facing a similar situation.</description>
             <content type="html"><![CDATA[<p>So recently I ran into a bit of a snafu. I wanted to do some SQL prototyping (with <a href="https://en.wikipedia.org/wiki/PostgreSQL">postgres</a>) on my local machine but didn&rsquo;t have the appropriate permissions to install and mess around with it. The <a href="https://hub.docker.com/_/postgres">postgres Docker image</a> really came in handy. Below are some notes about what I did to get up and running with postgres in Docker. I thought they might come in handy to a Data Scientist or Machine Learning engineer facing a similar situation.</p>
 <p>Once you have Docker up and running on your machine you just have to run a container of the postgres image from the command line.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -e POSTGRES_USER<span style="color:#f92672">=</span>foo -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>foo -d postgres
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -e POSTGRES_USER<span style="color:#f92672">=</span>foo -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>foo -d postgres
 </code></pre></div><p>Then you can bash into the container. You can find the container name by running <code>docker ps</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker exec -it &lt;container name&gt; /bin/bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker exec -it &lt;container name&gt; /bin/bash
 </code></pre></div><p>Now we&rsquo;re in the container but we need to switch user (postgres prevents you from doing pretty much anything as root)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">useradd foo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">useradd foo
 su - foo
 </code></pre></div><p>Finally, we can launch <code>psql</code> (the terminal interface to postgres). Your prompt should now start with <code>foo=#</code>. Now we can quickly create tables and execute queries.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> synthetic (id VARCHAR(<span style="color:#ae81ff">1</span>), var1 INT, var2 INT);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> synthetic (id VARCHAR(<span style="color:#ae81ff">1</span>), var1 INT, var2 INT);
 
 <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> synthetic (id, var1, var2)
 <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), (<span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
 
 <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> synthetic;
-</code></pre></div><pre><code>id | var1 | var2
+</code></pre></div><pre tabindex="0"><code>id | var1 | var2
 ----+------+------
  A  |    1 |    1
  B  |    1 |    0
-</code></pre><pre><code>foo=# \dt
+</code></pre><pre tabindex="0"><code>foo=# \dt
          List of relations
  Schema |   Name    | Type  | Owner
 --------+-----------+-------+-------
@@ -140,9 +140,9 @@ For example, if your point differential follows the normal distribution you can 
 <p>The choice of exponent depends on the application. Here we choose to take the square root of how many minutes are left in a regulation game. The exponent determines the uncertainty so that you&rsquo;re not dealing with time directly (minutes in this case), but rather a transformation of time. This prevents you from having excessively large values for $\sigma$. For each point in time, the closer the exponent is to 1 then the more uncertainty there is in win probability and the closer the exponent is to 0 the more certainty there is in the win probability.</p>
 <p>The graphic below (Python code follows) illustrates this result for a fixed score differential at varying time points in the game and with varying exponent values (0.2, 0.5, 0.8). The score differential is fixed at 3 (which, in this case, is interpreted as a 3 point lead for the home team). You can see how at different points in time a lower exponent value results in a relatively smaller standard deviation, which in turn results in a win probability closer to 1.</p>
 <img src="/images/win-prob.svg" class="center"/>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 <span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> norm
-<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
 
 t <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">48</span>, step<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 
@@ -212,32 +212,32 @@ np.dot(A, B) / (np.</description>
             <content type="html"><![CDATA[<p>My favorite summary of cosine vs Euclidean distance metrics is that <em>Euclidean distance focuses on the distance between two points whereas cosine distance focuses on the angle between two vectors</em>.</p>
 <h2 id="refresher-on-cosine-similarity-and-euclidean-distance">Refresher on Cosine Similarity and Euclidean Distance</h2>
 <p><strong>Cosine similarity</strong> is the dot product of two vectors divided by the product of the vector norms. It has a lower bound of -1 and and upper bound of 1.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">np<span style="color:#f92672">.</span>dot(A, B) <span style="color:#f92672">/</span> (np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(A) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(B))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">np<span style="color:#f92672">.</span>dot(A, B) <span style="color:#f92672">/</span> (np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(A) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(B))
 </code></pre></div><p>So for identical vectors you get a value of 1. For example,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
 B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
 np<span style="color:#f92672">.</span>dot(A, B) <span style="color:#f92672">/</span> (np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(A) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(B))
 <span style="color:#75715e"># 1.0</span>
 </code></pre></div><p>And for orthogonal vectors you get a value of -1. For example,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
 B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
 np<span style="color:#f92672">.</span>dot(A, B) <span style="color:#f92672">/</span> (np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(A) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(B))
 <span style="color:#75715e"># -1.0</span>
 </code></pre></div><p><strong>Euclidean distance</strong> is calculated as the norm of the difference between two vectors. It has a lower bound of 0, but no upper bound.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">np<span style="color:#f92672">.</span>norm(A<span style="color:#f92672">-</span>B)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">np<span style="color:#f92672">.</span>norm(A<span style="color:#f92672">-</span>B)
 </code></pre></div><p>For identical vectors you get a value of 0.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
 B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
 np<span style="color:#f92672">.</span>norm(A<span style="color:#f92672">-</span>B)
 <span style="color:#75715e"># 0.0</span>
 </code></pre></div><p>For <em>these</em> orthogonal vectors you get a value of 2.83. But the result will vary depending on how far the points described by the vectors are from one another.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
 B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
 np<span style="color:#f92672">.</span>norm(A<span style="color:#f92672">-</span>B)
 <span style="color:#75715e"># 2.83</span>
 </code></pre></div><h2 id="whats-the-difference">What&rsquo;s the difference?</h2>
 <p>As an example consider the following vectors,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
 B <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>]
 C <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">3</span>] <span style="color:#75715e"># B*3</span>
 </code></pre></div><p>Between vector A and B we have the following distance calculations:</p>
@@ -293,7 +293,7 @@ High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate no
 <p><strong>High Bias, Low Variance.</strong> Suppose you have some outcome data $y$ with moderate non-linearities, and you want to model it with some regression function $f$. Your first option is super basic; just the mean $y \sim f(\bar{y})$. The mean is not going to be sufficient enough to model the complexities so you&rsquo;ll have high bias (predictions that are very different from the true value). However, you&rsquo;ll have low variance (predictions with no variation) since $f$ (the mean in this case) is not sufficient enough to capture the variability in the outcome variable.</p>
 <p><strong>Low Bias, High Variance.</strong> Now you start packing $f$ with interaction terms and complex polynomials. The bias is going to go down since the model is really good at handling the complexities in the outcome variable. However, the variance is going to increase since $f$ is probably modeling noise in addition to the outcome variable.</p>
 <p>We can also think about this in terms of underfitting and overfitting to the data. A simple $f$ with high bias and low variance will underfit the data, whereas a complexj $f$ with low bias and high variance will overfit the data.</p>
-<pre><code>underfit data
+<pre tabindex="0"><code>underfit data
 high bias
 low variance
 \
@@ -341,11 +341,11 @@ For example, suppose you have a collection of 1,000 tokens. To one-hot encode th
 <p>I like using generated (synthetic) data. It gives you a good understanding of how the data you&rsquo;re modeling was generated. Below I show how to discover an embedding space from some generated data and and simple predictive visualization.</p>
 <h1 id="generating-data">Generating Data</h1>
 <p>Using numpy we generate some data that we can create embeddings with. Suppose we have 5 tokens that have associated effects (i.e. parameters that we can use to generate the data from). Using the tokens and the token effects we generate 10,000 observations from the normal distribution.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">N <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>_000
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">N <span style="color:#f92672">=</span> <span style="color:#ae81ff">10_000</span>
 n_tokens <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
 token_effect <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(start<span style="color:#f92672">=-</span><span style="color:#ae81ff">20</span>, stop<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>, num<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
 <span style="color:#75715e"># reorder the tokens (not necessary but more realistic)</span>
-token_effect <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(token_effect, n_tokens, replace<span style="color:#f92672">=</span>False)
+token_effect <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(token_effect, n_tokens, replace<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 <span style="color:#75715e"># generate tokens for each observation</span>
 x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(n_tokens, N)
 <span style="color:#75715e"># simulate an outcome for each observation&#39;s token</span>
@@ -353,7 +353,7 @@ y <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>ran
 </code></pre></div><p>The tokens <code>x[:5]</code> might look something like <code>array([4, 4, 3, 2, 2, 0])</code> and the outcome <code>y[:5]</code> might look something like <code>array([ 18.64902242,  19.22041727, -20.25015504,  11.30246504, 11.15165945, -10.05891201])</code>.</p>
 <h1 id="creating-embeddings">Creating Embeddings</h1>
 <p>Knowing how many tokens we have and what we want our embedding space to look like we can create our embedding model with keras. We define the dimensionality of the embedding layer with the number of unique tokens and the output dimension (which should be substantially less than the number of tokens).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>Sequential()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>Sequential()
 model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.</span>Embedding(input_dim <span style="color:#f92672">=</span> n_tokens, output_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, input_length<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))
 model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.</span>Dense(units<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;relu&#39;</span>))
 model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.</span>Dense(units<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;linear&#39;</span>))
@@ -362,13 +362,13 @@ model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.
 model<span style="color:#f92672">.</span>add(layers<span style="color:#f92672">.</span>Dense(units<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;linear&#39;</span>))
 model<span style="color:#f92672">.</span>summary()
 </code></pre></div><p>Now we compile/train the model and plot the loss to confirm that our model configuration (choice of layers, activation functions, loss function, etc) is appropriate.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model<span style="color:#f92672">.</span>compile(optimizer<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;rmsprop&#39;</span>, loss<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mse&#39;</span>)
-history <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>fit(x<span style="color:#f92672">=</span>x, y<span style="color:#f92672">=</span>y, epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>_000, validation_split<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model<span style="color:#f92672">.</span>compile(optimizer<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;rmsprop&#39;</span>, loss<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mse&#39;</span>)
+history <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>fit(x<span style="color:#f92672">=</span>x, y<span style="color:#f92672">=</span>y, epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">1_000</span>, validation_split<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
 </code></pre></div><img src="/images/embeddings/loss.svg" class="center"/>
 <h1 id="embedding-similarity">Embedding Similarity</h1>
 <p>Our token effect might look something like <code>array([-10., 0., 10., 20., -20.])</code>. In this case we would expect token 3 (which maps to a token effect of 20) to be closest to token 2 (which maps to a token effect of 10) and farthest from token 4 (which maps to a token effect of -20).</p>
 <p>The function below computes the similarity (Euclidean distance) for an indexed embedding vector against all the other embedding vectors. <code>np.argmax(token_effect)</code> gives us the token value that maps to the largest token effect.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">similarities</span>(target_index, embedding_matrix):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">similarities</span>(target_index, embedding_matrix):
     result <span style="color:#f92672">=</span> []
     <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,embedding_matrix<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]):
         s <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linalg<span style="color:#f92672">.</span>norm(embedding_matrix[target_index,] <span style="color:#f92672">-</span> embedding_matrix[i,])
@@ -393,9 +393,9 @@ similarities(np<span style="color:#f92672">.</span>argmax(token_effect), embeddi
             
             <guid>http://imadali.net/posts/oltp-and-olap/</guid>
             <description>I always mix these up. OLTP (Online Transaction Processing) is responsible for storing data from a device/user/etc. OLAP (Online Analytics Processing) takes information produced by OLTP systems and creates more complex data assets that combine/aggregate OLTP data in ways that are useful to the business.
-For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&amp;rsquo; entire history.</description>
+For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&#39; entire history.</description>
             <content type="html"><![CDATA[<p>I always mix these up. OLTP (Online Transaction Processing) is responsible for storing data from a device/user/etc. OLAP (Online Analytics Processing) takes information produced by OLTP systems and creates more complex data assets that combine/aggregate OLTP data in ways that are useful to the business.</p>
-<p>For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&rsquo; entire history.</p>
+<p>For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users' entire history.</p>
 ]]></content>
         </item>
         
@@ -408,17 +408,17 @@ For example, in console gaming OLTP might involve recording data from the consol
             <description>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
 export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables).</description>
             <content type="html"><![CDATA[<p>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using <code>export</code> (which sets the environment variable) and we can print the value of the environment variable with <code>printenv</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
 printenv KEY
 $ value
 </code></pre></div><p>To remove the environment variable we can use <code>unset</code> (to unset shell/environment variables).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">unset KEY
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">unset KEY
 </code></pre></div><p>The other option is to use <code>set</code> (to set shell variables) and <code>export</code> together.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set KEY<span style="color:#f92672">=</span>value
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set KEY<span style="color:#f92672">=</span>value
 export KEY
 printenv KEY
 </code></pre></div><p>If you set the environment variable in one shell using the command line and then move to a new terminal to print the value then nothing will return. In order for the environment variables to be recognized in new shell processes you need to set them in your bash profile. For example, in <code>~/.bash_profile</code> you could have the following.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
 </code></pre></div><p>If you save the file and open up a new shell process and run <code>printenv KEY</code> from the command line then <code>value</code> will be returned.</p>
 <p>A common use case of environment variables is with the <code>PATH</code> variable. Some programs will search this variable for executable. For example, one of the paths in my <code>PATH</code> variable points to the location of texbin so that LaTeX knows where to look when I try to build LaTeX code.</p>
 <p>Reference:</p>
@@ -436,17 +436,17 @@ printenv KEY
             <guid>http://imadali.net/posts/aliasing-different-python-versions/</guid>
             <description>I hit an issue with Python versions when trying to install pyarrow (which, at the time of writing, is not supported by Python 3.9). I use brew to manage my Python versions (see details here) and I wanted to keep the python3 executable to the default version of Python (which is the latest version installed by brew), but still want to have the opportunity to easily use an older version of Python 3.</description>
             <content type="html"><![CDATA[<p>I hit an issue with Python versions when trying to install pyarrow (which, at the time of writing, is not supported by Python 3.9). I use brew to manage my Python versions (see details <a href="https://formulae.brew.sh/formula/python@3.9">here</a>) and I wanted to keep the <code>python3</code> executable to the default version of Python (which is the latest version installed by brew), but still want to have the opportunity to easily use an older version of Python 3.X when needed.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python3 --version
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python3 --version
 <span style="color:#75715e"># Python 3.9.0</span>
 python3 -m venv /path/to/virtual/env
 <span style="color:#75715e"># Creates a virtual environment using Python 3.9</span>
 </code></pre></div><p>The way I did this was through a bash alias, which basically allows you to create shortcuts to bash commands. (Here&rsquo;s a <a href="https://linuxize.com/post/how-to-create-bash-aliases/">link</a> to an article that provides a brief overview of bash aliases.)</p>
 <p>Provided that Python 3.8 is installed with brew, I alias <code>python3.8</code> to the brew command to launch Python 3.8, <code>$(brew --prefix)/opt/python@3.8/bin/python3</code>. To make the alias persist when I start new bash sessions I store it in my <code>~/.bash_profile</code> file.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">alias python3.8<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>brew --prefix<span style="color:#66d9ef">)</span><span style="color:#e6db74">/opt/python@3.8/bin/python3&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">alias python3.8<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>brew --prefix<span style="color:#66d9ef">)</span><span style="color:#e6db74">/opt/python@3.8/bin/python3&#34;</span>
 python3.8 --version
 <span style="color:#75715e"># Python 3.8.6</span>
 </code></pre></div><p>This way I can create a virtual environment with Python 3.8 in a similar way to how I&rsquo;d create it with the the python3 executable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python3.8 -m venv /path/to/virtual/env
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python3.8 -m venv /path/to/virtual/env
 <span style="color:#75715e"># Creates a virtual environment using Python 3.8</span>
 </code></pre></div>]]></content>
         </item>
@@ -461,7 +461,7 @@ python3.8 --version
 All the examples here are done using the postgres Docker image available here (I talk about how to work with a postgres container in a separate post).</description>
             <content type="html"><![CDATA[<p>Here&rsquo;s a non-exhaustive laundry list of SQL concepts that I&rsquo;ve found useful. You could think of them as intermediate? advanced? concepts that anyone doing data science or machine learning should probably know. I tried to order the concepts list is loosely in order of complexity, however that may vary from person to person.</p>
 <p>All the examples here are done using the postgres Docker image available <a href="https://hub.docker.com/_/postgres">here</a> (I talk about how to work with a postgres container in a separate post). Below we create the table <code>synthetic</code> and populate it with data that I&rsquo;ll use to illustrate the various concepts.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> synthetic (id VARCHAR(<span style="color:#ae81ff">1</span>), var1 INT, var2 INT);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> synthetic (id VARCHAR(<span style="color:#ae81ff">1</span>), var1 INT, var2 INT);
 <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> dim (id VARCHAR(<span style="color:#ae81ff">1</span>), meta VARCHAR(<span style="color:#ae81ff">100</span>));
 
 <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> synthetic (id, var1, var2)
@@ -483,7 +483,7 @@ All the examples here are done using the postgres Docker image available here (I
 (<span style="color:#e6db74">&#39;E&#39;</span>, <span style="color:#e6db74">&#39;!&#39;</span>);
 
 <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> synthetic;
-</code></pre></div><pre><code>id | var1 | var2
+</code></pre></div><pre tabindex="0"><code>id | var1 | var2
 ----+------+------
  A  |    1 |    1
  A  |    1 |    0
@@ -510,11 +510,11 @@ All the examples here are done using the postgres Docker image available here (I
 </ol>
 <h2 id="joins">Joins</h2>
 <p>Joins are pretty basic and pretty fundamental. Sometimes (actually most of the time) your information is split across multiple tables and you need to join them together in order to get all the information in one place.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> a.id, b.meta
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> a.id, b.meta
 <span style="color:#66d9ef">FROM</span> synthetic a
 <span style="color:#66d9ef">JOIN</span> dim b
 <span style="color:#66d9ef">ON</span> a.id <span style="color:#f92672">=</span> b.id;
-</code></pre></div><pre><code>id |    meta
+</code></pre></div><pre tabindex="0"><code>id |    meta
 ----+-------------
  A  | supercali
  A  | supercali
@@ -526,29 +526,29 @@ All the examples here are done using the postgres Docker image available here (I
  C  | expiali
  D  | docious
 </code></pre><p>There&rsquo;s also the anti-join. This can come in handy for problems when you want to select the records that don&rsquo;t have a match defined by the join. In this case we want any records that are in <code>dim</code> that are not in <code>synthetic</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> b.<span style="color:#f92672">*</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> b.<span style="color:#f92672">*</span>
 <span style="color:#66d9ef">FROM</span> synthetic a
 <span style="color:#66d9ef">RIGHT</span> <span style="color:#66d9ef">JOIN</span> dim b
 <span style="color:#66d9ef">ON</span> a.id <span style="color:#f92672">=</span> b.id
 <span style="color:#66d9ef">WHERE</span> a.id <span style="color:#66d9ef">IS</span> <span style="color:#66d9ef">NULL</span>;
-</code></pre></div><pre><code>id | meta
+</code></pre></div><pre tabindex="0"><code>id | meta
 ----+------
  E  | !
 </code></pre><p>Another way we could have done this anti-join is with <code>NOT IN</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
 <span style="color:#66d9ef">FROM</span> dim
 <span style="color:#66d9ef">WHERE</span> id <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">IN</span> (<span style="color:#66d9ef">SELECT</span> id <span style="color:#66d9ef">FROM</span> synthetic);
-</code></pre></div><pre><code>id | meta
+</code></pre></div><pre tabindex="0"><code>id | meta
 ----+------
  E  | !
 </code></pre><h2 id="case-statements-conditionals">Case Statements (Conditionals)</h2>
 <p>This allows you to implement if-else conditions on columns in your table. The typical formulation of case statements is <code>CASE WHEN &lt;condition&gt; THEN &lt;result&gt; ELSE &lt;result&gt; END &lt;new column name&gt;</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
 	, <span style="color:#66d9ef">CASE</span> <span style="color:#66d9ef">WHEN</span> var2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;Y&#39;</span>
 	       <span style="color:#66d9ef">WHEN</span> var2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;N&#39;</span>
 	       <span style="color:#66d9ef">ELSE</span> <span style="color:#66d9ef">Null</span> <span style="color:#66d9ef">END</span> var3
 <span style="color:#66d9ef">FROM</span> synthetic;
-</code></pre></div><pre><code>id | var1 | var2 | var3
+</code></pre></div><pre tabindex="0"><code>id | var1 | var2 | var3
 ----+------+------+------
  A  |    1 |    1 | Y
  A  |    1 |    0 | N
@@ -561,12 +561,12 @@ All the examples here are done using the postgres Docker image available here (I
  D  |    7 |    0 | N
 </code></pre><h2 id="group-by">Group By</h2>
 <p>This is another obvious one. But because it&rsquo;s so commonly used it&rsquo;s worth mentioning. A <code>GROUP BY</code> enables you to apply aggregation functions (<code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, etc) to parts of a table. These parts are provided by an identifier (or set of identifiers) which allows you to partition the data into groups that you want to apply your aggregation functions over.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
 	, <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) id_count
 	, <span style="color:#66d9ef">SUM</span>(var1) var1_sum
 <span style="color:#66d9ef">FROM</span> synthetic
 <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> id;
-</code></pre></div><pre><code>id | id_count | var1_sum
+</code></pre></div><pre tabindex="0"><code>id | id_count | var1_sum
 ----+----------+----------
  B  |        2 |       13
  C  |        3 |       16
@@ -575,34 +575,34 @@ All the examples here are done using the postgres Docker image available here (I
 </code></pre><h2 id="where-vs-having">Where vs Having</h2>
 <p>Most people know of the <code>WHERE</code> statement. It allows you to filter (reduce the rows of your table) by a specific condition.</p>
 <p>You can&rsquo;t use <code>WHERE</code> on a column that was created by an aggregate function. If you do you&rsquo;ll be performing the filter before the aggregation calculations take place. You can use the <code>HAVING</code> statement on a column created by an aggregate function to filter results after the aggregations have taken place.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
 <span style="color:#66d9ef">FROM</span> synthetic
 <span style="color:#66d9ef">WHERE</span> var1 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>;
-</code></pre></div><pre><code>id | var1 | var2
+</code></pre></div><pre tabindex="0"><code>id | var1 | var2
 ----+------+------
  A  |    1 |    1
  A  |    1 |    0
  A  |    2 |    1
  C  |    3 |    0
  C  |    4 |    1
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
 	, <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) id_count
 <span style="color:#66d9ef">FROM</span> synthetic
 <span style="color:#66d9ef">WHERE</span> var1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> id
 <span style="color:#66d9ef">HAVING</span> id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A&#39;</span>;
-</code></pre></div><pre><code>id | id_count
+</code></pre></div><pre tabindex="0"><code>id | id_count
 ----+----------
  A  |        2
 </code></pre><h2 id="window-functions">Window Functions</h2>
 <p>Window functions allow you to perform row-wise calculations on partitions (groups) of your data while allowing you to consider other rows in the calculation. This is useful when you want to create ranks, cumulative sums, rolling averages, etc. There is no group by aggregation taking place. The output table produced after applying a window function will always have the same number of rows as the original table.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
 	, var1
 	, RANK() OVER (<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_rank
 	, LAG(var1, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">Null</span>) OVER (PARTITION <span style="color:#66d9ef">BY</span> Id <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_lag
 <span style="color:#66d9ef">FROM</span> synthetic
 <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> id, var1;
-</code></pre></div><pre><code>id | var1 | var1_rank | var1_lag
+</code></pre></div><pre tabindex="0"><code>id | var1 | var1_rank | var1_lag
 ----+------+-----------+----------
  A  |    1 |         1 |
  A  |    1 |         1 |        1
@@ -616,12 +616,12 @@ All the examples here are done using the postgres Docker image available here (I
 </code></pre><h2 id="rows-precedingfollowing">Rows Preceding/Following</h2>
 <p>How do window functions know which data to consider before and/or after the row in question? It does this by using <code>ROWS # PRECEDING # FOLLOWING</code>, where # is how many rows you want the function to consider preceding/following the row you are currently at.</p>
 <p>For example, to compute the cumulative sum we use the <code>SUM</code> window function and specify <code>ROWS UNBOUNDED PRECEDING</code>. This means that we are considering all previous rows (within the partition) in addition to the current row when calculating the cumulative sum. If we don&rsquo;t specify this then we&rsquo;ll just get the entire sum for each partition assigned to each row of the partition.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
 	, var1
 	, <span style="color:#66d9ef">SUM</span>(var1) OVER (PARTITION <span style="color:#66d9ef">BY</span> Id <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1 <span style="color:#66d9ef">ROWS</span> UNBOUNDED PRECEDING) var1_cumsum_1
 	, <span style="color:#66d9ef">SUM</span>(var1) OVER (PARTITION <span style="color:#66d9ef">BY</span> Id <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1 <span style="color:#66d9ef">ROWS</span> <span style="color:#ae81ff">1</span> PRECEDING) var1_cumsum_2
 <span style="color:#66d9ef">FROM</span> synthetic;
-</code></pre></div><pre><code>id | var1 | var1_cumsum_1 | var1_cumsum_2
+</code></pre></div><pre tabindex="0"><code>id | var1 | var1_cumsum_1 | var1_cumsum_2
 ----+------+---------------+---------------
  A  |    1 |             1 |             1
  A  |    1 |             2 |             2
@@ -633,12 +633,12 @@ All the examples here are done using the postgres Docker image available here (I
  C  |    9 |            16 |            13
  D  |    7 |             7 |             7
 </code></pre><p>Here&rsquo;s what happens if we don&rsquo;t provide <code>PRECEDING</code> or <code>FOLLOWING</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
 	, var1
 	, <span style="color:#66d9ef">SUM</span>(var1) OVER (PARTITION <span style="color:#66d9ef">BY</span> Id <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_cumsum_1
 	, <span style="color:#66d9ef">SUM</span>(var1) OVER (PARTITION <span style="color:#66d9ef">BY</span> Id <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_cumsum_2
 <span style="color:#66d9ef">FROM</span> synthetic;
-</code></pre></div><pre><code>id | var1 | var1_cumsum_1 | var1_cumsum_2
+</code></pre></div><pre tabindex="0"><code>id | var1 | var1_cumsum_1 | var1_cumsum_2
 ----+------+---------------+---------------
  A  |    1 |             2 |             2
  A  |    1 |             2 |             2
@@ -652,14 +652,14 @@ All the examples here are done using the postgres Docker image available here (I
 </code></pre><h2 id="rank-vs-dense-rank-vs-row-number">Rank vs Dense Rank vs Row Number</h2>
 <p>This one always trips me up. Dense rank and rank will be the same except when there are ties. In tie situations dense will always give you consecutive ranks (no gaps in ranking values) where as rank will skip ranks in situations where there are ties.</p>
 <p>Rank is similar to row number, however rank provides the same value in situations where there are ties.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id
 	, var1
 	, RANK() OVER (<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_rank
 	, DENSE_RANK() OVER (<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_dense_rank
 	, ROW_NUMBER() OVER (<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1) var1_row_number
 <span style="color:#66d9ef">FROM</span> synthetic
 <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> var1;
-</code></pre></div><pre><code>id | var1 | var1_rank | var1_dense_rank | var1_row_number
+</code></pre></div><pre tabindex="0"><code>id | var1 | var1_rank | var1_dense_rank | var1_row_number
 ----+------+-----------+-----------------+-----------------
  A  |    1 |         1 |               1 |               1
  A  |    1 |         1 |               1 |               2
@@ -672,14 +672,14 @@ All the examples here are done using the postgres Docker image available here (I
  C  |    9 |         9 |               8 |               9
 </code></pre><h2 id="views">Views</h2>
 <p>A view represents a table. It&rsquo;s not a table that&rsquo;s stored on disk. Rather the SQL code to construct the table is stored. Typically, every time you call a view, the SQL code that defines that view is executed to generate the table. (I say typically since sometimes the results can be stored/read from a cache). You&rsquo;ll notice that a view is not stored in the &ldquo;Table&rdquo; section of the database, but in a separate &ldquo;View&rdquo; section&hellip; because it ain&rsquo;t a table.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">VIEW</span> synthetic_agg <span style="color:#66d9ef">AS</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">VIEW</span> synthetic_agg <span style="color:#66d9ef">AS</span>
 <span style="color:#66d9ef">SELECT</span> id
 	, <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) id_count
 <span style="color:#66d9ef">FROM</span> synthetic
 <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> id;
 
 <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> synthetic_agg;
-</code></pre></div><pre><code>id | id_count
+</code></pre></div><pre tabindex="0"><code>id | id_count
 ----+----------
  B  |        2
  C  |        3
@@ -688,7 +688,7 @@ All the examples here are done using the postgres Docker image available here (I
 </code></pre><h2 id="user-defined-functions">User Defined Functions</h2>
 <p>Just as in any programing language, functions in SQL allow you to parameterize your query. The way you specify functions will vary depending on the variant of SQL used by your choice of SQL server provider.</p>
 <p>Here&rsquo;s a function that returns a filtered table that has the same schema as the <code>synthetic</code> table.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">REPLACE</span> <span style="color:#66d9ef">FUNCTION</span> synthetic_filter(param INT)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">REPLACE</span> <span style="color:#66d9ef">FUNCTION</span> synthetic_filter(param INT)
 <span style="color:#66d9ef">RETURNS</span> <span style="color:#66d9ef">SETOF</span> synthetic
 <span style="color:#66d9ef">AS</span>
 <span style="color:#960050;background-color:#1e0010">$$</span>
@@ -697,12 +697,12 @@ All the examples here are done using the postgres Docker image available here (I
 	<span style="color:#66d9ef">WHERE</span> var1 <span style="color:#f92672">=</span> param;
 <span style="color:#960050;background-color:#1e0010">$$</span>
 <span style="color:#66d9ef">LANGUAGE</span> <span style="color:#66d9ef">SQL</span>;
-</code></pre></div><pre><code>id | var1 | var2
+</code></pre></div><pre tabindex="0"><code>id | var1 | var2
 ----+------+------
  A  |    1 |    1
  A  |    1 |    0
 </code></pre><p>Here&rsquo;s a function that returns a schema that&rsquo;s different from the <code>synthetic</code> table (we have to define the schema of the returning table).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">REPLACE</span> <span style="color:#66d9ef">FUNCTION</span> synthetic_grouped(param INT)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">REPLACE</span> <span style="color:#66d9ef">FUNCTION</span> synthetic_grouped(param INT)
 <span style="color:#66d9ef">RETURNS</span> <span style="color:#66d9ef">TABLE</span> (id VARCHAR(<span style="color:#ae81ff">1</span>), id_count INT)
 <span style="color:#66d9ef">AS</span>
 <span style="color:#960050;background-color:#1e0010">$$</span>
@@ -714,13 +714,13 @@ All the examples here are done using the postgres Docker image available here (I
 <span style="color:#66d9ef">LANGUAGE</span> <span style="color:#66d9ef">SQL</span>;
 
 <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> synthetic_grouped(<span style="color:#ae81ff">1</span>);
-</code></pre></div><pre><code>id | id_count
+</code></pre></div><pre tabindex="0"><code>id | id_count
 ----+----------
  A  |        2
  B  |        1
  C  |        2
 </code></pre><p>Finally, here&rsquo;s a function that returns a single value (in this case a <code>VARCHAR</code>). These return types  are useful to define complicated row-wise operations or for operations that need to be reused.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">CREATE OR REPLACE FUNCTION var2_condition(param INT)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">CREATE OR REPLACE FUNCTION var2_condition(param INT)
 RETURNS VARCHAR(<span style="color:#ae81ff">1</span>)
 AS
 <span style="color:#960050;background-color:#1e0010">$$</span>
@@ -732,7 +732,7 @@ LANGUAGE SQL;
 
 SELECT <span style="color:#f92672">*</span>, var2_condition(var2) var2_char
 FROM synthetic;
-</code></pre></div><pre><code>id | var1 | var2 | var2_char
+</code></pre></div><pre tabindex="0"><code>id | var1 | var2 | var2_char
 ----+------+------+-----------
  A  |    1 |    1 | Y
  A  |    1 |    0 | N
@@ -745,7 +745,7 @@ FROM synthetic;
  D  |    7 |    0 | N
 </code></pre><h2 id="cte-common-table-expression">CTE (Common Table Expression)</h2>
 <p>CTEs allow you to reference a table created by one query in another query, without having to write the table to disk (in other words you don&rsquo;t have to use <code>CREATE TABLE</code>). Basically you&rsquo;re keeping the table in memory temporarily.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">WITH</span> tmp_table <span style="color:#66d9ef">AS</span> (
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">WITH</span> tmp_table <span style="color:#66d9ef">AS</span> (
 	<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
 	<span style="color:#66d9ef">FROM</span> synthetic
 	<span style="color:#66d9ef">WHERE</span> var2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
@@ -753,7 +753,7 @@ FROM synthetic;
 
 <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
 <span style="color:#66d9ef">FROM</span> tmp_table;
-</code></pre></div><pre><code>id | var1 | var2
+</code></pre></div><pre tabindex="0"><code>id | var1 | var2
 ----+------+------
  A  |    1 |    1
  A  |    2 |    1
@@ -775,7 +775,7 @@ FROM synthetic;
             <description>Sometimes I find myself having to combine several data features into a single metric. It&amp;rsquo;s bad practice to combine the features if they are on different scales. You end up capturing differences in their scale rather than differences in the underlying metric. So the best approach in these situations is to center the data (subtract the mean) and scale the data (divide by the standard deviation). This is how you eliminate the scale (it&amp;rsquo;s also part of the data pre-processing you should do before clustering).</description>
             <content type="html"><![CDATA[<p>Sometimes I find myself having to combine several data features into a single metric. It&rsquo;s bad practice to combine the features if they are on different scales. You end up capturing differences in their scale rather than differences in the underlying metric. So the best approach in these situations is to center the data (subtract the mean) and scale the data (divide by the standard deviation). This is how you eliminate the scale (it&rsquo;s also part of the data pre-processing you should do before clustering). Once you&rsquo;ve done all this you can then combine the features by taking row-wise means (or weighted means if having equal weights is not sufficient for the business problem).</p>
 <p>In some cases this type of re-scaling might not be enough. You may want to force a vector of data to be bounded between two variables (e.g. 0 and 1 or -1 and 1). This is the approach that I take in Python.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1000</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1000</span>)
 new_min <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 new_max <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 max <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(x)
@@ -863,7 +863,7 @@ z <span style="color:#f92672">=</span> (new_max <span style="color:#f92672">-</s
             <description>Suppose you have graph-like data that describes the (undirected) relationship between target and destination. If we store these relationships in a traditional relational database with a single key to query on we would have something like this,
 target, destination A, B A, C B, A B, C C, A C, B ... So to get all relationships associated with A we can just filter A on the target column. This is inefficient since we are replicating a lot of information (e.</description>
             <content type="html"><![CDATA[<p>Suppose you have graph-like data that describes the (undirected) relationship between <code>target</code> and <code>destination</code>. If we store these relationships in a traditional relational database with a single key to query on we would have something like this,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">target, destination
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">target, destination
 A, B
 A, C
 B, A
@@ -873,7 +873,7 @@ C, B
 <span style="color:#f92672">...</span>
 </code></pre></div><p>So to get all relationships associated with A we can just filter A on the target column. This is inefficient since we are replicating a lot of information (e.g. storing both A, B and B, A, even though the relationship is the same.</p>
 <p>Alternatively we could store it as,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">target, destination
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">target, destination
 A, B
 A, C
 B, C
@@ -902,8 +902,8 @@ Here I show how to create a PySpark UDF which uses,</description>
 </ol>
 <p>(All code shown below uses PySpark 3.0.1.)</p>
 <p>To start, I generate some data that I&rsquo;ll use to illustrate all of the UDF constructions I mentioned above.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 <span style="color:#f92672">from</span> pyspark.sql <span style="color:#f92672">import</span> SparkSession
 <span style="color:#75715e"># needed for udfs</span>
 <span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> udf, lit, collect_list
@@ -911,13 +911,13 @@ Here I show how to create a PySpark UDF which uses,</description>
 
 spark <span style="color:#f92672">=</span> SparkSession<span style="color:#f92672">.</span>builder<span style="color:#f92672">.</span>appName(<span style="color:#e6db74">&#39;udf_tutorial&#39;</span>)<span style="color:#f92672">.</span>getOrCreate()
 N <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
-data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;identifier&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>], N, replace<span style="color:#f92672">=</span>True),
+data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;identifier&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>], N, replace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>),
         <span style="color:#e6db74">&#39;var1&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, N),
-        <span style="color:#e6db74">&#39;var2&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#e6db74">&#39;Y&#39;</span>,<span style="color:#e6db74">&#39;N&#39;</span>], N, replace<span style="color:#f92672">=</span>True)}
+        <span style="color:#e6db74">&#39;var2&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#e6db74">&#39;Y&#39;</span>,<span style="color:#e6db74">&#39;N&#39;</span>], N, replace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)}
 df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data)
-<span style="color:#66d9ef">print</span>(df)
+print(df)
 </code></pre></div><p>This produces the following table.</p>
-<pre><code>identifier      var1    var2
+<pre tabindex="0"><code>identifier      var1    var2
 0            2 -0.015862    N
 1            5  3.792773    N
 2            4  2.653766    Y
@@ -939,18 +939,18 @@ df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Da
 <h2 id="single-column">Single Column</h2>
 <p>Here I&rsquo;m creating a UDF that takes a single column and an external parameter as arguments. First I define the function. In this example, the function returns the product between each element of the column and the parameter we provide. I&rsquo;m using try/except statements for better error handling.</p>
 <p>The <code>lit</code> function will be used to provide the parameter argument as a string, which means it needs to be converted to a float in order to be used for the mathematical operation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_sc</span>(v1, a):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_sc</span>(v1, a):
     <span style="color:#66d9ef">try</span>:
         a <span style="color:#f92672">=</span> float(a)
         <span style="color:#66d9ef">return</span>(v1 <span style="color:#f92672">*</span> a)
     <span style="color:#66d9ef">except</span>:
-        <span style="color:#66d9ef">return</span>(None)
+        <span style="color:#66d9ef">return</span>(<span style="color:#66d9ef">None</span>)
 </code></pre></div><p>Now I register the UDF a specify the return type as <code>FloatType()</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">udf_sc_reg <span style="color:#f92672">=</span> udf(udf_sc, FloatType())
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">udf_sc_reg <span style="color:#f92672">=</span> udf(udf_sc, FloatType())
 </code></pre></div><p>Now I can use the UDF with the Spark data frame created above.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_sc_reg(<span style="color:#e6db74">&#39;var1&#39;</span>, lit(<span style="color:#e6db74">&#39;2&#39;</span>)))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_sc_reg(<span style="color:#e6db74">&#39;var1&#39;</span>, lit(<span style="color:#e6db74">&#39;2&#39;</span>)))
 sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
-</code></pre></div><pre><code>+----------+--------------------+----+------------+
+</code></pre></div><pre tabindex="0"><code>+----------+--------------------+----+------------+
 |identifier|                var1|var2|        var3|
 +----------+--------------------+----+------------+
 |         2|-0.01586150202926495|   N|-0.031723004|
@@ -961,23 +961,23 @@ sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81
 +----------+--------------------+----+------------+
 </code></pre><h2 id="multiple-columns">Multiple Columns</h2>
 <p>The approach is similar if multiple columns are needed in the UDF. Here the UDF has more complicated conditional statements.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_mc</span>(v1, v2):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_mc</span>(v1, v2):
     <span style="color:#66d9ef">try</span>:
         <span style="color:#66d9ef">if</span> v2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;N&#39;</span>:
             a <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>
         <span style="color:#66d9ef">elif</span> v2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Y&#39;</span>:
             a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>
         <span style="color:#66d9ef">else</span>:
-            a <span style="color:#f92672">=</span> None
+            a <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
         <span style="color:#66d9ef">return</span>(v1 <span style="color:#f92672">+</span> a)
     <span style="color:#66d9ef">except</span>:
-        <span style="color:#66d9ef">return</span>(None)
+        <span style="color:#66d9ef">return</span>(<span style="color:#66d9ef">None</span>)
 
 udf_mc_reg <span style="color:#f92672">=</span> udf(udf_mc, FloatType())
 
 sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_mc_reg(<span style="color:#e6db74">&#39;var1&#39;</span>,<span style="color:#e6db74">&#39;var2&#39;</span>))
 sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
-</code></pre></div><pre><code>+----------+--------------------+----+----------+
+</code></pre></div><pre tabindex="0"><code>+----------+--------------------+----+----------+
 |identifier|                var1|var2|      var3|
 +----------+--------------------+----+----------+
 |         2|-0.01586150202926495|   N|-0.5158615|
@@ -989,20 +989,20 @@ sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81
 </code></pre><h2 id="external-library">External Library</h2>
 <p>Sometimes it&rsquo;s useful to use a function provided by an external library (e.g. numpy, scipy, etc). It&rsquo;s pretty straightforward to do this. You just provide the function in your UDF. However, if you&rsquo;re working in a distributed setup you&rsquo;ll need to have the library installed on every node in the cluster (not just the main node).</p>
 <p>Here I use the <code>expit</code> (inverse logit) function in the scipy library to transform the <code>var1</code> column. The result is returned as an array (just a lil flex) containing both the original value and the transformed value. The type returned by <code>expit</code> (<code>numpy.float64</code>) is converted to a base Python float since it needs to match PySpark&rsquo;s <code>FloatType()</code> type.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> scipy.special <span style="color:#f92672">import</span> expit
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> scipy.special <span style="color:#f92672">import</span> expit
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_el</span>(v1):
     <span style="color:#66d9ef">try</span>:
         inv_logit <span style="color:#f92672">=</span> float(expit(v1))
         <span style="color:#66d9ef">return</span>([v1, inv_logit])
     <span style="color:#66d9ef">except</span>:
-        <span style="color:#66d9ef">return</span>(None)
+        <span style="color:#66d9ef">return</span>(<span style="color:#66d9ef">None</span>)
 
 udf_el_reg <span style="color:#f92672">=</span> udf(udf_el, ArrayType(FloatType()))
 
 sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_el_reg(<span style="color:#e6db74">&#39;var1&#39;</span>))
 sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
-</code></pre></div><pre><code>+----------+--------------------+----+--------------------+
+</code></pre></div><pre tabindex="0"><code>+----------+--------------------+----+--------------------+
 |identifier|                var1|var2|                var3|
 +----------+--------------------+----+--------------------+
 |         2|-0.01586150202926495|   N|[-0.015861502, 0....|
@@ -1012,22 +1012,22 @@ sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81
 |         3|   4.900761231566397|   N|[4.900761, 0.9926...|
 +----------+--------------------+----+--------------------+
 </code></pre><h2 id="custom-aggregate">Custom Aggregate</h2>
-<p>At the time of writing this, it&rsquo;s not possible to implement UDAFs (user defined aggregate functions) the way one can in Spark. The work around is to implement them by collecting all the elements of a group into a list using <code>collect_list</code> and then applying a UDF to each groups&rsquo; list.</p>
+<p>At the time of writing this, it&rsquo;s not possible to implement UDAFs (user defined aggregate functions) the way one can in Spark. The work around is to implement them by collecting all the elements of a group into a list using <code>collect_list</code> and then applying a UDF to each groups' list.</p>
 <p>In the code below I take things a little further (another flex) and return an array of <em>different</em> types (using <code>StructType()</code> and <code>StructField()</code>). Another option when returning an array would be to force everything to a single type and convert it back to the appropriate type when you flatten that array to a data frame later on.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_ca</span>(x):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_ca</span>(x):
     <span style="color:#66d9ef">try</span>:
         <span style="color:#66d9ef">return</span>([int(len(x)), float(np<span style="color:#f92672">.</span>mean(x))])
     <span style="color:#66d9ef">except</span>:
-        <span style="color:#66d9ef">return</span>(None)
+        <span style="color:#66d9ef">return</span>(<span style="color:#66d9ef">None</span>)
 
-schema <span style="color:#f92672">=</span> StructType([StructField(<span style="color:#e6db74">&#39;length&#39;</span>, IntegerType(), False),
-                     StructField(<span style="color:#e6db74">&#39;mean&#39;</span>, FloatType(), False)])
+schema <span style="color:#f92672">=</span> StructType([StructField(<span style="color:#e6db74">&#39;length&#39;</span>, IntegerType(), <span style="color:#66d9ef">False</span>),
+                     StructField(<span style="color:#e6db74">&#39;mean&#39;</span>, FloatType(), <span style="color:#66d9ef">False</span>)])
 
 udf_ca_reg <span style="color:#f92672">=</span> udf(udf_ca, schema)
 
 sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>groupBy(<span style="color:#e6db74">&#39;identifier&#39;</span>)<span style="color:#f92672">.</span>agg(collect_list(<span style="color:#e6db74">&#39;var1&#39;</span>)<span style="color:#f92672">.</span>alias(<span style="color:#e6db74">&#39;var1_list&#39;</span>))<span style="color:#f92672">.</span>select(udf_ca_reg(<span style="color:#e6db74">&#39;var1_list&#39;</span>)<span style="color:#f92672">.</span>alias(<span style="color:#e6db74">&#39;gpd_metrics&#39;</span>))
-sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="color:#f92672">=</span>False)
-</code></pre></div><pre><code>+---------------+
+sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</code></pre></div><pre tabindex="0"><code>+---------------+
 |gpd_metrics    |
 +---------------+
 |[18, 2.6149726]|
@@ -1036,8 +1036,8 @@ sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="col
 |[17, 2.7891133]|
 |[24, 3.4916883]|
 +---------------+
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed<span style="color:#f92672">.</span>printSchema()
-</code></pre></div><pre><code>root
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed<span style="color:#f92672">.</span>printSchema()
+</code></pre></div><pre tabindex="0"><code>root
  |-- gpd_metrics: struct (nullable = true)
  |    |-- length: integer (nullable = false)
  |    |-- mean: float (nullable = false)
@@ -1054,29 +1054,29 @@ sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="col
 A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary. If you make a modification to any of the dependencies then running make or make target-name will rerun your commands to update the target.</description>
             <content type="html"><![CDATA[<p>The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.</p>
 <p>A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary. If you make a modification to any of the dependencies then running <code>make</code> or <code>make target-name</code> will  rerun your commands to update the target.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target: dependencies
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target: dependencies
 	commands
 </code></pre></div><p>We can still use makefiles in situations where we&rsquo;re not compiling code. Below is a simplified example of how I&rsquo;m using it in a Data Science like workflow.</p>
 <p>We have some Python code that generates data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># generate.py</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># generate.py</span>
 
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 
 N <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
 data <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame({<span style="color:#e6db74">&#39;x&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, N)})
 
-data<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#39;./data.csv&#39;</span>, index<span style="color:#f92672">=</span>False)
+data<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#39;./data.csv&#39;</span>, index<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 </code></pre></div><p>And some code that computes the maximum likelihood estimate (MLE) from that data (assuming that the data is normally distributed).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># estimate.py</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># estimate.py</span>
 
 <span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 <span style="color:#f92672">from</span> scipy.optimize <span style="color:#f92672">import</span> minimize
 <span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> norm
 
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Running simulation...&#39;</span>)
+print(<span style="color:#e6db74">&#39;Running simulation...&#39;</span>)
 
 data <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;data.csv&#39;</span>)
 x <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;x&#39;</span>]
@@ -1088,18 +1088,18 @@ x <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;x&#
         log_likelihood <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>log(norm<span style="color:#f92672">.</span>pdf(value, params[<span style="color:#ae81ff">0</span>], params[<span style="color:#ae81ff">1</span>]))
     <span style="color:#66d9ef">return</span>(<span style="color:#f92672">-</span>log_likelihood)
 
-bnds <span style="color:#f92672">=</span> ((None, None), (<span style="color:#ae81ff">0.5</span>, None))
+bnds <span style="color:#f92672">=</span> ((<span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>), (<span style="color:#ae81ff">0.5</span>, <span style="color:#66d9ef">None</span>))
 result <span style="color:#f92672">=</span> minimize(fun<span style="color:#f92672">=</span>objective_function, x0<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.5</span>], bounds<span style="color:#f92672">=</span>bnds, args<span style="color:#f92672">=</span>(x))
 result <span style="color:#f92672">=</span> dict(result)
 
 <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;./mle_result.txt&#39;</span>, <span style="color:#e6db74">&#34;w&#34;</span>) <span style="color:#66d9ef">as</span> f:
-    f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;Timestamp: {0}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(datetime<span style="color:#f92672">.</span>now()))
+    f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;Timestamp: </span><span style="color:#e6db74">{0}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(datetime<span style="color:#f92672">.</span>now()))
     <span style="color:#66d9ef">for</span> key, value <span style="color:#f92672">in</span> result<span style="color:#f92672">.</span>items():
-        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;{0}: {1}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(key, value))
+        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{0}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{1}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(key, value))
 
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Data: mean [{0}], sd [{1}]&#39;</span><span style="color:#f92672">.</span>format(np<span style="color:#f92672">.</span>mean(x), np<span style="color:#f92672">.</span>std(x)))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;MLE: mean [{0}], sd [{1}]&#39;</span><span style="color:#f92672">.</span>format(result[<span style="color:#e6db74">&#39;x&#39;</span>][<span style="color:#ae81ff">0</span>], result[<span style="color:#e6db74">&#39;x&#39;</span>][<span style="color:#ae81ff">1</span>]))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;... complete&#39;</span>)
+print(<span style="color:#e6db74">&#39;Data: mean [</span><span style="color:#e6db74">{0}</span><span style="color:#e6db74">], sd [</span><span style="color:#e6db74">{1}</span><span style="color:#e6db74">]&#39;</span><span style="color:#f92672">.</span>format(np<span style="color:#f92672">.</span>mean(x), np<span style="color:#f92672">.</span>std(x)))
+print(<span style="color:#e6db74">&#39;MLE: mean [</span><span style="color:#e6db74">{0}</span><span style="color:#e6db74">], sd [</span><span style="color:#e6db74">{1}</span><span style="color:#e6db74">]&#39;</span><span style="color:#f92672">.</span>format(result[<span style="color:#e6db74">&#39;x&#39;</span>][<span style="color:#ae81ff">0</span>], result[<span style="color:#e6db74">&#39;x&#39;</span>][<span style="color:#ae81ff">1</span>]))
+print(<span style="color:#e6db74">&#39;... complete&#39;</span>)
 </code></pre></div><p>In this case the workflow might involve,</p>
 <ol>
 <li>Simulating the model (generating data and finding the MLE)</li>
@@ -1107,7 +1107,7 @@ result <span style="color:#f92672">=</span> dict(result)
 <li>Cleaning up all the files (i.e. the output from the python scripts).</li>
 </ol>
 <p>We can wrap all of this up in a makefile.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Makefile</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Makefile</span>
 
 simulate:
 	@python generate.py
@@ -1139,14 +1139,14 @@ Static vs Dynamic This defines whether the type checking is enforced at compile 
 <h2 id="strong-vs-weak">Strong vs Weak</h2>
 <p>This defines whether the language does type conversions implicitly. If it does not do conversions implicitly then it is strongly typed (e.g. Python). If it does do conversions implicitly then it&rsquo;s weakly typed (e.g. R).</p>
 <p>For example, in Python if we have a vector with a single element that is a <code>string</code> type and append an <code>int</code> to that vector, the type of both elements is preserved.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;foo&#39;</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;foo&#39;</span>]
 x<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">1</span>)
-<span style="color:#66d9ef">print</span>(x)
+print(x)
 <span style="color:#75715e"># [&#39;foo&#39;, 1]</span>
 </code></pre></div><p>But when you implement analogous code in R the type of each element is not preserved. The <code>int</code> variable that you append gets implicitly converted to a <code>string</code> variable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">&lt;-</span> c(<span style="color:#e6db74">&#34;foo&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">&lt;-</span> c(<span style="color:#e6db74">&#34;foo&#34;</span>)
 x <span style="color:#f92672">=</span> append(x, <span style="color:#ae81ff">1</span>)
-<span style="color:#66d9ef">print</span>(x)
+print(x)
 <span style="color:#75715e"># &#34;foo&#34; &#34;1&#34;</span>
 </code></pre></div>]]></content>
         </item>
@@ -1211,7 +1211,7 @@ $$</p>
             <guid>http://imadali.net/posts/closures/</guid>
             <description>Closures is a programming concept that took me a while to wrap my head around. To understand closures you need to understand function scope and factory functions. In the example below, x is accessible in the global scope. You can reference x inside and outside the function. However, y and z are accessible only within the local scope of the function foo. So you can reference x, y and z inside the function, but you can&amp;rsquo;t reference y and z outside of the function.</description>
             <content type="html"><![CDATA[<p>Closures is a programming concept that took me a while to wrap my head around. To understand closures you need to understand <strong>function scope</strong> and <strong>factory functions</strong>. In the example below, <code>x</code> is accessible in the global scope. You can reference <code>x</code> inside and outside the function. However, <code>y</code> and <code>z</code> are accessible only within the local scope of the function <code>foo</code>. So you can reference <code>x</code>, <code>y</code> and <code>z</code> inside the function, but you can&rsquo;t reference <code>y</code> and <code>z</code> outside of the function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">foo</span>(y):
 	z <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 	<span style="color:#66d9ef">return</span>(x<span style="color:#f92672">+</span>y<span style="color:#f92672">+</span>z)
@@ -1219,7 +1219,7 @@ $$</p>
 <span style="color:#75715e"># usage</span>
 foo(<span style="color:#ae81ff">2</span>)
 </code></pre></div><p>A factory function is simply a function that returns another function. In the example below <code>A</code> is a factory function that generates function <code>B</code> every time it is executed. Function <code>B</code> references the argument <code>x</code> that is defined in function <code>A</code> . So when we call <code>f = A(4)</code> the function will persist the value <code>x=4</code>, so it can do the operation <code>x+y</code> that when we execute <code>f(3)</code>. So function <code>B</code> has access to the the scope of its enclosing function, function <code>A</code>, even after function <code>A</code> has finished executing. This is a closure. This is different from the function <code>foo</code> defined above, where all local variables (<code>y</code> and <code>z</code> ) are eliminated after the function finishes its execution.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">A</span>(x):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">A</span>(x):
 	<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">B</span>(y):
 		<span style="color:#66d9ef">return</span>(x<span style="color:#f92672">+</span>y)
 	<span style="color:#66d9ef">return</span>(B)
@@ -1250,37 +1250,37 @@ f(<span style="color:#ae81ff">1</span>)
 For example, the Python code below executes the pwd command and stores the results as a variable.</description>
             <content type="html"><![CDATA[<p>Whenever I share data between programs I often write the data out to disk. But what would the relationship between the two programs look like if I want to stream the data instead of write it out to disk? Using the subprocess module in Python we can pass data between two python programs. The subprocess module enables you to execute command line arguments from within a Python script.</p>
 <p>For example, the Python code below executes the <code>pwd</code> command and stores the results as a variable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> subprocess
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> subprocess
 subprocess<span style="color:#f92672">.</span>run([<span style="color:#e6db74">&#34;pwd&#34;</span>])
 </code></pre></div><p>In order to accomplish this, imagine we have a sensor that generates a timestamp. This represented by the code below. The sensor output is printed to stdout.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># sensor.py</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># sensor.py</span>
 
 <span style="color:#f92672">import</span> time
 <span style="color:#f92672">import</span> datetime
 
 <span style="color:#75715e"># print(&#39;sensor timestamp: {0}.&#39;.format(ts), flush=True)</span>
-<span style="color:#66d9ef">while</span> True:
+<span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
     ts <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#39;%Y%m</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">-%H%M%S&#39;</span>)
-    result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sensor timestamp: {0}.&#39;</span><span style="color:#f92672">.</span>format(ts)
-    <span style="color:#66d9ef">print</span>(result, flush<span style="color:#f92672">=</span>True)
+    result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sensor timestamp: </span><span style="color:#e6db74">{0}</span><span style="color:#e6db74">.&#39;</span><span style="color:#f92672">.</span>format(ts)
+    print(result, flush<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
     time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">2</span>)
 </code></pre></div><p>Within print I have set <code>flush=True</code> since I need the buffer to be flushed (i.e. emptied to the terminal) every time the print statement is executed. The buffer is a temporary location for your data when it is moved between processes. Flushing the buffer when writing to standard out forces it to write the results to the terminal (even when it normally wouldn&rsquo;t do so). On its own, Python&rsquo;s print statement automatically flushes the buffer everytime it&rsquo;s called. However, in this situation we have to force this behavior since standard output is buffered when connected via a pipe. If we didn&rsquo;t flush the buffer then we wouldn&rsquo;t see the results of the print statement until the process terminated (in this case never, since we&rsquo;re using a while loop).</p>
 <p>In order to collect this data suppose we need to listen the output of the sensor. This is accomplished with the code below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># listener.py</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># listener.py</span>
 
 <span style="color:#f92672">import</span> subprocess
 
 process <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>Popen([<span style="color:#e6db74">&#39;python&#39;</span>, <span style="color:#e6db74">&#39;sensor.py&#39;</span>], stdout<span style="color:#f92672">=</span>subprocess<span style="color:#f92672">.</span>PIPE)
 <span style="color:#75715e"># stdout, stderr = process.communicate() # not useful for this example cause communicate will wait for the process to finish</span>
 
-<span style="color:#66d9ef">while</span> process<span style="color:#f92672">.</span>poll() <span style="color:#f92672">is</span> None:
+<span style="color:#66d9ef">while</span> process<span style="color:#f92672">.</span>poll() <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
     result <span style="color:#f92672">=</span> process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>readline()<span style="color:#f92672">.</span>decode()
-    <span style="color:#66d9ef">print</span>(result<span style="color:#f92672">.</span>strip())
+    print(result<span style="color:#f92672">.</span>strip())
 </code></pre></div><p>The listener.py code is doing several things by way of the subprocess module. <code>subprocess.Popen</code> allows you to spawn a process. The argument <code>stdout</code> allows you to capture the standard output of the process. We set <code>stdout = subprocess.PIPE</code> since we want a pipe to be open to standard output. I check to see if the spawed process is still running with <code>process.poll</code>. We then read the entire line of output with <code>process.stdout.readline()</code> and print the result.</p>
 <p>Executing the following command in terminal,</p>
-<pre><code>python listener.py
+<pre tabindex="0"><code>python listener.py
 </code></pre><p>gives us the following output,</p>
-<pre><code>sensor timestamp: 20200705-005927.
+<pre tabindex="0"><code>sensor timestamp: 20200705-005927.
 sensor timestamp: 20200705-005929.
 sensor timestamp: 20200705-005931.
 ...
@@ -1309,10 +1309,10 @@ A convex combination helps you define any point inside a shape using a vector of
             <content type="html"><![CDATA[<p>A while back I came across convex combinations in this paper that outlines the math of how to detect who&rsquo;s guarding whom in basketball player tracking data. I then used them in a Stan case study.</p>
 <p>A convex combination helps you define any point inside a shape using a vector of coefficients that sum to one. So say you have a vector of coefficients <code>alpha</code>, and x-coordinates <code>x</code> and y-coordinates <code>y</code>. Then then <code>x_new = alpha * x</code> and <code>y_new = alpha * y</code> will always be within the shape defined by the coordinates <code>x, y</code>.</p>
 <p>Here&rsquo;s a brief Python script that simulates this result.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># convex.py</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># convex.py</span>
 
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
-<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
 
 k <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
 N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
@@ -1465,7 +1465,7 @@ Data Model A data model organizes the Data and defines the relationship between 
 <p>Below is a plot of three points: A = (2,5), B = (1,6), and C = (-6,-6). In this low dimensional space point A is close to point B but far from point C.</p>
 <img src="https://raw.githubusercontent.com/imadmali/blog-notebooks/master/high-dimensional-space/figs/hds_0.png" alt="hds_0" width=400 class="center"/>
 <p>The distance measurement we are referring to is <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a>. One way to compute it in Python is,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">euclidean_distance</span>(x,y):
   x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(x)
   y <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(y)
@@ -1493,40 +1493,40 @@ Cloning and Configs Show the remote info. (Note, origin is the default name for 
             <content type="html"><![CDATA[<p>I always forget certain git commands. Especially when I don&rsquo;t use them often enough or am involved in a workflow that doesn&rsquo;t use git to it&rsquo;s fullest extent. So here&rsquo;s a list of git commands in some sort of loose categorization (some of which I hope I remember now and others that I would like to be reminded of in case I forget).</p>
 <h2 id="cloning-and-configs">Cloning and Configs</h2>
 <p>Show the remote info. (Note, origin is the default name for remote that the repository was cloned from.)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git remote show origin
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git remote show origin
 </code></pre></div><p>Cloning a repository that&rsquo;s available on GitHub.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/username/repository.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/username/repository.git
 </code></pre></div><p>Sometimes you may need to clone with a different user name. This is useful if you have a personal and a work GitHub with different username/password. [<a href="https://stackoverflow.com/questions/39644366/git-clone-with-different-username-account">link</a>]</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://username@github.com/username/repository.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://username@github.com/username/repository.git
 </code></pre></div><p>You may need to set your user name and email for your local repository (not your global git config). This is useful if you don&rsquo;t want your personal email associated with commits made to a work repository (and vice versa).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config user.name &lt;user name&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config user.name &lt;user name&gt;
 git config user.email &lt;user email&gt;
 </code></pre></div><h2 id="branching-and-merging">Branching and merging</h2>
 <p>List all the branches in your repository.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch
 </code></pre></div><p>List all remote branches.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch -m
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch -m
 </code></pre></div><p>Delete a branch called <code>feature</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch -d feature
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch -d feature
 </code></pre></div><p>To create a branch called <code>feature</code> and work on that branch.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch feature
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git branch feature
 git checkout feature
 <span style="color:#75715e"># or</span>
 git checkout -b feature
 </code></pre></div><p>To push your new branch <code>feature</code> and track it on GitHub.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push -u origin feature
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push -u origin feature
 </code></pre></div><p>To pull and updated version of the branch you&rsquo;re working on.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout feature
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout feature
 git pull
 </code></pre></div><p>To pull a newly created branch <code>new-feature</code> (that&rsquo;s not on your local machine).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git fetch
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git fetch
 git checkout new-feature
 </code></pre></div><h2 id="merging">Merging</h2>
 <p>To update a branch from another branch (e.g. updating your <code>feature</code> branch with new commits in <code>master</code>).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout feature
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout feature
 git merge master
 </code></pre></div><p>If you want to rebase then use the rebase option.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout feature
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout feature
 git merge master --rebase
 </code></pre></div><h2 id="merging-vs-rebasing">Merging vs rebasing</h2>
 <p>Some useful links that&rsquo;ll probably describe the difference better than I ever can.</p>
@@ -1536,22 +1536,22 @@ git merge master --rebase
 </ul>
 <h2 id="diff">Diff</h2>
 <p>Sometimes it&rsquo;s useful to look at the difference between the original file and the changes you&rsquo;ve made via the command line. Before adding the file,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff foo.txt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff foo.txt
 </code></pre></div><p>and after adding the file</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff --cached foo.txt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff --cached foo.txt
 </code></pre></div><h2 id="submodules">Submodules</h2>
 <p>So useful, and something I often overlook. There&rsquo;s a great overview of submodules on the GitHub <a href="https://github.blog/2016-02-01-working-with-submodules/">blog</a>. A git submodule allows you to keep a git repository as a subdirectory of another git repository (<a href="https://www.atlassian.com/git/tutorials/git-submodule">link</a>). Submodules are static in that they track a specific commit and won&rsquo;t be automatically updated.</p>
 <p>To create a submodule in the folder <code>foo</code> using branch <code>master</code> living at <code>url/to/remote/repo</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git submodule add -b master url/to/remote/repo foo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git submodule add -b master url/to/remote/repo foo
 </code></pre></div><p>To update a submodule.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd foo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd foo
 git checkout master
 git pull
 git cd ..
 git add .
 git commit -m <span style="color:#e6db74">&#34;updating submodule in foo&#34;</span>
 </code></pre></div><p>To clone a repository that uses submodules.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone --recursive url/to/remote/repo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone --recursive url/to/remote/repo
 </code></pre></div><p>Hugo&rsquo;s <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">directions</a> on deploying a statically generated website on GitHub is a good example of using submodules. In this case, the submodule is in the <code>public</code> folder which is connected to the <code>[username.github.io](http://username.github.io)</code> repository. And this folder contains the site files generated by hugo when you build your site.</p>
 ]]></content>
         </item>
@@ -1578,7 +1578,7 @@ sequence of evaluation would be <code>modified_func = decor(func)(func_args)</co
 Casually wrapping a function in another function may not be sufficient. To
 Illustrate this I&rsquo;ve created a function <code>to_decorate</code> (a function that returns
 its input divided by 2) that I want to decorate.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_decorate</span>(x):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_decorate</span>(x):
     <span style="color:#66d9ef">return</span>(x<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)
 to_decorate(<span style="color:#ae81ff">2</span>)
 </code></pre></div><p>The <code>not_decorator</code> function below does not act as a decorator even though it is
@@ -1588,16 +1588,16 @@ We have to actually evaluate the function that is the argument to
 <code>not_decorator</code>. Because we have to evaluate it, the function that is the
 argument to <code>not_decorator</code> must also take in an argument. The result is that
 this function ends up returning a variable rather than a function/class.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># modifying the output of func so func has to be evaluated not modified</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># modifying the output of func so func has to be evaluated not modified</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">not_decorator</span>(func):
     <span style="color:#66d9ef">return</span>(abs(func))
 </code></pre></div><p>The code below will error out since the <code>to_decorate</code> function is looking for an
 argument.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate)
 </code></pre></div><p>Passing an argument will allow it to run, but it&rsquo;s still not a decorator since
 it&rsquo;s returning a variable instead of a function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate(<span style="color:#ae81ff">2</span>))
-<span style="color:#66d9ef">print</span>(not_decorated)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate(<span style="color:#ae81ff">2</span>))
+print(not_decorated)
 </code></pre></div><p>Let&rsquo;s define the function <code>decorator</code> which takes a function as an input,
 evaluates the absolute value of the result of the function (the modification), a
 returns a function as opposed to the result.</p>
@@ -1640,29 +1640,29 @@ objects (i.e. data attributes) and functions that allow us to interact with
 these objects (i.e. methods). The class below defines creates a <code>data</code> attribute
 that contains the list of numbers that the user provides when it is
 instantiated.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">vec0</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">vec0</span>:
     <span style="color:#66d9ef">def</span> __init__(self, data):
         self<span style="color:#f92672">.</span>data <span style="color:#f92672">=</span> data
 
 x <span style="color:#f92672">=</span> vec0([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>])
-<span style="color:#66d9ef">print</span>(type(x))
+print(type(x))
 </code></pre></div><p>Suppose we want to implement element-wise addition: add an a value to each
 element in the list. If we try to do something like <code>x + 3</code> we&rsquo;ll get a
 <code>TypeError</code>. We could use list comprehension but that would look a little
 clunky.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x_sum <span style="color:#f92672">=</span> [item <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> x<span style="color:#f92672">.</span>data]
-<span style="color:#66d9ef">print</span>(x_sum)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x_sum <span style="color:#f92672">=</span> [item <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> x<span style="color:#f92672">.</span>data]
+print(x_sum)
 </code></pre></div><p>A more concise way to implement this is to overload the <code>+</code> operator. We can do
 this by defining the add method in the above class. Below we inherit the methods
 from the class defined above and overload the addition operator to implement
 element-wise addition.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">vec1</span>(vec0):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">vec1</span>(vec0):
     <span style="color:#66d9ef">def</span> __add__(self, y):
         result <span style="color:#f92672">=</span> [item <span style="color:#f92672">+</span> y <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>data]
         <span style="color:#66d9ef">return</span>(result)
 
 x <span style="color:#f92672">=</span> vec1([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>])
-<span style="color:#66d9ef">print</span>(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>)
+print(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>)
 </code></pre></div><p>That&rsquo;s all there is to it. You can overload all sorts of operators. A <a href="https://docs.python.org/3/library/operator.html">list of
 operators</a> is provided in the
 Python documentation.</p>

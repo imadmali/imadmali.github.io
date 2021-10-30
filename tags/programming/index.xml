@@ -6,11 +6,7 @@
     <description>Recent content in Programming on Imad Ali</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Sep 2020 16:14:19 -0700</lastBuildDate>
-    
-	<atom:link href="http://imadali.net/tags/programming/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 08 Sep 2020 16:14:19 -0700</lastBuildDate><atom:link href="http://imadali.net/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programming Language Type Checking</title>
       <link>http://imadali.net/posts/programming-language-type-checking/</link>

@@ -26,7 +26,7 @@ export KEY=value printenv KEY $ value To remove the environment variable we can 
 
 
 
-<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+<link rel="stylesheet" href="/main.min.07a025e14cdde3342fc8b7c30ba4e525ee670402dea60dfd9cec01cb2ee19e02.css">
 
 
 
@@ -35,13 +35,9 @@ export KEY=value printenv KEY $ value To remove the environment variable we can 
 
 <meta itemprop="name" content="Environment Variables">
 <meta itemprop="description" content="Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
-export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables).">
-<meta itemprop="datePublished" content="2020-11-08T16:14:19-07:00" />
+export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables)."><meta itemprop="datePublished" content="2020-11-08T16:14:19-07:00" />
 <meta itemprop="dateModified" content="2020-11-08T16:14:19-07:00" />
 <meta itemprop="wordCount" content="247">
-
-
-
 <meta itemprop="keywords" content="Bash," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Environment Variables"/>
@@ -54,9 +50,10 @@ export KEY=value printenv KEY $ value To remove the environment variable we can 
 <meta property="og:description" content="Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using export (which sets the environment variable) and we can print the value of the environment variable with printenv.
 export KEY=value printenv KEY $ value To remove the environment variable we can use unset (to unset shell/environment variables)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://imadali.net/posts/environment-variables/" />
+<meta property="og:url" content="http://imadali.net/posts/environment-variables/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-11-08T16:14:19-07:00" />
 <meta property="article:modified_time" content="2020-11-08T16:14:19-07:00" />
+
 
 
 
@@ -139,17 +136,17 @@ export KEY=value printenv KEY $ value To remove the environment variable we can 
 
             <div class="post-content">
                 <p>Basically environment variables are stored in the system and can be used by different shell processes. Environment variables are usually upper case (conventionally) and and follow Bash syntax rules. Environment variables will be available to any shell process. You can set an environment variable in a one line command using <code>export</code> (which sets the environment variable) and we can print the value of the environment variable with <code>printenv</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
 printenv KEY
 $ value
 </code></pre></div><p>To remove the environment variable we can use <code>unset</code> (to unset shell/environment variables).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">unset KEY
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">unset KEY
 </code></pre></div><p>The other option is to use <code>set</code> (to set shell variables) and <code>export</code> together.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set KEY<span style="color:#f92672">=</span>value
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">set KEY<span style="color:#f92672">=</span>value
 export KEY
 printenv KEY
 </code></pre></div><p>If you set the environment variable in one shell using the command line and then move to a new terminal to print the value then nothing will return. In order for the environment variables to be recognized in new shell processes you need to set them in your bash profile. For example, in <code>~/.bash_profile</code> you could have the following.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export KEY<span style="color:#f92672">=</span>value
 </code></pre></div><p>If you save the file and open up a new shell process and run <code>printenv KEY</code> from the command line then <code>value</code> will be returned.</p>
 <p>A common use case of environment variables is with the <code>PATH</code> variable. Some programs will search this variable for executable. For example, one of the paths in my <code>PATH</code> variable points to the location of texbin so that LaTeX knows where to look when I try to build LaTeX code.</p>
 <p>Reference:</p>
@@ -206,7 +203,7 @@ printenv KEY
 
 
 
-<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+<script type="text/javascript" src="/bundle.min.59ecdc8ddd50b30e6dd7ad4a5372c3fd24a26db671cc1575443b150ceb9d4bc8e73618fb298596b5c336cf5d8c2db90bd7e72a648479e97884e5398722f962fa.js" integrity="sha512-Wezcjd1Qsw5t161KU3LD/SSibbZxzBV1RDsVDOudS8jnNhj7KYWWtcM2z12MLbkL1&#43;cqZIR56XiE5TmHIvli&#43;g=="></script>
 
 
 

@@ -25,7 +25,7 @@
 
 
 
-<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+<link rel="stylesheet" href="/main.min.07a025e14cdde3342fc8b7c30ba4e525ee670402dea60dfd9cec01cb2ee19e02.css">
 
 
 
@@ -33,13 +33,9 @@
 
 
 <meta itemprop="name" content="Closures">
-<meta itemprop="description" content="Closures is a programming concept that took me a while to wrap my head around. To understand closures you need to understand function scope and factory functions. In the example below, x is accessible in the global scope. You can reference x inside and outside the function. However, y and z are accessible only within the local scope of the function foo. So you can reference x, y and z inside the function, but you can&rsquo;t reference y and z outside of the function.">
-<meta itemprop="datePublished" content="2020-08-20T16:14:19-07:00" />
+<meta itemprop="description" content="Closures is a programming concept that took me a while to wrap my head around. To understand closures you need to understand function scope and factory functions. In the example below, x is accessible in the global scope. You can reference x inside and outside the function. However, y and z are accessible only within the local scope of the function foo. So you can reference x, y and z inside the function, but you can&rsquo;t reference y and z outside of the function."><meta itemprop="datePublished" content="2020-08-20T16:14:19-07:00" />
 <meta itemprop="dateModified" content="2020-08-20T16:14:19-07:00" />
 <meta itemprop="wordCount" content="269">
-
-
-
 <meta itemprop="keywords" content="Python," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Closures"/>
@@ -50,9 +46,10 @@
     <meta property="og:title" content="Closures" />
 <meta property="og:description" content="Closures is a programming concept that took me a while to wrap my head around. To understand closures you need to understand function scope and factory functions. In the example below, x is accessible in the global scope. You can reference x inside and outside the function. However, y and z are accessible only within the local scope of the function foo. So you can reference x, y and z inside the function, but you can&rsquo;t reference y and z outside of the function." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://imadali.net/posts/closures/" />
+<meta property="og:url" content="http://imadali.net/posts/closures/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-08-20T16:14:19-07:00" />
 <meta property="article:modified_time" content="2020-08-20T16:14:19-07:00" />
+
 
 
 
@@ -135,7 +132,7 @@
 
             <div class="post-content">
                 <p>Closures is a programming concept that took me a while to wrap my head around. To understand closures you need to understand <strong>function scope</strong> and <strong>factory functions</strong>. In the example below, <code>x</code> is accessible in the global scope. You can reference <code>x</code> inside and outside the function. However, <code>y</code> and <code>z</code> are accessible only within the local scope of the function <code>foo</code>. So you can reference <code>x</code>, <code>y</code> and <code>z</code> inside the function, but you can&rsquo;t reference <code>y</code> and <code>z</code> outside of the function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">foo</span>(y):
 	z <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 	<span style="color:#66d9ef">return</span>(x<span style="color:#f92672">+</span>y<span style="color:#f92672">+</span>z)
@@ -143,7 +140,7 @@
 <span style="color:#75715e"># usage</span>
 foo(<span style="color:#ae81ff">2</span>)
 </code></pre></div><p>A factory function is simply a function that returns another function. In the example below <code>A</code> is a factory function that generates function <code>B</code> every time it is executed. Function <code>B</code> references the argument <code>x</code> that is defined in function <code>A</code> . So when we call <code>f = A(4)</code> the function will persist the value <code>x=4</code>, so it can do the operation <code>x+y</code> that when we execute <code>f(3)</code>. So function <code>B</code> has access to the the scope of its enclosing function, function <code>A</code>, even after function <code>A</code> has finished executing. This is a closure. This is different from the function <code>foo</code> defined above, where all local variables (<code>y</code> and <code>z</code> ) are eliminated after the function finishes its execution.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">A</span>(x):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">A</span>(x):
 	<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">B</span>(y):
 		<span style="color:#66d9ef">return</span>(x<span style="color:#f92672">+</span>y)
 	<span style="color:#66d9ef">return</span>(B)
@@ -211,7 +208,7 @@ f(<span style="color:#ae81ff">1</span>)
 
 
 
-<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+<script type="text/javascript" src="/bundle.min.59ecdc8ddd50b30e6dd7ad4a5372c3fd24a26db671cc1575443b150ceb9d4bc8e73618fb298596b5c336cf5d8c2db90bd7e72a648479e97884e5398722f962fa.js" integrity="sha512-Wezcjd1Qsw5t161KU3LD/SSibbZxzBV1RDsVDOudS8jnNhj7KYWWtcM2z12MLbkL1&#43;cqZIR56XiE5TmHIvli&#43;g=="></script>
 
 
 

@@ -26,7 +26,7 @@ A makefile is made up of targets that take that consist of dependencies and comm
 
 
 
-<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+<link rel="stylesheet" href="/main.min.07a025e14cdde3342fc8b7c30ba4e525ee670402dea60dfd9cec01cb2ee19e02.css">
 
 
 
@@ -35,13 +35,9 @@ A makefile is made up of targets that take that consist of dependencies and comm
 
 <meta itemprop="name" content="Makefiles for Workflow">
 <meta itemprop="description" content="The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.
-A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary. If you make a modification to any of the dependencies then running make or make target-name will rerun your commands to update the target.">
-<meta itemprop="datePublished" content="2020-09-12T16:14:19-07:00" />
+A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary. If you make a modification to any of the dependencies then running make or make target-name will rerun your commands to update the target."><meta itemprop="datePublished" content="2020-09-12T16:14:19-07:00" />
 <meta itemprop="dateModified" content="2020-09-12T16:14:19-07:00" />
 <meta itemprop="wordCount" content="396">
-
-
-
 <meta itemprop="keywords" content="Bash," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Makefiles for Workflow"/>
@@ -54,9 +50,10 @@ A makefile is made up of targets that take that consist of dependencies and comm
 <meta property="og:description" content="The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.
 A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary. If you make a modification to any of the dependencies then running make or make target-name will rerun your commands to update the target." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://imadali.net/posts/makefiles-for-workflow/" />
+<meta property="og:url" content="http://imadali.net/posts/makefiles-for-workflow/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-12T16:14:19-07:00" />
 <meta property="article:modified_time" content="2020-09-12T16:14:19-07:00" />
+
 
 
 
@@ -140,29 +137,29 @@ A makefile is made up of targets that take that consist of dependencies and comm
             <div class="post-content">
                 <p>The make utility is typically used to make it easier maintain source code that needs to be compiled. It also just generally helps streamline any workflow.</p>
 <p>A makefile is made up of targets that take that consist of dependencies and commands. Your target is typically a compiled binary, the dependencies are source code, and the commands are the instructions you want to compile your source code into the binary. If you make a modification to any of the dependencies then running <code>make</code> or <code>make target-name</code> will  rerun your commands to update the target.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target: dependencies
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">target: dependencies
 	commands
 </code></pre></div><p>We can still use makefiles in situations where we&rsquo;re not compiling code. Below is a simplified example of how I&rsquo;m using it in a Data Science like workflow.</p>
 <p>We have some Python code that generates data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># generate.py</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># generate.py</span>
 
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 
 N <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
 data <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame({<span style="color:#e6db74">&#39;x&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, N)})
 
-data<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#39;./data.csv&#39;</span>, index<span style="color:#f92672">=</span>False)
+data<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#39;./data.csv&#39;</span>, index<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 </code></pre></div><p>And some code that computes the maximum likelihood estimate (MLE) from that data (assuming that the data is normally distributed).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># estimate.py</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># estimate.py</span>
 
 <span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 <span style="color:#f92672">from</span> scipy.optimize <span style="color:#f92672">import</span> minimize
 <span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> norm
 
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Running simulation...&#39;</span>)
+print(<span style="color:#e6db74">&#39;Running simulation...&#39;</span>)
 
 data <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;data.csv&#39;</span>)
 x <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;x&#39;</span>]
@@ -174,18 +171,18 @@ x <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;x&#
         log_likelihood <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>log(norm<span style="color:#f92672">.</span>pdf(value, params[<span style="color:#ae81ff">0</span>], params[<span style="color:#ae81ff">1</span>]))
     <span style="color:#66d9ef">return</span>(<span style="color:#f92672">-</span>log_likelihood)
 
-bnds <span style="color:#f92672">=</span> ((None, None), (<span style="color:#ae81ff">0.5</span>, None))
+bnds <span style="color:#f92672">=</span> ((<span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>), (<span style="color:#ae81ff">0.5</span>, <span style="color:#66d9ef">None</span>))
 result <span style="color:#f92672">=</span> minimize(fun<span style="color:#f92672">=</span>objective_function, x0<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.5</span>], bounds<span style="color:#f92672">=</span>bnds, args<span style="color:#f92672">=</span>(x))
 result <span style="color:#f92672">=</span> dict(result)
 
 <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;./mle_result.txt&#39;</span>, <span style="color:#e6db74">&#34;w&#34;</span>) <span style="color:#66d9ef">as</span> f:
-    f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;Timestamp: {0}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(datetime<span style="color:#f92672">.</span>now()))
+    f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;Timestamp: </span><span style="color:#e6db74">{0}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(datetime<span style="color:#f92672">.</span>now()))
     <span style="color:#66d9ef">for</span> key, value <span style="color:#f92672">in</span> result<span style="color:#f92672">.</span>items():
-        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;{0}: {1}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(key, value))
+        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{0}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{1}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(key, value))
 
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Data: mean [{0}], sd [{1}]&#39;</span><span style="color:#f92672">.</span>format(np<span style="color:#f92672">.</span>mean(x), np<span style="color:#f92672">.</span>std(x)))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;MLE: mean [{0}], sd [{1}]&#39;</span><span style="color:#f92672">.</span>format(result[<span style="color:#e6db74">&#39;x&#39;</span>][<span style="color:#ae81ff">0</span>], result[<span style="color:#e6db74">&#39;x&#39;</span>][<span style="color:#ae81ff">1</span>]))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;... complete&#39;</span>)
+print(<span style="color:#e6db74">&#39;Data: mean [</span><span style="color:#e6db74">{0}</span><span style="color:#e6db74">], sd [</span><span style="color:#e6db74">{1}</span><span style="color:#e6db74">]&#39;</span><span style="color:#f92672">.</span>format(np<span style="color:#f92672">.</span>mean(x), np<span style="color:#f92672">.</span>std(x)))
+print(<span style="color:#e6db74">&#39;MLE: mean [</span><span style="color:#e6db74">{0}</span><span style="color:#e6db74">], sd [</span><span style="color:#e6db74">{1}</span><span style="color:#e6db74">]&#39;</span><span style="color:#f92672">.</span>format(result[<span style="color:#e6db74">&#39;x&#39;</span>][<span style="color:#ae81ff">0</span>], result[<span style="color:#e6db74">&#39;x&#39;</span>][<span style="color:#ae81ff">1</span>]))
+print(<span style="color:#e6db74">&#39;... complete&#39;</span>)
 </code></pre></div><p>In this case the workflow might involve,</p>
 <ol>
 <li>Simulating the model (generating data and finding the MLE)</li>
@@ -193,7 +190,7 @@ result <span style="color:#f92672">=</span> dict(result)
 <li>Cleaning up all the files (i.e. the output from the python scripts).</li>
 </ol>
 <p>We can wrap all of this up in a makefile.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Makefile</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Makefile</span>
 
 simulate:
 	@python generate.py
@@ -256,7 +253,7 @@ clean:
 
 
 
-<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+<script type="text/javascript" src="/bundle.min.59ecdc8ddd50b30e6dd7ad4a5372c3fd24a26db671cc1575443b150ceb9d4bc8e73618fb298596b5c336cf5d8c2db90bd7e72a648479e97884e5398722f962fa.js" integrity="sha512-Wezcjd1Qsw5t161KU3LD/SSibbZxzBV1RDsVDOudS8jnNhj7KYWWtcM2z12MLbkL1&#43;cqZIR56XiE5TmHIvli&#43;g=="></script>
 
 
 

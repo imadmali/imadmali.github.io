@@ -25,7 +25,7 @@
 
 
 
-<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+<link rel="stylesheet" href="/main.min.07a025e14cdde3342fc8b7c30ba4e525ee670402dea60dfd9cec01cb2ee19e02.css">
 
 
 
@@ -33,13 +33,9 @@
 
 
 <meta itemprop="name" content="Python Decorators are Just Wrappers">
-<meta itemprop="description" content="Python decorators are just wrappers&hellip; that return functions Part of my issue with understanding how decorators work was that I was treating them as a function/class that is returning a variable. I should have been thinking of them as a function/class returning a modified (i.e. decorated) function/class. As mentioned succinctly here, &ldquo;Decorators are a form of metaprogramming; they enhance the action of the function or method they decorate.&rdquo; So a decorator is just a wrapper of the function that you want to modify (that returns a function).">
-<meta itemprop="datePublished" content="2020-05-06T02:21:39-07:00" />
+<meta itemprop="description" content="Python decorators are just wrappers&hellip; that return functions Part of my issue with understanding how decorators work was that I was treating them as a function/class that is returning a variable. I should have been thinking of them as a function/class returning a modified (i.e. decorated) function/class. As mentioned succinctly here, &ldquo;Decorators are a form of metaprogramming; they enhance the action of the function or method they decorate.&rdquo; So a decorator is just a wrapper of the function that you want to modify (that returns a function)."><meta itemprop="datePublished" content="2020-05-06T02:21:39-07:00" />
 <meta itemprop="dateModified" content="2020-05-06T02:21:39-07:00" />
 <meta itemprop="wordCount" content="381">
-
-
-
 <meta itemprop="keywords" content="Python," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python Decorators are Just Wrappers"/>
@@ -50,9 +46,10 @@
     <meta property="og:title" content="Python Decorators are Just Wrappers" />
 <meta property="og:description" content="Python decorators are just wrappers&hellip; that return functions Part of my issue with understanding how decorators work was that I was treating them as a function/class that is returning a variable. I should have been thinking of them as a function/class returning a modified (i.e. decorated) function/class. As mentioned succinctly here, &ldquo;Decorators are a form of metaprogramming; they enhance the action of the function or method they decorate.&rdquo; So a decorator is just a wrapper of the function that you want to modify (that returns a function)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://imadali.net/posts/python-decorators-are-just-wrappers/" />
+<meta property="og:url" content="http://imadali.net/posts/python-decorators-are-just-wrappers/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-05-06T02:21:39-07:00" />
 <meta property="article:modified_time" content="2020-05-06T02:21:39-07:00" />
+
 
 
 
@@ -149,7 +146,7 @@ sequence of evaluation would be <code>modified_func = decor(func)(func_args)</co
 Casually wrapping a function in another function may not be sufficient. To
 Illustrate this I&rsquo;ve created a function <code>to_decorate</code> (a function that returns
 its input divided by 2) that I want to decorate.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_decorate</span>(x):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">to_decorate</span>(x):
     <span style="color:#66d9ef">return</span>(x<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)
 to_decorate(<span style="color:#ae81ff">2</span>)
 </code></pre></div><p>The <code>not_decorator</code> function below does not act as a decorator even though it is
@@ -159,16 +156,16 @@ We have to actually evaluate the function that is the argument to
 <code>not_decorator</code>. Because we have to evaluate it, the function that is the
 argument to <code>not_decorator</code> must also take in an argument. The result is that
 this function ends up returning a variable rather than a function/class.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># modifying the output of func so func has to be evaluated not modified</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># modifying the output of func so func has to be evaluated not modified</span>
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">not_decorator</span>(func):
     <span style="color:#66d9ef">return</span>(abs(func))
 </code></pre></div><p>The code below will error out since the <code>to_decorate</code> function is looking for an
 argument.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate)
 </code></pre></div><p>Passing an argument will allow it to run, but it&rsquo;s still not a decorator since
 it&rsquo;s returning a variable instead of a function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate(<span style="color:#ae81ff">2</span>))
-<span style="color:#66d9ef">print</span>(not_decorated)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">not_decorated <span style="color:#f92672">=</span> not_decorator(to_decorate(<span style="color:#ae81ff">2</span>))
+print(not_decorated)
 </code></pre></div><p>Let&rsquo;s define the function <code>decorator</code> which takes a function as an input,
 evaluates the absolute value of the result of the function (the modification), a
 returns a function as opposed to the result.</p>
@@ -230,7 +227,7 @@ above.</p>
 
 
 
-<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+<script type="text/javascript" src="/bundle.min.59ecdc8ddd50b30e6dd7ad4a5372c3fd24a26db671cc1575443b150ceb9d4bc8e73618fb298596b5c336cf5d8c2db90bd7e72a648479e97884e5398722f962fa.js" integrity="sha512-Wezcjd1Qsw5t161KU3LD/SSibbZxzBV1RDsVDOudS8jnNhj7KYWWtcM2z12MLbkL1&#43;cqZIR56XiE5TmHIvli&#43;g=="></script>
 
 
 

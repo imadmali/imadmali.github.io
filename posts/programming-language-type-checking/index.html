@@ -27,7 +27,7 @@ Static vs Dynamic This defines whether the type checking is enforced at compile 
 
 
 
-<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+<link rel="stylesheet" href="/main.min.07a025e14cdde3342fc8b7c30ba4e525ee670402dea60dfd9cec01cb2ee19e02.css">
 
 
 
@@ -37,13 +37,9 @@ Static vs Dynamic This defines whether the type checking is enforced at compile 
 <meta itemprop="name" content="Programming Language Type Checking">
 <meta itemprop="description" content="Date: 09-08-2020
 Type checking is the way in which a programming language enforces variable types (int, float, bool, etc). But I always forget what the difference is between strongly/weakly typed and statically/dynamically typed.
-Static vs Dynamic This defines whether the type checking is enforced at compile time or run time. If the language does type checking at compile time then it is statically typed (e.g. C&#43;&#43;). This would prevent any type errors from occurring during run time.">
-<meta itemprop="datePublished" content="2020-09-08T16:14:19-07:00" />
+Static vs Dynamic This defines whether the type checking is enforced at compile time or run time. If the language does type checking at compile time then it is statically typed (e.g. C&#43;&#43;). This would prevent any type errors from occurring during run time."><meta itemprop="datePublished" content="2020-09-08T16:14:19-07:00" />
 <meta itemprop="dateModified" content="2020-09-08T16:14:19-07:00" />
 <meta itemprop="wordCount" content="210">
-
-
-
 <meta itemprop="keywords" content="Programming," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Programming Language Type Checking"/>
@@ -58,9 +54,10 @@ Static vs Dynamic This defines whether the type checking is enforced at compile 
 Type checking is the way in which a programming language enforces variable types (int, float, bool, etc). But I always forget what the difference is between strongly/weakly typed and statically/dynamically typed.
 Static vs Dynamic This defines whether the type checking is enforced at compile time or run time. If the language does type checking at compile time then it is statically typed (e.g. C&#43;&#43;). This would prevent any type errors from occurring during run time." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://imadali.net/posts/programming-language-type-checking/" />
+<meta property="og:url" content="http://imadali.net/posts/programming-language-type-checking/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-08T16:14:19-07:00" />
 <meta property="article:modified_time" content="2020-09-08T16:14:19-07:00" />
+
 
 
 
@@ -149,14 +146,14 @@ Static vs Dynamic This defines whether the type checking is enforced at compile 
 <h2 id="strong-vs-weak">Strong vs Weak</h2>
 <p>This defines whether the language does type conversions implicitly. If it does not do conversions implicitly then it is strongly typed (e.g. Python). If it does do conversions implicitly then it&rsquo;s weakly typed (e.g. R).</p>
 <p>For example, in Python if we have a vector with a single element that is a <code>string</code> type and append an <code>int</code> to that vector, the type of both elements is preserved.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;foo&#39;</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;foo&#39;</span>]
 x<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">1</span>)
-<span style="color:#66d9ef">print</span>(x)
+print(x)
 <span style="color:#75715e"># [&#39;foo&#39;, 1]</span>
 </code></pre></div><p>But when you implement analogous code in R the type of each element is not preserved. The <code>int</code> variable that you append gets implicitly converted to a <code>string</code> variable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">&lt;-</span> c(<span style="color:#e6db74">&#34;foo&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">&lt;-</span> c(<span style="color:#e6db74">&#34;foo&#34;</span>)
 x <span style="color:#f92672">=</span> append(x, <span style="color:#ae81ff">1</span>)
-<span style="color:#66d9ef">print</span>(x)
+print(x)
 <span style="color:#75715e"># &#34;foo&#34; &#34;1&#34;</span>
 </code></pre></div>
             </div>
@@ -208,7 +205,7 @@ x <span style="color:#f92672">=</span> append(x, <span style="color:#ae81ff">1</
 
 
 
-<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+<script type="text/javascript" src="/bundle.min.59ecdc8ddd50b30e6dd7ad4a5372c3fd24a26db671cc1575443b150ceb9d4bc8e73618fb298596b5c336cf5d8c2db90bd7e72a648479e97884e5398722f962fa.js" integrity="sha512-Wezcjd1Qsw5t161KU3LD/SSibbZxzBV1RDsVDOudS8jnNhj7KYWWtcM2z12MLbkL1&#43;cqZIR56XiE5TmHIvli&#43;g=="></script>
 
 
 

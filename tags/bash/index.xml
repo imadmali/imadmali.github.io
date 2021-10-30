@@ -6,11 +6,7 @@
     <description>Recent content in Bash on Imad Ali</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Nov 2020 16:14:19 -0700</lastBuildDate>
-    
-	<atom:link href="http://imadali.net/tags/bash/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 08 Nov 2020 16:14:19 -0700</lastBuildDate><atom:link href="http://imadali.net/tags/bash/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Environment Variables</title>
       <link>http://imadali.net/posts/environment-variables/</link>

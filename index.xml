@@ -6,11 +6,7 @@
     <description>Recent content on Imad Ali</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://imadali.net/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://imadali.net/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MAE, MSE, and RMSE</title>
       <link>http://imadali.net/posts/mae-mse-and-rmse/</link>
@@ -138,7 +134,7 @@ For example, suppose you have a collection of 1,000 tokens. To one-hot encode th
       
       <guid>http://imadali.net/posts/oltp-and-olap/</guid>
       <description>I always mix these up. OLTP (Online Transaction Processing) is responsible for storing data from a device/user/etc. OLAP (Online Analytics Processing) takes information produced by OLTP systems and creates more complex data assets that combine/aggregate OLTP data in ways that are useful to the business.
-For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&amp;rsquo; entire history.</description>
+For example, in console gaming OLTP might involve recording data from the console as the user games. The OLAP might take this data and aggregate into how much time is spent in each game for the users&#39; entire history.</description>
     </item>
     
     <item>

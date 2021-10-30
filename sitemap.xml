@@ -1,287 +1,173 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>http://imadali.net/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/machine-learning/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/mae-mse-and-rmse/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/statistics/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/a-year-of-blogging/</loc>
     <lastmod>2021-01-15T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/writing/</loc>
     <lastmod>2021-01-15T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/docker/</loc>
     <lastmod>2021-01-12T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/sql/</loc>
     <lastmod>2021-01-12T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/sql-prototyping-with-docker/</loc>
     <lastmod>2021-01-12T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/an-imagineer-retires/</loc>
     <lastmod>2021-01-11T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/explaining-linear-regression-with-skittles/</loc>
     <lastmod>2020-12-11T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/win-probability-from-the-point-differential-b298d245fe63427cac5aac73d601b812/</loc>
     <lastmod>2020-12-11T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/levels-of-ai-as-levels-of-automation/</loc>
     <lastmod>2020-12-10T00:22:23-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/math/</loc>
     <lastmod>2020-12-07T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/similarity-measures/</loc>
     <lastmod>2020-12-07T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/models-as-actions/</loc>
     <lastmod>2020-12-05T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/bias-variance-tradeoff/</loc>
     <lastmod>2020-12-04T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/causal-inference/</loc>
     <lastmod>2020-12-03T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/sankey-diagrams-and-ab-testing/</loc>
     <lastmod>2020-12-03T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/deep-learning/</loc>
     <lastmod>2020-11-29T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/embeddings/</loc>
     <lastmod>2020-11-29T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/data-engineering/</loc>
     <lastmod>2020-11-24T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/oltp-and-olap/</loc>
     <lastmod>2020-11-24T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/bash/</loc>
     <lastmod>2020-11-08T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/environment-variables/</loc>
     <lastmod>2020-11-08T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/aliasing-different-python-versions/</loc>
     <lastmod>2020-11-06T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/sql-concepts/</loc>
     <lastmod>2020-10-29T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/creating-a-single-metric/</loc>
     <lastmod>2020-10-15T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/one-sentence-per-line/</loc>
     <lastmod>2020-09-30T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/value-from-less/</loc>
     <lastmod>2020-09-28T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/pyspark/</loc>
     <lastmod>2020-09-16T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/pyspark-application-execution/</loc>
     <lastmod>2020-09-16T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/python/</loc>
     <lastmod>2020-09-16T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/why-graphs-should-not-be-stored-in-a-relational-databases/</loc>
     <lastmod>2020-09-16T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/pyspark-udfs/</loc>
     <lastmod>2020-09-15T00:22:23-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/makefiles-for-workflow/</loc>
     <lastmod>2020-09-12T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/programming/</loc>
     <lastmod>2020-09-08T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/programming-language-type-checking/</loc>
     <lastmod>2020-09-08T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/confidence-intervals-and-standard-deviations-and-standard-errors/</loc>
     <lastmod>2020-09-02T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/closures/</loc>
     <lastmod>2020-08-20T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/streaming-data-between-python-programs/</loc>
     <lastmod>2020-07-05T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/coding-binary-variables/</loc>
     <lastmod>2020-06-28T13:11:33-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/untagged/</loc>
     <lastmod>2020-06-28T13:11:33-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/convex-combinations/</loc>
     <lastmod>2020-06-21T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/types-of-etl-transformations/</loc>
     <lastmod>2020-05-31T18:13:39-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/data-engineering-concepts/</loc>
     <lastmod>2020-05-31T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/in-high-dimensional-space/</loc>
     <lastmod>2020-05-12T00:22:23-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/tags/git/</loc>
     <lastmod>2020-05-09T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/git/</loc>
     <lastmod>2020-05-09T16:14:19-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/python-decorators-are-just-wrappers/</loc>
     <lastmod>2020-05-06T02:21:39-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/posts/overloading-operators/</loc>
     <lastmod>2020-01-01T23:17:00-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/projects/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/projects/bsss/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://imadali.net/series/</loc>
   </url>
-  
 </urlset>

@@ -6,11 +6,7 @@
     <description>Recent content in untagged on Imad Ali</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Jun 2020 13:11:33 -0700</lastBuildDate>
-    
-	<atom:link href="http://imadali.net/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 28 Jun 2020 13:11:33 -0700</lastBuildDate><atom:link href="http://imadali.net/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Coding Binary Variables</title>
       <link>http://imadali.net/posts/coding-binary-variables/</link>

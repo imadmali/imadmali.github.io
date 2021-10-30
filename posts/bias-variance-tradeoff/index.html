@@ -26,7 +26,7 @@ High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate no
 
 
 
-<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+<link rel="stylesheet" href="/main.min.07a025e14cdde3342fc8b7c30ba4e525ee670402dea60dfd9cec01cb2ee19e02.css">
 
 
 
@@ -35,13 +35,9 @@ High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate no
 
 <meta itemprop="name" content="Bias-Variance Tradeoff">
 <meta itemprop="description" content="There&rsquo;s a lot of great diagrams, explanation, and tedious calculations to explain the bias-variance trade off, but I was trying to come up with a pithy explanation for statisticians who understand regression.
-High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate non-linearities, and you want to model it with some regression function $f$. Your first option is super basic; just the mean $y \sim f(\bar{y})$. The mean is not going to be sufficient enough to model the complexities so you&rsquo;ll have high bias (predictions that are very different from the true value).">
-<meta itemprop="datePublished" content="2020-12-04T16:14:19-07:00" />
+High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate non-linearities, and you want to model it with some regression function $f$. Your first option is super basic; just the mean $y \sim f(\bar{y})$. The mean is not going to be sufficient enough to model the complexities so you&rsquo;ll have high bias (predictions that are very different from the true value)."><meta itemprop="datePublished" content="2020-12-04T16:14:19-07:00" />
 <meta itemprop="dateModified" content="2020-12-04T16:14:19-07:00" />
 <meta itemprop="wordCount" content="285">
-
-
-
 <meta itemprop="keywords" content="Machine Learning," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Bias-Variance Tradeoff"/>
@@ -54,9 +50,10 @@ High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate no
 <meta property="og:description" content="There&rsquo;s a lot of great diagrams, explanation, and tedious calculations to explain the bias-variance trade off, but I was trying to come up with a pithy explanation for statisticians who understand regression.
 High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate non-linearities, and you want to model it with some regression function $f$. Your first option is super basic; just the mean $y \sim f(\bar{y})$. The mean is not going to be sufficient enough to model the complexities so you&rsquo;ll have high bias (predictions that are very different from the true value)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://imadali.net/posts/bias-variance-tradeoff/" />
+<meta property="og:url" content="http://imadali.net/posts/bias-variance-tradeoff/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-12-04T16:14:19-07:00" />
 <meta property="article:modified_time" content="2020-12-04T16:14:19-07:00" />
+
 
 
 
@@ -142,7 +139,7 @@ High Bias, Low Variance. Suppose you have some outcome data $y$ with moderate no
 <p><strong>High Bias, Low Variance.</strong> Suppose you have some outcome data $y$ with moderate non-linearities, and you want to model it with some regression function $f$. Your first option is super basic; just the mean $y \sim f(\bar{y})$. The mean is not going to be sufficient enough to model the complexities so you&rsquo;ll have high bias (predictions that are very different from the true value). However, you&rsquo;ll have low variance (predictions with no variation) since $f$ (the mean in this case) is not sufficient enough to capture the variability in the outcome variable.</p>
 <p><strong>Low Bias, High Variance.</strong> Now you start packing $f$ with interaction terms and complex polynomials. The bias is going to go down since the model is really good at handling the complexities in the outcome variable. However, the variance is going to increase since $f$ is probably modeling noise in addition to the outcome variable.</p>
 <p>We can also think about this in terms of underfitting and overfitting to the data. A simple $f$ with high bias and low variance will underfit the data, whereas a complexj $f$ with low bias and high variance will overfit the data.</p>
-<pre><code>underfit data
+<pre tabindex="0"><code>underfit data
 high bias
 low variance
 \
@@ -206,7 +203,7 @@ high variance
 
 
 
-<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+<script type="text/javascript" src="/bundle.min.59ecdc8ddd50b30e6dd7ad4a5372c3fd24a26db671cc1575443b150ceb9d4bc8e73618fb298596b5c336cf5d8c2db90bd7e72a648479e97884e5398722f962fa.js" integrity="sha512-Wezcjd1Qsw5t161KU3LD/SSibbZxzBV1RDsVDOudS8jnNhj7KYWWtcM2z12MLbkL1&#43;cqZIR56XiE5TmHIvli&#43;g=="></script>
 
 
 

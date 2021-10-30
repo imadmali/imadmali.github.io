@@ -27,7 +27,7 @@ Here I show how to create a PySpark UDF which uses," />
 
 
 
-<link rel="stylesheet" href="/main.min.75c31a52ad2c464af230bf9e46470cf42244ee17722c920ddf52f75a10d6b504.css">
+<link rel="stylesheet" href="/main.min.07a025e14cdde3342fc8b7c30ba4e525ee670402dea60dfd9cec01cb2ee19e02.css">
 
 
 
@@ -37,13 +37,9 @@ Here I show how to create a PySpark UDF which uses," />
 <meta itemprop="name" content="PySpark UDFs">
 <meta itemprop="description" content="These are some of my notes on creating UDFs (user defined functions) in PySpark.
 UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&rsquo;re working with modular components that build up to the entire ETL workflow).
-Here I show how to create a PySpark UDF which uses,">
-<meta itemprop="datePublished" content="2020-09-15T00:22:23-07:00" />
+Here I show how to create a PySpark UDF which uses,"><meta itemprop="datePublished" content="2020-09-15T00:22:23-07:00" />
 <meta itemprop="dateModified" content="2020-09-15T00:22:23-07:00" />
 <meta itemprop="wordCount" content="857">
-
-
-
 <meta itemprop="keywords" content="Python,PySpark,Data Engineering," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="PySpark UDFs"/>
@@ -58,9 +54,10 @@ Here I show how to create a PySpark UDF which uses,"/>
 UDFs are super useful for anyone doing feature engineering or ETL work. They help break down the workflow by keeping your PySpark code modular. This makes it easy to perform unit testing (since you&rsquo;re working with modular components that build up to the entire ETL workflow).
 Here I show how to create a PySpark UDF which uses," />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://imadali.net/posts/pyspark-udfs/" />
+<meta property="og:url" content="http://imadali.net/posts/pyspark-udfs/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-15T00:22:23-07:00" />
 <meta property="article:modified_time" content="2020-09-15T00:22:23-07:00" />
+
 
 
 
@@ -153,8 +150,8 @@ Here I show how to create a PySpark UDF which uses," />
 </ol>
 <p>(All code shown below uses PySpark 3.0.1.)</p>
 <p>To start, I generate some data that I&rsquo;ll use to illustrate all of the UDF constructions I mentioned above.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 <span style="color:#f92672">from</span> pyspark.sql <span style="color:#f92672">import</span> SparkSession
 <span style="color:#75715e"># needed for udfs</span>
 <span style="color:#f92672">from</span> pyspark.sql.functions <span style="color:#f92672">import</span> udf, lit, collect_list
@@ -162,13 +159,13 @@ Here I show how to create a PySpark UDF which uses," />
 
 spark <span style="color:#f92672">=</span> SparkSession<span style="color:#f92672">.</span>builder<span style="color:#f92672">.</span>appName(<span style="color:#e6db74">&#39;udf_tutorial&#39;</span>)<span style="color:#f92672">.</span>getOrCreate()
 N <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
-data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;identifier&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>], N, replace<span style="color:#f92672">=</span>True),
+data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;identifier&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>], N, replace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>),
         <span style="color:#e6db74">&#39;var1&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, N),
-        <span style="color:#e6db74">&#39;var2&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#e6db74">&#39;Y&#39;</span>,<span style="color:#e6db74">&#39;N&#39;</span>], N, replace<span style="color:#f92672">=</span>True)}
+        <span style="color:#e6db74">&#39;var2&#39;</span>: np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#e6db74">&#39;Y&#39;</span>,<span style="color:#e6db74">&#39;N&#39;</span>], N, replace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)}
 df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data)
-<span style="color:#66d9ef">print</span>(df)
+print(df)
 </code></pre></div><p>This produces the following table.</p>
-<pre><code>identifier      var1    var2
+<pre tabindex="0"><code>identifier      var1    var2
 0            2 -0.015862    N
 1            5  3.792773    N
 2            4  2.653766    Y
@@ -190,18 +187,18 @@ df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Da
 <h2 id="single-column">Single Column</h2>
 <p>Here I&rsquo;m creating a UDF that takes a single column and an external parameter as arguments. First I define the function. In this example, the function returns the product between each element of the column and the parameter we provide. I&rsquo;m using try/except statements for better error handling.</p>
 <p>The <code>lit</code> function will be used to provide the parameter argument as a string, which means it needs to be converted to a float in order to be used for the mathematical operation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_sc</span>(v1, a):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_sc</span>(v1, a):
     <span style="color:#66d9ef">try</span>:
         a <span style="color:#f92672">=</span> float(a)
         <span style="color:#66d9ef">return</span>(v1 <span style="color:#f92672">*</span> a)
     <span style="color:#66d9ef">except</span>:
-        <span style="color:#66d9ef">return</span>(None)
+        <span style="color:#66d9ef">return</span>(<span style="color:#66d9ef">None</span>)
 </code></pre></div><p>Now I register the UDF a specify the return type as <code>FloatType()</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">udf_sc_reg <span style="color:#f92672">=</span> udf(udf_sc, FloatType())
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">udf_sc_reg <span style="color:#f92672">=</span> udf(udf_sc, FloatType())
 </code></pre></div><p>Now I can use the UDF with the Spark data frame created above.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_sc_reg(<span style="color:#e6db74">&#39;var1&#39;</span>, lit(<span style="color:#e6db74">&#39;2&#39;</span>)))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_sc_reg(<span style="color:#e6db74">&#39;var1&#39;</span>, lit(<span style="color:#e6db74">&#39;2&#39;</span>)))
 sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
-</code></pre></div><pre><code>+----------+--------------------+----+------------+
+</code></pre></div><pre tabindex="0"><code>+----------+--------------------+----+------------+
 |identifier|                var1|var2|        var3|
 +----------+--------------------+----+------------+
 |         2|-0.01586150202926495|   N|-0.031723004|
@@ -212,23 +209,23 @@ sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81
 +----------+--------------------+----+------------+
 </code></pre><h2 id="multiple-columns">Multiple Columns</h2>
 <p>The approach is similar if multiple columns are needed in the UDF. Here the UDF has more complicated conditional statements.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_mc</span>(v1, v2):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_mc</span>(v1, v2):
     <span style="color:#66d9ef">try</span>:
         <span style="color:#66d9ef">if</span> v2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;N&#39;</span>:
             a <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>
         <span style="color:#66d9ef">elif</span> v2 <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Y&#39;</span>:
             a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>
         <span style="color:#66d9ef">else</span>:
-            a <span style="color:#f92672">=</span> None
+            a <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
         <span style="color:#66d9ef">return</span>(v1 <span style="color:#f92672">+</span> a)
     <span style="color:#66d9ef">except</span>:
-        <span style="color:#66d9ef">return</span>(None)
+        <span style="color:#66d9ef">return</span>(<span style="color:#66d9ef">None</span>)
 
 udf_mc_reg <span style="color:#f92672">=</span> udf(udf_mc, FloatType())
 
 sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_mc_reg(<span style="color:#e6db74">&#39;var1&#39;</span>,<span style="color:#e6db74">&#39;var2&#39;</span>))
 sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
-</code></pre></div><pre><code>+----------+--------------------+----+----------+
+</code></pre></div><pre tabindex="0"><code>+----------+--------------------+----+----------+
 |identifier|                var1|var2|      var3|
 +----------+--------------------+----+----------+
 |         2|-0.01586150202926495|   N|-0.5158615|
@@ -240,20 +237,20 @@ sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81
 </code></pre><h2 id="external-library">External Library</h2>
 <p>Sometimes it&rsquo;s useful to use a function provided by an external library (e.g. numpy, scipy, etc). It&rsquo;s pretty straightforward to do this. You just provide the function in your UDF. However, if you&rsquo;re working in a distributed setup you&rsquo;ll need to have the library installed on every node in the cluster (not just the main node).</p>
 <p>Here I use the <code>expit</code> (inverse logit) function in the scipy library to transform the <code>var1</code> column. The result is returned as an array (just a lil flex) containing both the original value and the transformed value. The type returned by <code>expit</code> (<code>numpy.float64</code>) is converted to a base Python float since it needs to match PySpark&rsquo;s <code>FloatType()</code> type.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> scipy.special <span style="color:#f92672">import</span> expit
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> scipy.special <span style="color:#f92672">import</span> expit
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_el</span>(v1):
     <span style="color:#66d9ef">try</span>:
         inv_logit <span style="color:#f92672">=</span> float(expit(v1))
         <span style="color:#66d9ef">return</span>([v1, inv_logit])
     <span style="color:#66d9ef">except</span>:
-        <span style="color:#66d9ef">return</span>(None)
+        <span style="color:#66d9ef">return</span>(<span style="color:#66d9ef">None</span>)
 
 udf_el_reg <span style="color:#f92672">=</span> udf(udf_el, ArrayType(FloatType()))
 
 sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>withColumn(<span style="color:#e6db74">&#39;var3&#39;</span>, udf_el_reg(<span style="color:#e6db74">&#39;var1&#39;</span>))
 sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81ff">5</span>)
-</code></pre></div><pre><code>+----------+--------------------+----+--------------------+
+</code></pre></div><pre tabindex="0"><code>+----------+--------------------+----+--------------------+
 |identifier|                var1|var2|                var3|
 +----------+--------------------+----+--------------------+
 |         2|-0.01586150202926495|   N|[-0.015861502, 0....|
@@ -263,22 +260,22 @@ sdf_transformed<span style="color:#f92672">.</span>show(<span style="color:#ae81
 |         3|   4.900761231566397|   N|[4.900761, 0.9926...|
 +----------+--------------------+----+--------------------+
 </code></pre><h2 id="custom-aggregate">Custom Aggregate</h2>
-<p>At the time of writing this, it&rsquo;s not possible to implement UDAFs (user defined aggregate functions) the way one can in Spark. The work around is to implement them by collecting all the elements of a group into a list using <code>collect_list</code> and then applying a UDF to each groups&rsquo; list.</p>
+<p>At the time of writing this, it&rsquo;s not possible to implement UDAFs (user defined aggregate functions) the way one can in Spark. The work around is to implement them by collecting all the elements of a group into a list using <code>collect_list</code> and then applying a UDF to each groups' list.</p>
 <p>In the code below I take things a little further (another flex) and return an array of <em>different</em> types (using <code>StructType()</code> and <code>StructField()</code>). Another option when returning an array would be to force everything to a single type and convert it back to the appropriate type when you flatten that array to a data frame later on.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_ca</span>(x):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">udf_ca</span>(x):
     <span style="color:#66d9ef">try</span>:
         <span style="color:#66d9ef">return</span>([int(len(x)), float(np<span style="color:#f92672">.</span>mean(x))])
     <span style="color:#66d9ef">except</span>:
-        <span style="color:#66d9ef">return</span>(None)
+        <span style="color:#66d9ef">return</span>(<span style="color:#66d9ef">None</span>)
 
-schema <span style="color:#f92672">=</span> StructType([StructField(<span style="color:#e6db74">&#39;length&#39;</span>, IntegerType(), False),
-                     StructField(<span style="color:#e6db74">&#39;mean&#39;</span>, FloatType(), False)])
+schema <span style="color:#f92672">=</span> StructType([StructField(<span style="color:#e6db74">&#39;length&#39;</span>, IntegerType(), <span style="color:#66d9ef">False</span>),
+                     StructField(<span style="color:#e6db74">&#39;mean&#39;</span>, FloatType(), <span style="color:#66d9ef">False</span>)])
 
 udf_ca_reg <span style="color:#f92672">=</span> udf(udf_ca, schema)
 
 sdf_transformed <span style="color:#f92672">=</span> sdf<span style="color:#f92672">.</span>groupBy(<span style="color:#e6db74">&#39;identifier&#39;</span>)<span style="color:#f92672">.</span>agg(collect_list(<span style="color:#e6db74">&#39;var1&#39;</span>)<span style="color:#f92672">.</span>alias(<span style="color:#e6db74">&#39;var1_list&#39;</span>))<span style="color:#f92672">.</span>select(udf_ca_reg(<span style="color:#e6db74">&#39;var1_list&#39;</span>)<span style="color:#f92672">.</span>alias(<span style="color:#e6db74">&#39;gpd_metrics&#39;</span>))
-sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="color:#f92672">=</span>False)
-</code></pre></div><pre><code>+---------------+
+sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</code></pre></div><pre tabindex="0"><code>+---------------+
 |gpd_metrics    |
 +---------------+
 |[18, 2.6149726]|
@@ -287,8 +284,8 @@ sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="col
 |[17, 2.7891133]|
 |[24, 3.4916883]|
 +---------------+
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed<span style="color:#f92672">.</span>printSchema()
-</code></pre></div><pre><code>root
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sdf_transformed<span style="color:#f92672">.</span>printSchema()
+</code></pre></div><pre tabindex="0"><code>root
  |-- gpd_metrics: struct (nullable = true)
  |    |-- length: integer (nullable = false)
  |    |-- mean: float (nullable = false)
@@ -342,7 +339,7 @@ sdf_transformed<span style="color:#f92672">.</span>show(truncate<span style="col
 
 
 
-<script type="text/javascript" src="/bundle.min.4a69500057d68129e88f497d354afe68422eb56de6d15e45dbe2190858ea5a76bfcb096406f992984b241db45f47388ac57ab0376e3b32125bef7a8a6d0f06c4.js" integrity="sha512-SmlQAFfWgSnoj0l9NUr&#43;aEIutW3m0V5F2&#43;IZCFjqWna/ywlkBvmSmEskHbRfRziKxXqwN247MhJb73qKbQ8GxA=="></script>
+<script type="text/javascript" src="/bundle.min.59ecdc8ddd50b30e6dd7ad4a5372c3fd24a26db671cc1575443b150ceb9d4bc8e73618fb298596b5c336cf5d8c2db90bd7e72a648479e97884e5398722f962fa.js" integrity="sha512-Wezcjd1Qsw5t161KU3LD/SSibbZxzBV1RDsVDOudS8jnNhj7KYWWtcM2z12MLbkL1&#43;cqZIR56XiE5TmHIvli&#43;g=="></script>
 
 
 
